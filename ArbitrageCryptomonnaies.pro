@@ -11,7 +11,18 @@ DEPENDPATH += . include source
 INCLUDEPATH += . include
 OBJECTS_DIR = objects
 
-# HEADERS +=
-# SOURCES +=
+HEADERS += include/Budget.h \
+           include/Cours.h \
+           include/Devise.h \
+           include/Echange.h \
+           include/Monnaie.h \
+           include/Plateforme.h
+SOURCES += source/ArbitrageCryptomonnaies.cpp \
+           source/Budget.cpp \
+           source/Cours.cpp \
+           source/Devise.cpp \
+           source/Echange.cpp \
+           source/Monnaie.cpp \
+           source/Plateforme.cpp
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra

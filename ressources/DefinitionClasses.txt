@@ -1,0 +1,29 @@
+a Alexis;Foerster;alexis.foerster@gmail.com
+v 1.0.0;DD/MM/YYYY
+
+c Devise
+m std::string nom
+
+c Monnaie
+m Devise devise
+m double quantite
+
+c Budget
+m MapNomsMonnaies mapMonnaies
+
+c Cours
+m int date
+m double valeurAchat
+m double valeurVente
+m double quantiteAchat
+m double quantiteVente
+
+c Echange
+m Devise deviseSource
+m Devise deviseDestination
+m MapIdCours mapCours
+
+c Plateforme
+m std::string nom
+m MapNomsEchanges mapEchanges
+m Budget budget
