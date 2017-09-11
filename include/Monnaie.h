@@ -38,14 +38,14 @@ public:
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
-    // Méthodes spécifiques
+    // Méthodes spécifiques (opérateurs)
     bool operator==(const Monnaie& monnaie) const;
     bool operator!=(const Monnaie& monnaie) const;
 
 private:
     // Membres de classe
-    Devise devise;
-    double quantite;
+    Devise m_devise;
+    double m_quantite;
 };
 
 typedef Monnaie* PtrMonnaie;

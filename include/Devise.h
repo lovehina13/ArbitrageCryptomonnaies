@@ -35,13 +35,13 @@ public:
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
-    // Méthodes spécifiques
+    // Méthodes spécifiques (opérateurs)
     bool operator==(const Devise& devise) const;
     bool operator!=(const Devise& devise) const;
 
 private:
     // Membres de classe
-    std::string nom;
+    std::string m_nom;
 };
 
 typedef Devise* PtrDevise;

@@ -45,17 +45,17 @@ public:
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
-    // Méthodes spécifiques
+    // Méthodes spécifiques (opérateurs)
     bool operator==(const Cours& cours) const;
     bool operator!=(const Cours& cours) const;
 
 private:
     // Membres de classe
-    int date;
-    double valeurAchat;
-    double valeurVente;
-    double quantiteAchat;
-    double quantiteVente;
+    int m_date;
+    double m_valeurAchat;
+    double m_valeurVente;
+    double m_quantiteAchat;
+    double m_quantiteVente;
 };
 
 typedef Cours* PtrCours;

@@ -36,13 +36,13 @@ public:
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
-    // Méthodes spécifiques
+    // Méthodes spécifiques (opérateurs)
     bool operator==(const Budget& budget) const;
     bool operator!=(const Budget& budget) const;
 
 private:
     // Membres de classe
-    MapNomsMonnaies mapMonnaies;
+    MapNomsMonnaies m_mapMonnaies;
 };
 
 typedef Budget* PtrBudget;

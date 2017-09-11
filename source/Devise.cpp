@@ -31,12 +31,12 @@ Devise::~Devise()
 
 const std::string& Devise::getNom() const
 {
-    return this->nom;
+    return this->m_nom;
 }
 
 void Devise::setNom(const std::string& nom)
 {
-    this->nom = nom;
+    this->m_nom = nom;
 }
 
 void Devise::clear()

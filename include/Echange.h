@@ -43,15 +43,15 @@ public:
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
-    // Méthodes spécifiques
+    // Méthodes spécifiques (opérateurs)
     bool operator==(const Echange& echange) const;
     bool operator!=(const Echange& echange) const;
 
 private:
     // Membres de classe
-    Devise deviseSource;
-    Devise deviseDestination;
-    MapIdCours mapCours;
+    Devise m_deviseSource;
+    Devise m_deviseDestination;
+    MapIdCours m_mapCours;
 };
 
 typedef Echange* PtrEchange;

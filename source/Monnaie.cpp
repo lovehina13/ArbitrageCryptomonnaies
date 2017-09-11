@@ -8,7 +8,7 @@
 #include "Monnaie.h"
 
 Monnaie::Monnaie() :
-        quantite(0.0)
+        m_quantite(0.0)
 {
     this->clear();
 }
@@ -32,22 +32,22 @@ Monnaie::~Monnaie()
 
 const Devise& Monnaie::getDevise() const
 {
-    return this->devise;
+    return this->m_devise;
 }
 
 const double& Monnaie::getQuantite() const
 {
-    return this->quantite;
+    return this->m_quantite;
 }
 
 void Monnaie::setDevise(const Devise& devise)
 {
-    this->devise = devise;
+    this->m_devise = devise;
 }
 
 void Monnaie::setQuantite(const double& quantite)
 {
-    this->quantite = quantite;
+    this->m_quantite = quantite;
 }
 
 void Monnaie::clear()

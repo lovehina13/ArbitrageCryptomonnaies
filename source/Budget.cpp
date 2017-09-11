@@ -31,12 +31,12 @@ Budget::~Budget()
 
 const MapNomsMonnaies& Budget::getMapMonnaies() const
 {
-    return this->mapMonnaies;
+    return this->m_mapMonnaies;
 }
 
 void Budget::setMapMonnaies(const MapNomsMonnaies& mapMonnaies)
 {
-    this->mapMonnaies = mapMonnaies;
+    this->m_mapMonnaies = mapMonnaies;
 }
 
 void Budget::clear()

@@ -8,7 +8,8 @@
 #include "Cours.h"
 
 Cours::Cours() :
-        date(0), valeurAchat(0.0), valeurVente(0.0), quantiteAchat(0.0), quantiteVente(0.0)
+        m_date(0), m_valeurAchat(0.0), m_valeurVente(0.0), m_quantiteAchat(0.0),
+                m_quantiteVente(0.0)
 {
     this->clear();
 }
@@ -33,52 +34,52 @@ Cours::~Cours()
 
 const int& Cours::getDate() const
 {
-    return this->date;
+    return this->m_date;
 }
 
 const double& Cours::getValeurAchat() const
 {
-    return this->valeurAchat;
+    return this->m_valeurAchat;
 }
 
 const double& Cours::getValeurVente() const
 {
-    return this->valeurVente;
+    return this->m_valeurVente;
 }
 
 const double& Cours::getQuantiteAchat() const
 {
-    return this->quantiteAchat;
+    return this->m_quantiteAchat;
 }
 
 const double& Cours::getQuantiteVente() const
 {
-    return this->quantiteVente;
+    return this->m_quantiteVente;
 }
 
 void Cours::setDate(const int& date)
 {
-    this->date = date;
+    this->m_date = date;
 }
 
 void Cours::setValeurAchat(const double& valeurAchat)
 {
-    this->valeurAchat = valeurAchat;
+    this->m_valeurAchat = valeurAchat;
 }
 
 void Cours::setValeurVente(const double& valeurVente)
 {
-    this->valeurVente = valeurVente;
+    this->m_valeurVente = valeurVente;
 }
 
 void Cours::setQuantiteAchat(const double& quantiteAchat)
 {
-    this->quantiteAchat = quantiteAchat;
+    this->m_quantiteAchat = quantiteAchat;
 }
 
 void Cours::setQuantiteVente(const double& quantiteVente)
 {
-    this->quantiteVente = quantiteVente;
+    this->m_quantiteVente = quantiteVente;
 }
 
 void Cours::clear()

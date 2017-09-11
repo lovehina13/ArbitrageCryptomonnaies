@@ -32,32 +32,32 @@ Plateforme::~Plateforme()
 
 const std::string& Plateforme::getNom() const
 {
-    return this->nom;
+    return this->m_nom;
 }
 
 const MapNomsEchanges& Plateforme::getMapEchanges() const
 {
-    return this->mapEchanges;
+    return this->m_mapEchanges;
 }
 
 const Budget& Plateforme::getBudget() const
 {
-    return this->budget;
+    return this->m_budget;
 }
 
 void Plateforme::setNom(const std::string& nom)
 {
-    this->nom = nom;
+    this->m_nom = nom;
 }
 
 void Plateforme::setMapEchanges(const MapNomsEchanges& mapEchanges)
 {
-    this->mapEchanges = mapEchanges;
+    this->m_mapEchanges = mapEchanges;
 }
 
 void Plateforme::setBudget(const Budget& budget)
 {
-    this->budget = budget;
+    this->m_budget = budget;
 }
 
 void Plateforme::clear()

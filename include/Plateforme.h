@@ -41,15 +41,15 @@ public:
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
-    // Méthodes spécifiques
+    // Méthodes spécifiques (opérateurs)
     bool operator==(const Plateforme& plateforme) const;
     bool operator!=(const Plateforme& plateforme) const;
 
 private:
     // Membres de classe
-    std::string nom;
-    MapNomsEchanges mapEchanges;
-    Budget budget;
+    std::string m_nom;
+    MapNomsEchanges m_mapEchanges;
+    Budget m_budget;
 };
 
 typedef Plateforme* PtrPlateforme;

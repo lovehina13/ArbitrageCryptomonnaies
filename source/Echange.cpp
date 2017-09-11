@@ -32,32 +32,32 @@ Echange::~Echange()
 
 const Devise& Echange::getDeviseSource() const
 {
-    return this->deviseSource;
+    return this->m_deviseSource;
 }
 
 const Devise& Echange::getDeviseDestination() const
 {
-    return this->deviseDestination;
+    return this->m_deviseDestination;
 }
 
 const MapIdCours& Echange::getMapCours() const
 {
-    return this->mapCours;
+    return this->m_mapCours;
 }
 
 void Echange::setDeviseSource(const Devise& deviseSource)
 {
-    this->deviseSource = deviseSource;
+    this->m_deviseSource = deviseSource;
 }
 
 void Echange::setDeviseDestination(const Devise& deviseDestination)
 {
-    this->deviseDestination = deviseDestination;
+    this->m_deviseDestination = deviseDestination;
 }
 
 void Echange::setMapCours(const MapIdCours& mapCours)
 {
-    this->mapCours = mapCours;
+    this->m_mapCours = mapCours;
 }
 
 void Echange::clear()
