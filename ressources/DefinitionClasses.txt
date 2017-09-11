@@ -21,9 +21,24 @@ m double quantiteVente
 c Echange
 m Devise deviseSource
 m Devise deviseDestination
+m double fraisFixes
+m double fraisVariables
 m MapIdCours mapCours
 
 c Plateforme
 m std::string nom
 m MapNomsEchanges mapEchanges
 m Budget budget
+
+c Transaction
+m PtrPlateforme plateformeAchat
+m PtrPlateforme plateformeVente
+m PtrEchange echangeAchat
+m PtrEchange echangeVente
+m PtrCours coursAchat
+m PtrCours coursVente
+m int date
+
+c Projet
+m MapNomsPlateformes mapPlateformes
+

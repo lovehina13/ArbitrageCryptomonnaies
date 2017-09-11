@@ -16,13 +16,17 @@ HEADERS += include/Budget.h \
            include/Devise.h \
            include/Echange.h \
            include/Monnaie.h \
-           include/Plateforme.h
+           include/Plateforme.h \
+           include/Projet.h \
+           include/Transaction.h
 SOURCES += source/ArbitrageCryptomonnaies.cpp \
            source/Budget.cpp \
            source/Cours.cpp \
            source/Devise.cpp \
            source/Echange.cpp \
            source/Monnaie.cpp \
-           source/Plateforme.cpp
+           source/Plateforme.cpp \
+           source/Projet.cpp \
+           source/Transaction.cpp
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra

@@ -19,25 +19,29 @@ class Echange
 public:
     // Constructeurs et destructeurs
     Echange();
-    Echange(const Devise& deviseSource, const Devise& deviseDestination,
-            const MapIdCours& mapCours);
+    Echange(const Devise& deviseSource, const Devise& deviseDestination, const double& fraisFixes,
+            const double& fraisVariables, const MapIdCours& mapCours);
     Echange(const Echange& echange);
     virtual ~Echange();
 
     // Getters
     const Devise& getDeviseSource() const;
     const Devise& getDeviseDestination() const;
+    const double& getFraisFixes() const;
+    const double& getFraisVariables() const;
     const MapIdCours& getMapCours() const;
 
     // Setters
     void setDeviseSource(const Devise& deviseSource);
     void setDeviseDestination(const Devise& deviseDestination);
+    void setFraisFixes(const double& fraisFixes);
+    void setFraisVariables(const double& fraisVariables);
     void setMapCours(const MapIdCours& mapCours);
 
     // Méthodes génériques
     void clear();
-    void set(const Devise& deviseSource, const Devise& deviseDestination,
-            const MapIdCours& mapCours);
+    void set(const Devise& deviseSource, const Devise& deviseDestination, const double& fraisFixes,
+            const double& fraisVariables, const MapIdCours& mapCours);
     void copy(const Echange& echange);
     bool equals(const Echange& echange) const;
     void fromString(const std::string& fromString, const char& sep);
@@ -47,10 +51,19 @@ public:
     bool operator==(const Echange& echange) const;
     bool operator!=(const Echange& echange) const;
 
+    // Méthodes spécifiques (m_mapCours)
+    bool hasCours(const int& date) const;
+    PtrCours getCours(const int& date) const;
+    bool ajouterCours(const int& date, const double& valeurAchat, const double& valeurVente,
+            const double& quantiteAchat, const double& quantiteVente);
+    bool supprimerCours(const int& date);
+
 private:
     // Membres de classe
     Devise m_deviseSource;
     Devise m_deviseDestination;
+    double m_fraisFixes;
+    double m_fraisVariables;
     MapIdCours m_mapCours;
 };
 

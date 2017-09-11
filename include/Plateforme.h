@@ -45,6 +45,14 @@ public:
     bool operator==(const Plateforme& plateforme) const;
     bool operator!=(const Plateforme& plateforme) const;
 
+    // Méthodes spécifiques (m_mapEchanges)
+    bool hasEchange(const std::string& nom) const;
+    PtrEchange getEchange(const std::string& nom) const;
+    bool ajouterEchange(const std::string& nom, const std::string& deviseSource,
+            const std::string& deviseDestination, const double& fraisFixes,
+            const double& fraisVariables, const ListeCours& listeCours);
+    bool supprimerEchange(const std::string& nom);
+
 private:
     // Membres de classe
     std::string m_nom;

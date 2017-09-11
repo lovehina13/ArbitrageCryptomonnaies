@@ -83,3 +83,30 @@ bool Budget::operator!=(const Budget& budget) const
 {
     return !(this->equals(budget));
 }
+
+bool Budget::hasMonnaie(const std::string& nom) const
+{
+    return (this->m_mapMonnaies.find(nom) != this->m_mapMonnaies.end());
+}
+
+PtrMonnaie Budget::getMonnaie(const std::string& nom) const
+{
+    return (this->hasMonnaie(nom) ? (PtrMonnaie) &(this->m_mapMonnaies.find(nom)->second) : NULL);
+}
+
+bool Budget::ajouterMonnaie(const std::string& nom, const double& quantite)
+{
+    if (this->hasMonnaie(nom))
+        return false;
+    this->m_mapMonnaies.insert(
+            std::pair<std::string, Monnaie>(nom, Monnaie(Devise(nom), quantite)));
+    return true;
+}
+
+bool Budget::supprimerMonnaie(const std::string& nom)
+{
+    if (!this->hasMonnaie(nom))
+        return false;
+    this->m_mapMonnaies.erase(nom);
+    return true;
+}

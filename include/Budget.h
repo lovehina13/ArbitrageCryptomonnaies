@@ -40,6 +40,12 @@ public:
     bool operator==(const Budget& budget) const;
     bool operator!=(const Budget& budget) const;
 
+    // Méthodes spécifiques (m_mapMonnaies)
+    bool hasMonnaie(const std::string& nom) const;
+    PtrMonnaie getMonnaie(const std::string& nom) const;
+    bool ajouterMonnaie(const std::string& nom, const double& quantite);
+    bool supprimerMonnaie(const std::string& nom);
+
 private:
     // Membres de classe
     MapNomsMonnaies m_mapMonnaies;
