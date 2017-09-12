@@ -27,12 +27,12 @@ public:
     virtual ~Transaction();
 
     // Getters
-    const PtrPlateforme getPlateformeAchat() const;
-    const PtrPlateforme getPlateformeVente() const;
-    const PtrEchange getEchangeAchat() const;
-    const PtrEchange getEchangeVente() const;
-    const PtrCours getCoursAchat() const;
-    const PtrCours getCoursVente() const;
+    PtrPlateforme getPlateformeAchat() const;
+    PtrPlateforme getPlateformeVente() const;
+    PtrEchange getEchangeAchat() const;
+    PtrEchange getEchangeVente() const;
+    PtrCours getCoursAchat() const;
+    PtrCours getCoursVente() const;
     const int& getDate() const;
 
     // Setters

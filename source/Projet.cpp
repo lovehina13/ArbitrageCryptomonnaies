@@ -160,7 +160,6 @@ Transaction Projet::getTransactionOptimale(const int& date)
                     const std::string& nomEchangeDestination = itEchangeDestination->first;
                     if (nomEchangeSource != nomEchangeDestination)
                         continue;
-                    // TODO Comparaisons entre les noms croisés des échanges de source et de destination
 
                     // Récupération des échanges de source et de destination
                     const Echange& echangeSource = itEchangeSource->second;

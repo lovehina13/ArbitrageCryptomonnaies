@@ -13,11 +13,11 @@ Echange::Echange() :
     this->clear();
 }
 
-Echange::Echange(const Devise& deviseSource, const Devise& deviseDestination,
+Echange::Echange(const Devise& deviseNumerique, const Devise& deviseReelle,
         const double& fraisFixes, const double& fraisVariables, const MapIdCours& mapCours) :
         Echange()
 {
-    this->set(deviseSource, deviseDestination, fraisFixes, fraisVariables, mapCours);
+    this->set(deviseNumerique, deviseReelle, fraisFixes, fraisVariables, mapCours);
 }
 
 Echange::Echange(const Echange& echange) :
@@ -31,14 +31,14 @@ Echange::~Echange()
 
 }
 
-const Devise& Echange::getDeviseSource() const
+const Devise& Echange::getDeviseNumerique() const
 {
-    return this->m_deviseSource;
+    return this->m_deviseNumerique;
 }
 
-const Devise& Echange::getDeviseDestination() const
+const Devise& Echange::getDeviseReelle() const
 {
-    return this->m_deviseDestination;
+    return this->m_deviseReelle;
 }
 
 const double& Echange::getFraisFixes() const
@@ -56,14 +56,14 @@ const MapIdCours& Echange::getMapCours() const
     return this->m_mapCours;
 }
 
-void Echange::setDeviseSource(const Devise& deviseSource)
+void Echange::setDeviseNumerique(const Devise& deviseNumerique)
 {
-    this->m_deviseSource = deviseSource;
+    this->m_deviseNumerique = deviseNumerique;
 }
 
-void Echange::setDeviseDestination(const Devise& deviseDestination)
+void Echange::setDeviseReelle(const Devise& deviseReelle)
 {
-    this->m_deviseDestination = deviseDestination;
+    this->m_deviseReelle = deviseReelle;
 }
 
 void Echange::setFraisFixes(const double& fraisFixes)
@@ -86,11 +86,11 @@ void Echange::clear()
     this->set(Devise(), Devise(), 0.0, 0.0, MapIdCours());
 }
 
-void Echange::set(const Devise& deviseSource, const Devise& deviseDestination,
+void Echange::set(const Devise& deviseNumerique, const Devise& deviseReelle,
         const double& fraisFixes, const double& fraisVariables, const MapIdCours& mapCours)
 {
-    this->setDeviseSource(deviseSource);
-    this->setDeviseDestination(deviseDestination);
+    this->setDeviseNumerique(deviseNumerique);
+    this->setDeviseReelle(deviseReelle);
     this->setFraisFixes(fraisFixes);
     this->setFraisVariables(fraisVariables);
     this->setMapCours(mapCours);
@@ -98,15 +98,15 @@ void Echange::set(const Devise& deviseSource, const Devise& deviseDestination,
 
 void Echange::copy(const Echange& echange)
 {
-    this->set(echange.getDeviseSource(), echange.getDeviseDestination(), echange.getFraisFixes(),
+    this->set(echange.getDeviseNumerique(), echange.getDeviseReelle(), echange.getFraisFixes(),
             echange.getFraisVariables(), echange.getMapCours());
 }
 
 bool Echange::equals(const Echange& echange) const
 {
-    if (this->getDeviseSource() != echange.getDeviseSource())
+    if (this->getDeviseNumerique() != echange.getDeviseNumerique())
         return false;
-    if (this->getDeviseDestination() != echange.getDeviseDestination())
+    if (this->getDeviseReelle() != echange.getDeviseReelle())
         return false;
     if (this->getFraisFixes() != echange.getFraisFixes())
         return false;

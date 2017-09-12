@@ -48,9 +48,9 @@ public:
     // Méthodes spécifiques (m_mapEchanges)
     bool hasEchange(const std::string& nom) const;
     PtrEchange getEchange(const std::string& nom) const;
-    bool ajouterEchange(const std::string& nom, const std::string& deviseSource,
-            const std::string& deviseDestination, const double& fraisFixes,
-            const double& fraisVariables, const ListeCours& listeCours);
+    bool ajouterEchange(const std::string& nom, const std::string& deviseNumerique,
+            const std::string& deviseReelle, const double& fraisFixes, const double& fraisVariables,
+            const MapIdCours& mapCours);
     bool supprimerEchange(const std::string& nom);
 
 private:

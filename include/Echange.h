@@ -19,28 +19,28 @@ class Echange
 public:
     // Constructeurs et destructeurs
     Echange();
-    Echange(const Devise& deviseSource, const Devise& deviseDestination, const double& fraisFixes,
+    Echange(const Devise& deviseNumerique, const Devise& deviseReelle, const double& fraisFixes,
             const double& fraisVariables, const MapIdCours& mapCours);
     Echange(const Echange& echange);
     virtual ~Echange();
 
     // Getters
-    const Devise& getDeviseSource() const;
-    const Devise& getDeviseDestination() const;
+    const Devise& getDeviseNumerique() const;
+    const Devise& getDeviseReelle() const;
     const double& getFraisFixes() const;
     const double& getFraisVariables() const;
     const MapIdCours& getMapCours() const;
 
     // Setters
-    void setDeviseSource(const Devise& deviseSource);
-    void setDeviseDestination(const Devise& deviseDestination);
+    void setDeviseNumerique(const Devise& deviseNumerique);
+    void setDeviseReelle(const Devise& deviseReelle);
     void setFraisFixes(const double& fraisFixes);
     void setFraisVariables(const double& fraisVariables);
     void setMapCours(const MapIdCours& mapCours);
 
     // Méthodes génériques
     void clear();
-    void set(const Devise& deviseSource, const Devise& deviseDestination, const double& fraisFixes,
+    void set(const Devise& deviseNumerique, const Devise& deviseReelle, const double& fraisFixes,
             const double& fraisVariables, const MapIdCours& mapCours);
     void copy(const Echange& echange);
     bool equals(const Echange& echange) const;
@@ -60,8 +60,8 @@ public:
 
 private:
     // Membres de classe
-    Devise m_deviseSource;
-    Devise m_deviseDestination;
+    Devise m_deviseNumerique;
+    Devise m_deviseReelle;
     double m_fraisFixes;
     double m_fraisVariables;
     MapIdCours m_mapCours;

@@ -19,8 +19,8 @@ m double quantiteAchat
 m double quantiteVente
 
 c Echange
-m Devise deviseSource
-m Devise deviseDestination
+m Devise deviseNumerique
+m Devise deviseReelle
 m double fraisFixes
 m double fraisVariables
 m MapIdCours mapCours

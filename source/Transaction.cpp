@@ -34,32 +34,32 @@ Transaction::~Transaction()
 
 }
 
-const PtrPlateforme Transaction::getPlateformeAchat() const
+PtrPlateforme Transaction::getPlateformeAchat() const
 {
     return this->m_plateformeAchat;
 }
 
-const PtrPlateforme Transaction::getPlateformeVente() const
+PtrPlateforme Transaction::getPlateformeVente() const
 {
     return this->m_plateformeVente;
 }
 
-const PtrEchange Transaction::getEchangeAchat() const
+PtrEchange Transaction::getEchangeAchat() const
 {
     return this->m_echangeAchat;
 }
 
-const PtrEchange Transaction::getEchangeVente() const
+PtrEchange Transaction::getEchangeVente() const
 {
     return this->m_echangeVente;
 }
 
-const PtrCours Transaction::getCoursAchat() const
+PtrCours Transaction::getCoursAchat() const
 {
     return this->m_coursAchat;
 }
 
-const PtrCours Transaction::getCoursVente() const
+PtrCours Transaction::getCoursVente() const
 {
     return this->m_coursVente;
 }
@@ -173,14 +173,35 @@ bool Transaction::operator!=(const Transaction& transaction) const
 
 double Transaction::getQuantiteAchat() const
 {
-    // TODO double Transaction::getQuantiteAchat() const
-    return 0.0;
+    const double quantiteBudget = this->m_plateformeAchat->getBudget().getMonnaie(
+            this->m_echangeAchat->getDeviseReelle().getNom())->getQuantite()
+            / this->m_coursAchat->getValeurVente();
+    const bool valeursAchatVenteIdentiques = (this->m_coursAchat->getValeurAchat()
+            == this->m_coursAchat->getValeurVente());
+    const double quantiteAchat =
+            (valeursAchatVenteIdentiques) ?
+                    std::min(quantiteBudget,
+                            std::max(
+                                    this->m_coursAchat->getQuantiteVente()
+                                            - this->m_coursAchat->getQuantiteAchat(), 0.0)) :
+                    std::min(quantiteBudget, this->m_coursAchat->getQuantiteVente());
+    return quantiteAchat;
 }
 
 double Transaction::getQuantiteVente() const
 {
-    // TODO double Transaction::getQuantiteVente() const
-    return 0.0;
+    const double quantiteBudget = this->m_plateformeVente->getBudget().getMonnaie(
+            this->m_echangeVente->getDeviseNumerique().getNom())->getQuantite();
+    const bool valeursAchatVenteIdentiques = (this->m_coursVente->getValeurAchat()
+            == this->m_coursVente->getValeurVente());
+    const double quantiteVente =
+            (valeursAchatVenteIdentiques) ?
+                    std::min(quantiteBudget,
+                            std::max(
+                                    this->m_coursVente->getQuantiteAchat()
+                                            - this->m_coursVente->getQuantiteVente(), 0.0)) :
+                    std::min(quantiteBudget, this->m_coursVente->getQuantiteAchat());
+    return quantiteVente;
 }
 
 double Transaction::getQuantiteTransaction() const
