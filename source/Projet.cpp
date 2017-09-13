@@ -176,11 +176,12 @@ Transaction Projet::getTransactionOptimale(const int& date)
                     // Définition de la transaction
                     Transaction transaction = Transaction((PtrPlateforme) &plateformeSource,
                             (PtrPlateforme) &plateformeDestination, (PtrEchange) &echangeSource,
-                            (PtrEchange) &echangeDestination, (PtrCours) &coursSource,
-                            (PtrCours) &coursDestination, date);
+                            (PtrEchange) &echangeDestination, (PtrCours) coursSource,
+                            (PtrCours) coursDestination, date);
 
                     // Considération de la transaction comme optimale si le bénéfice net est plus élevé
-                    if (transaction.getBeneficeNet() > transactionOptimale.getBeneficeNet())
+                    if (!transactionOptimale.isSet()
+                            || transaction.getBeneficeNet() > transactionOptimale.getBeneficeNet())
                     {
                         transactionOptimale = transaction;
                     }

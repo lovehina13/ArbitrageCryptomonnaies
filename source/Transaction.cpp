@@ -171,6 +171,13 @@ bool Transaction::operator!=(const Transaction& transaction) const
     return !(this->equals(transaction));
 }
 
+bool Transaction::isSet() const
+{
+    return (this->m_plateformeAchat != NULL && this->m_plateformeVente != NULL
+            && this->m_echangeAchat != NULL && this->m_echangeVente != NULL
+            && this->m_coursAchat != NULL && this->m_coursVente != NULL);
+}
+
 double Transaction::getQuantiteAchat() const
 {
     const double quantiteBudget = this->m_plateformeAchat->getBudget().getMonnaie(

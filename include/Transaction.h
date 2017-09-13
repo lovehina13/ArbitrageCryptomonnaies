@@ -59,6 +59,7 @@ public:
     bool operator!=(const Transaction& transaction) const;
 
     // Méthodes spécifiques (traitements)
+    bool isSet() const;
     double getQuantiteAchat() const;
     double getQuantiteVente() const;
     double getQuantiteTransaction() const;
