@@ -118,8 +118,8 @@ Transaction Projet::getTransactionOptimale(const int& date)
     Transaction transactionOptimale;
 
     // Récupération de l'ensemble des plateformes de source et de destination
-    const MapNomsPlateformes mapPlateformesSource = this->m_mapPlateformes;
-    const MapNomsPlateformes mapPlateformesDestination = this->m_mapPlateformes;
+    const MapNomsPlateformes& mapPlateformesSource = this->m_mapPlateformes;
+    const MapNomsPlateformes& mapPlateformesDestination = this->m_mapPlateformes;
 
     // Boucle sur les plateformes de source
     for (MapNomsPlateformes::const_iterator itPlateformeSource = mapPlateformesSource.begin();
@@ -179,9 +179,14 @@ Transaction Projet::getTransactionOptimale(const int& date)
                             (PtrEchange) &echangeDestination, (PtrCours) coursSource,
                             (PtrCours) coursDestination, date);
 
-                    // Considération de la transaction comme optimale si le bénéfice net est plus élevé
-                    if (!transactionOptimale.isSet()
-                            || transaction.getBeneficeNet() > transactionOptimale.getBeneficeNet())
+                    // Récupération des bénéfices nets
+                    const double beneficeNet = transaction.getBeneficeNet();
+                    const double beneficeNetOptimal =
+                            (transactionOptimale.isSet()) ? transactionOptimale.getBeneficeNet() :
+                                    0.0;
+
+                    // Considération de la transaction comme optimale si le bénéfice net est supérieur au précédent
+                    if (beneficeNet > beneficeNetOptimal)
                     {
                         transactionOptimale = transaction;
                     }
