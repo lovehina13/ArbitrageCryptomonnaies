@@ -180,9 +180,11 @@ bool Transaction::isSet() const
 
 double Transaction::getQuantiteAchat() const
 {
-    const double quantiteBudget = this->m_plateformeAchat->getBudget().getMonnaie(
-            this->m_echangeAchat->getDeviseReelle().getNom())->getQuantite()
-            / this->m_coursAchat->getValeurVente();
+    const double quantiteMonnaie = this->m_plateformeAchat->getBudget().getMonnaie(
+            this->m_echangeAchat->getDeviseReelle().getNom())->getQuantite();
+    // const double quantiteBudget = quantiteMonnaie / this->m_coursAchat->getValeurVente();
+    const double quantiteBudget = (quantiteMonnaie - this->m_echangeAchat->getFraisFixes())
+            / (this->m_echangeAchat->getFraisVariables() + this->m_coursAchat->getValeurVente());
     const bool valeursAchatVenteIdentiques = (this->m_coursAchat->getValeurAchat()
             == this->m_coursAchat->getValeurVente());
     const double quantiteAchat =
@@ -197,8 +199,9 @@ double Transaction::getQuantiteAchat() const
 
 double Transaction::getQuantiteVente() const
 {
-    const double quantiteBudget = this->m_plateformeVente->getBudget().getMonnaie(
+    const double quantiteMonnaie = this->m_plateformeVente->getBudget().getMonnaie(
             this->m_echangeVente->getDeviseNumerique().getNom())->getQuantite();
+    const double quantiteBudget = quantiteMonnaie;
     const bool valeursAchatVenteIdentiques = (this->m_coursVente->getValeurAchat()
             == this->m_coursVente->getValeurVente());
     const double quantiteVente =
