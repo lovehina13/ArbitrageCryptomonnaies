@@ -197,3 +197,45 @@ Transaction Projet::getTransactionOptimale(const int& date)
 
     return transactionOptimale;
 }
+
+void Projet::actualiserBudgets(const Transaction& transaction)
+{
+    // Récupération des plateformes d'achat et de vente
+    PtrPlateforme plateformeAchat = transaction.getPlateformeAchat();
+    PtrPlateforme plateformeVente = transaction.getPlateformeVente();
+
+    // Récupération des budgets d'achat et de vente
+    PtrBudget budgetAchat = (PtrBudget) &plateformeAchat->getBudget();
+    PtrBudget budgetVente = (PtrBudget) &plateformeVente->getBudget();
+
+    // Récupération des monnaies d'achat et de vente
+    PtrMonnaie monnaieNumeriqueAchat = budgetAchat->getMonnaie(
+            transaction.getEchangeAchat()->getDeviseNumerique().getNom());
+    PtrMonnaie monnaieReelleAchat = budgetAchat->getMonnaie(
+            transaction.getEchangeAchat()->getDeviseReelle().getNom());
+    PtrMonnaie monnaieNumeriqueVente = budgetVente->getMonnaie(
+            transaction.getEchangeVente()->getDeviseNumerique().getNom());
+    PtrMonnaie monnaieReelleVente = budgetVente->getMonnaie(
+            transaction.getEchangeVente()->getDeviseReelle().getNom());
+
+    // Récupération des quantités des monnaies numériques et réelles d'achat et de vente
+    const double quantiteMonnaieNumeriqueAchat = monnaieNumeriqueAchat->getQuantite()
+            + transaction.getQuantiteTransaction();
+    const double quantiteMonnaieReelleAchat = monnaieReelleAchat->getQuantite()
+            - transaction.getCoutNetAchat();
+    const double quantiteMonnaieNumeriqueVente = monnaieNumeriqueVente->getQuantite()
+            - transaction.getQuantiteTransaction();
+    const double quantiteMonnaieReelleVente = monnaieReelleVente->getQuantite()
+            + transaction.getCoutNetVente();
+
+    // Actualisation des quantités des monnaies numériques et réelles d'achat et de vente
+    monnaieNumeriqueAchat->setQuantite(quantiteMonnaieNumeriqueAchat);
+    monnaieReelleAchat->setQuantite(quantiteMonnaieReelleAchat);
+    monnaieNumeriqueVente->setQuantite(quantiteMonnaieNumeriqueVente);
+    monnaieReelleVente->setQuantite(quantiteMonnaieReelleVente);
+}
+
+void Projet::reequilibrerBudgets(const Transaction& transaction)
+{
+    // TODO void Projet::reequilibrerBudgets(const Transaction& transaction)
+}

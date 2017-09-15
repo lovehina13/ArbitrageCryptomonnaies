@@ -50,6 +50,8 @@ public:
 
     // Méthodes spécifiques (traitements)
     Transaction getTransactionOptimale(const int& date);
+    void actualiserBudgets(const Transaction& transaction);
+    void reequilibrerBudgets(const Transaction& transaction);
 
 private:
     // Membres de classe
