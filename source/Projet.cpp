@@ -237,5 +237,68 @@ void Projet::actualiserBudgets(const Transaction& transaction)
 
 void Projet::reequilibrerBudgets(const Transaction& transaction)
 {
-    // TODO void Projet::reequilibrerBudgets(const Transaction& transaction)
+    // Définition du budget total
+    Budget budgetTotal;
+
+    // Récupération de l'ensemble des plateformes
+    const MapNomsPlateformes& mapPlateformes = this->m_mapPlateformes;
+
+    // Boucle sur les plateformes
+    for (MapNomsPlateformes::const_iterator itPlateforme = mapPlateformes.begin();
+            itPlateforme != mapPlateformes.end(); itPlateforme++)
+    {
+        // Récupération de la plateforme
+        const Plateforme& plateforme = itPlateforme->second;
+
+        // Récupération du budget
+        const Budget& budget = plateforme.getBudget();
+
+        // Récupération de l'ensemble des monnaies
+        const MapNomsMonnaies& mapMonnaies = budget.getMapMonnaies();
+
+        // Boucle sur les monnaies
+        for (MapNomsMonnaies::const_iterator itMonnaie = mapMonnaies.begin();
+                itMonnaie != mapMonnaies.end(); itMonnaie++)
+        {
+            // Récupération de la monnaie
+            const Monnaie& monnaie = itMonnaie->second;
+
+            // Considération de la monnaie et ajout au budget total
+            const std::string& nomMonnaie = monnaie.getDevise().getNom();
+            if (!budgetTotal.hasMonnaie(nomMonnaie))
+            {
+                budgetTotal.ajouterMonnaie(nomMonnaie, 0.0);
+            }
+            PtrMonnaie monnaieTotale = budgetTotal.getMonnaie(nomMonnaie);
+            monnaieTotale->setQuantite(monnaieTotale->getQuantite() + monnaie.getQuantite());
+        }
+    }
+
+    // Récupération du nombre de plateformes
+    const int nbPlateformes = mapPlateformes.size();
+
+    // Récupération de l'ensemble des monnaies
+    const MapNomsMonnaies& mapMonnaiesTotales = budgetTotal.getMapMonnaies();
+
+    // Boucle sur les monnaies
+    for (MapNomsMonnaies::const_iterator itMonnaieTotale = mapMonnaiesTotales.begin();
+            itMonnaieTotale != mapMonnaiesTotales.end(); itMonnaieTotale++)
+    {
+        // Récupération de la monnaie
+        PtrMonnaie monnaieTotale = (PtrMonnaie) &itMonnaieTotale->second;
+
+        // Considération de la monnaie et équilibrage selon le budget total
+        monnaieTotale->setQuantite(monnaieTotale->getQuantite() / nbPlateformes);
+    }
+
+    // Boucle sur les plateformes
+    for (MapNomsPlateformes::const_iterator itPlateforme = mapPlateformes.begin();
+            itPlateforme != mapPlateformes.end(); itPlateforme++)
+    {
+        // Récupération de la plateforme
+        PtrPlateforme plateforme = (PtrPlateforme) &itPlateforme->second;
+
+        // Actualisation du budget
+        plateforme->setBudget(budgetTotal);
+    }
 }
