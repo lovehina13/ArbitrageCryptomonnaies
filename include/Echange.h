@@ -19,29 +19,37 @@ class Echange
 public:
     // Constructeurs et destructeurs
     Echange();
-    Echange(const Devise& deviseNumerique, const Devise& deviseReelle, const double& fraisFixes,
-            const double& fraisVariables, const MapIdCours& mapCours);
+    Echange(const Devise& deviseNumerique, const Devise& deviseReelle,
+            const double& fraisFixesAchat, const double& fraisFixesVente,
+            const double& fraisVariablesAchat, const double& fraisVariablesVente,
+            const MapIdCours& mapCours);
     Echange(const Echange& echange);
     virtual ~Echange();
 
     // Getters
     const Devise& getDeviseNumerique() const;
     const Devise& getDeviseReelle() const;
-    const double& getFraisFixes() const;
-    const double& getFraisVariables() const;
+    const double& getFraisFixesAchat() const;
+    const double& getFraisFixesVente() const;
+    const double& getFraisVariablesAchat() const;
+    const double& getFraisVariablesVente() const;
     const MapIdCours& getMapCours() const;
 
     // Setters
     void setDeviseNumerique(const Devise& deviseNumerique);
     void setDeviseReelle(const Devise& deviseReelle);
-    void setFraisFixes(const double& fraisFixes);
-    void setFraisVariables(const double& fraisVariables);
+    void setFraisFixesAchat(const double& fraisFixesAchat);
+    void setFraisFixesVente(const double& fraisFixesVente);
+    void setFraisVariablesAchat(const double& fraisVariablesAchat);
+    void setFraisVariablesVente(const double& fraisVariablesVente);
     void setMapCours(const MapIdCours& mapCours);
 
     // Méthodes génériques
     void clear();
-    void set(const Devise& deviseNumerique, const Devise& deviseReelle, const double& fraisFixes,
-            const double& fraisVariables, const MapIdCours& mapCours);
+    void set(const Devise& deviseNumerique, const Devise& deviseReelle,
+            const double& fraisFixesAchat, const double& fraisFixesVente,
+            const double& fraisVariablesAchat, const double& fraisVariablesVente,
+            const MapIdCours& mapCours);
     void copy(const Echange& echange);
     bool equals(const Echange& echange) const;
     void fromString(const std::string& fromString, const char& sep);
@@ -62,8 +70,10 @@ private:
     // Membres de classe
     Devise m_deviseNumerique;
     Devise m_deviseReelle;
-    double m_fraisFixes;
-    double m_fraisVariables;
+    double m_fraisFixesAchat;
+    double m_fraisFixesVente;
+    double m_fraisVariablesAchat;
+    double m_fraisVariablesVente;
     MapIdCours m_mapCours;
 };
 

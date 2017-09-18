@@ -49,8 +49,9 @@ public:
     bool hasEchange(const std::string& nom) const;
     PtrEchange getEchange(const std::string& nom) const;
     bool ajouterEchange(const std::string& nom, const std::string& deviseNumerique,
-            const std::string& deviseReelle, const double& fraisFixes, const double& fraisVariables,
-            const MapIdCours& mapCours);
+            const std::string& deviseReelle, const double& fraisFixesAchat,
+            const double& fraisFixesVente, const double& fraisVariablesAchat,
+            const double& fraisVariablesVente, const MapIdCours& mapCours);
     bool supprimerEchange(const std::string& nom);
 
 private:

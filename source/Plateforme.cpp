@@ -123,15 +123,16 @@ PtrEchange Plateforme::getEchange(const std::string& nom) const
 }
 
 bool Plateforme::ajouterEchange(const std::string& nom, const std::string& deviseNumerique,
-        const std::string& deviseReelle, const double& fraisFixes, const double& fraisVariables,
-        const MapIdCours& mapCours)
+        const std::string& deviseReelle, const double& fraisFixesAchat,
+        const double& fraisFixesVente, const double& fraisVariablesAchat,
+        const double& fraisVariablesVente, const MapIdCours& mapCours)
 {
     if (this->hasEchange(nom))
         return false;
     this->m_mapEchanges.insert(
             std::pair<std::string, Echange>(nom,
-                    Echange(Devise(deviseNumerique), Devise(deviseReelle), fraisFixes,
-                            fraisVariables, mapCours)));
+                    Echange(Devise(deviseNumerique), Devise(deviseReelle), fraisFixesAchat,
+                            fraisFixesVente, fraisVariablesAchat, fraisVariablesVente, mapCours)));
     return true;
 }
 

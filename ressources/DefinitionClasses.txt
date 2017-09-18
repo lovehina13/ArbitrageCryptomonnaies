@@ -21,8 +21,10 @@ m double quantiteVente
 c Echange
 m Devise deviseNumerique
 m Devise deviseReelle
-m double fraisFixes
-m double fraisVariables
+m double fraisFixesAchat
+m double fraisFixesVente
+m double fraisVariablesAchat
+m double fraisVariablesVente
 m MapIdCours mapCours
 
 c Plateforme
