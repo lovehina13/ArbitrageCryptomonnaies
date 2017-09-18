@@ -115,6 +115,7 @@ bool Projet::supprimerPlateforme(const std::string& nom)
 
 Transaction Projet::getTransactionOptimale(const int& date)
 {
+    // Définition de la transaction optimale
     Transaction transactionOptimale;
 
     // Récupération de l'ensemble des plateformes de source et de destination
@@ -287,7 +288,7 @@ void Projet::reequilibrerBudgets(const Transaction& transaction)
         // Récupération de la monnaie
         PtrMonnaie monnaieTotale = (PtrMonnaie) &itMonnaieTotale->second;
 
-        // Considération de la monnaie et équilibrage selon le budget total
+        // Considération de la monnaie et équilibrage selon le budget total et le nombre de plateformes
         monnaieTotale->setQuantite(monnaieTotale->getQuantite() / nbPlateformes);
     }
 
