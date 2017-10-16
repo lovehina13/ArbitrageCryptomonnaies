@@ -69,6 +69,8 @@ public:
     double getCoutNetVente() const;
     double getBeneficeBrut() const;
     double getBeneficeNet() const;
+    double getRatioBeneficeBrut() const;
+    double getRatioBeneficeNet() const;
 
 private:
     // Membres de classe

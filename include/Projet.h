@@ -49,7 +49,8 @@ public:
     bool supprimerPlateforme(const std::string& nom);
 
     // Méthodes spécifiques (traitements)
-    Transaction getTransactionOptimale(const int& date);
+    Transaction getTransactionOptimale(const int& date, const double& beneficeMinimal,
+            const double& ratioBeneficeMinimal);
     void actualiserBudgets(const Transaction& transaction);
     void reequilibrerBudgets(const Transaction& transaction);
 

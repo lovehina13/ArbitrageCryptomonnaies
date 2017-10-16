@@ -277,3 +277,19 @@ double Transaction::getBeneficeNet() const
     const double beneficeNet = coutNetVente - coutNetAchat;
     return beneficeNet;
 }
+
+double Transaction::getRatioBeneficeBrut() const
+{
+    const double coutBrutAchat = this->getCoutBrutAchat();
+    const double coutBrutVente = this->getCoutBrutVente();
+    const double ratioBeneficeBrut = coutBrutVente / coutBrutAchat;
+    return ratioBeneficeBrut;
+}
+
+double Transaction::getRatioBeneficeNet() const
+{
+    const double coutNetAchat = this->getCoutNetAchat();
+    const double coutNetVente = this->getCoutNetVente();
+    const double ratioBeneficeNet = coutNetVente / coutNetAchat;
+    return ratioBeneficeNet;
+}

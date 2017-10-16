@@ -113,7 +113,8 @@ bool Projet::supprimerPlateforme(const std::string& nom)
     return true;
 }
 
-Transaction Projet::getTransactionOptimale(const int& date)
+Transaction Projet::getTransactionOptimale(const int& date, const double& beneficeMinimal,
+        const double& ratioBeneficeMinimal)
 {
     // Définition de la transaction optimale
     Transaction transactionOptimale;
@@ -182,12 +183,14 @@ Transaction Projet::getTransactionOptimale(const int& date)
 
                     // Récupération des bénéfices nets
                     const double beneficeNet = transaction.getBeneficeNet();
+                    const double ratioBeneficeNet = transaction.getRatioBeneficeNet();
                     const double beneficeNetOptimal =
                             (transactionOptimale.isSet()) ? transactionOptimale.getBeneficeNet() :
                                     0.0;
 
                     // Considération de la transaction comme optimale si le bénéfice net est supérieur au précédent
-                    if (beneficeNet > beneficeNetOptimal)
+                    if (beneficeNet > beneficeNetOptimal && beneficeNet > beneficeMinimal
+                            && ratioBeneficeNet > ratioBeneficeMinimal)
                     {
                         transactionOptimale = transaction;
                     }
