@@ -62,8 +62,7 @@ public:
     // Méthodes spécifiques (m_mapCours)
     bool hasCours(const int& date) const;
     PtrCours getCours(const int& date) const;
-    bool ajouterCours(const int& date, const double& valeurAchat, const double& valeurVente,
-            const double& quantiteAchat, const double& quantiteVente);
+    bool ajouterCours(const int& date, const Cours& cours);
     bool supprimerCours(const int& date);
 
 private:

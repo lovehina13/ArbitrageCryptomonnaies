@@ -183,21 +183,12 @@ PtrCours Echange::getCours(const int& date) const
     return (this->hasCours(date) ? (PtrCours) &(this->m_mapCours.find(date)->second) : NULL);
 }
 
-bool Echange::ajouterCours(const int& date, const double& valeurAchat, const double& valeurVente,
-        const double& quantiteAchat, const double& quantiteVente)
+bool Echange::ajouterCours(const int& date, const Cours& cours)
 {
-    if (this->hasCours(date))
-        return false;
-    this->m_mapCours.insert(
-            std::pair<int, Cours>(date,
-                    Cours(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente)));
-    return true;
+    return (this->m_mapCours.insert(std::pair<int, Cours>(date, cours)).second);
 }
 
 bool Echange::supprimerCours(const int& date)
 {
-    if (!this->hasCours(date))
-        return false;
-    this->m_mapCours.erase(date);
-    return true;
+    return (this->m_mapCours.erase(date) > 0);
 }

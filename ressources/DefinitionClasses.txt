@@ -33,13 +33,13 @@ m MapNomsEchanges mapEchanges
 m Budget budget
 
 c Transaction
+m int date
 m PtrPlateforme plateformeAchat
 m PtrPlateforme plateformeVente
 m PtrEchange echangeAchat
 m PtrEchange echangeVente
 m PtrCours coursAchat
 m PtrCours coursVente
-m int date
 
 c Projet
 m MapNomsPlateformes mapPlateformes

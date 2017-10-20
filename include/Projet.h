@@ -44,15 +44,14 @@ public:
     // Méthodes spécifiques (m_mapPlateformes)
     bool hasPlateforme(const std::string& nom) const;
     PtrPlateforme getPlateforme(const std::string& nom) const;
-    bool ajouterPlateforme(const std::string& nom, const MapNomsEchanges& mapEchanges,
-            const Budget& budget);
+    bool ajouterPlateforme(const std::string& nom, const Plateforme& plateforme);
     bool supprimerPlateforme(const std::string& nom);
 
     // Méthodes spécifiques (traitements)
-    Transaction getTransactionOptimale(const int& date, const double& beneficeMinimal,
-            const double& ratioBeneficeMinimal);
+    const Transaction getTransactionOptimale(const int& date, const double& beneficeMinimal,
+            const double& ratioBeneficeMinimal) const;
     void actualiserBudgets(const Transaction& transaction);
-    void reequilibrerBudgets(const Transaction& transaction);
+    void equilibrerBudgets(const Transaction& transaction);
 
 private:
     // Membres de classe
@@ -60,11 +59,11 @@ private:
 };
 
 typedef Projet* PtrProjet;
-typedef std::vector<Projet> ListeProjet_;
-typedef std::vector<PtrProjet> ListePtrProjet_;
-typedef std::map<int, Projet> MapIdProjet_;
-typedef std::map<int, PtrProjet> MapIdPtrProjet_;
-typedef std::map<std::string, Projet> MapNomsProjet_;
-typedef std::map<std::string, PtrProjet> MapNomsPtrProjet_;
+typedef std::vector<Projet> ListeProjets;
+typedef std::vector<PtrProjet> ListePtrProjets;
+typedef std::map<int, Projet> MapIdProjets;
+typedef std::map<int, PtrProjet> MapIdPtrProjets;
+typedef std::map<std::string, Projet> MapNomsProjets;
+typedef std::map<std::string, PtrProjet> MapNomsPtrProjets;
 
 #endif // PROJET_H

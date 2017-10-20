@@ -43,7 +43,7 @@ public:
     // Méthodes spécifiques (m_mapMonnaies)
     bool hasMonnaie(const std::string& nom) const;
     PtrMonnaie getMonnaie(const std::string& nom) const;
-    bool ajouterMonnaie(const std::string& nom, const double& quantite);
+    bool ajouterMonnaie(const std::string& nom, const Monnaie& monnaie);
     bool supprimerMonnaie(const std::string& nom);
 
 private:

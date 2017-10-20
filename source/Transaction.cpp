@@ -8,19 +8,19 @@
 #include "Transaction.h"
 
 Transaction::Transaction() :
-        m_plateformeAchat(NULL), m_plateformeVente(NULL), m_echangeAchat(NULL),
-                m_echangeVente(NULL), m_coursAchat(NULL), m_coursVente(NULL), date(0)
+        m_date(0), m_plateformeAchat(NULL), m_plateformeVente(NULL), m_echangeAchat(NULL),
+                m_echangeVente(NULL), m_coursAchat(NULL), m_coursVente(NULL)
 {
     this->clear();
 }
 
-Transaction::Transaction(const PtrPlateforme plateformeAchat, const PtrPlateforme plateformeVente,
-        const PtrEchange echangeAchat, const PtrEchange echangeVente, const PtrCours coursAchat,
-        const PtrCours coursVente, const int& date) :
+Transaction::Transaction(const int& date, const PtrPlateforme plateformeAchat,
+        const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
+        const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente) :
         Transaction()
 {
-    this->set(plateformeAchat, plateformeVente, echangeAchat, echangeVente, coursAchat, coursVente,
-            date);
+    this->set(date, plateformeAchat, plateformeVente, echangeAchat, echangeVente, coursAchat,
+            coursVente);
 }
 
 Transaction::Transaction(const Transaction& transaction) :
@@ -32,6 +32,11 @@ Transaction::Transaction(const Transaction& transaction) :
 Transaction::~Transaction()
 {
 
+}
+
+const int& Transaction::getDate() const
+{
+    return this->m_date;
 }
 
 PtrPlateforme Transaction::getPlateformeAchat() const
@@ -64,9 +69,9 @@ PtrCours Transaction::getCoursVente() const
     return this->m_coursVente;
 }
 
-const int& Transaction::getDate() const
+void Transaction::setDate(const int& date)
 {
-    return this->date;
+    this->m_date = date;
 }
 
 void Transaction::setPlateformeAchat(const PtrPlateforme plateformeAchat)
@@ -99,38 +104,36 @@ void Transaction::setCoursVente(const PtrCours coursVente)
     this->m_coursVente = coursVente;
 }
 
-void Transaction::setDate(const int& date)
-{
-    this->date = date;
-}
-
 void Transaction::clear()
 {
-    this->set(NULL, NULL, NULL, NULL, NULL, NULL, 0);
+    this->set(0, NULL, NULL, NULL, NULL, NULL, NULL);
 }
 
-void Transaction::set(const PtrPlateforme plateformeAchat, const PtrPlateforme plateformeVente,
-        const PtrEchange echangeAchat, const PtrEchange echangeVente, const PtrCours coursAchat,
-        const PtrCours coursVente, const int& date)
+void Transaction::set(const int& date, const PtrPlateforme plateformeAchat,
+        const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
+        const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente)
 {
+    this->setDate(date);
     this->setPlateformeAchat(plateformeAchat);
     this->setPlateformeVente(plateformeVente);
     this->setEchangeAchat(echangeAchat);
     this->setEchangeVente(echangeVente);
     this->setCoursAchat(coursAchat);
     this->setCoursVente(coursVente);
-    this->setDate(date);
 }
 
 void Transaction::copy(const Transaction& transaction)
 {
-    this->set(transaction.getPlateformeAchat(), transaction.getPlateformeVente(),
-            transaction.getEchangeAchat(), transaction.getEchangeVente(),
-            transaction.getCoursAchat(), transaction.getCoursVente(), transaction.getDate());
+    this->set(transaction.getDate(), transaction.getPlateformeAchat(),
+            transaction.getPlateformeVente(), transaction.getEchangeAchat(),
+            transaction.getEchangeVente(), transaction.getCoursAchat(),
+            transaction.getCoursVente());
 }
 
 bool Transaction::equals(const Transaction& transaction) const
 {
+    if (this->getDate() != transaction.getDate())
+        return false;
     if (this->getPlateformeAchat() != transaction.getPlateformeAchat())
         return false;
     if (this->getPlateformeVente() != transaction.getPlateformeVente())
@@ -143,21 +146,19 @@ bool Transaction::equals(const Transaction& transaction) const
         return false;
     if (this->getCoursVente() != transaction.getCoursVente())
         return false;
-    if (this->getDate() != transaction.getDate())
-        return false;
     return true;
 }
 
 void Transaction::fromString(const std::string& fromString, const char& sep)
 {
     // TODO void Transaction::fromString(const std::string& fromString, const char& sep)
-    // TODO #warning "'void Transaction::fromString(const std::string& fromString, const char& sep)' not implemented"
+    // #warning "'void Transaction::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
 const std::string Transaction::toString(const char& sep) const
 {
     // TODO const std::string Transaction::toString(const char& sep) const
-    // TODO #warning "'const std::string Transaction::toString(const char& sep) const' not implemented"
+    // #warning "'const std::string Transaction::toString(const char& sep) const' not implemented"
     return std::string();
 }
 
@@ -182,7 +183,6 @@ double Transaction::getQuantiteAchat() const
 {
     const double quantiteMonnaie = this->m_plateformeAchat->getBudget().getMonnaie(
             this->m_echangeAchat->getDeviseReelle().getNom())->getQuantite();
-    // const double quantiteBudget = quantiteMonnaie / this->m_coursAchat->getValeurVente();
     const double quantiteBudget =
             (quantiteMonnaie - this->m_echangeAchat->getFraisFixesAchat())
                     / (this->m_echangeAchat->getFraisVariablesAchat()

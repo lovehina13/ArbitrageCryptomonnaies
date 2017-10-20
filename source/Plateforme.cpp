@@ -122,24 +122,12 @@ PtrEchange Plateforme::getEchange(const std::string& nom) const
     return (this->hasEchange(nom) ? (PtrEchange) &(this->m_mapEchanges.find(nom)->second) : NULL);
 }
 
-bool Plateforme::ajouterEchange(const std::string& nom, const std::string& deviseNumerique,
-        const std::string& deviseReelle, const double& fraisFixesAchat,
-        const double& fraisFixesVente, const double& fraisVariablesAchat,
-        const double& fraisVariablesVente, const MapIdCours& mapCours)
+bool Plateforme::ajouterEchange(const std::string& nom, const Echange& echange)
 {
-    if (this->hasEchange(nom))
-        return false;
-    this->m_mapEchanges.insert(
-            std::pair<std::string, Echange>(nom,
-                    Echange(Devise(deviseNumerique), Devise(deviseReelle), fraisFixesAchat,
-                            fraisFixesVente, fraisVariablesAchat, fraisVariablesVente, mapCours)));
-    return true;
+    return (this->m_mapEchanges.insert(std::pair<std::string, Echange>(nom, echange)).second);
 }
 
 bool Plateforme::supprimerEchange(const std::string& nom)
 {
-    if (!this->hasEchange(nom))
-        return false;
-    this->m_mapEchanges.erase(nom);
-    return true;
+    return (this->m_mapEchanges.erase(nom) > 0);
 }

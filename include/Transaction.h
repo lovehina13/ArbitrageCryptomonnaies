@@ -20,35 +20,35 @@ class Transaction
 public:
     // Constructeurs et destructeurs
     Transaction();
-    Transaction(const PtrPlateforme plateformeAchat, const PtrPlateforme plateformeVente,
-            const PtrEchange echangeAchat, const PtrEchange echangeVente, const PtrCours coursAchat,
-            const PtrCours coursVente, const int& date);
+    Transaction(const int& date, const PtrPlateforme plateformeAchat,
+            const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
+            const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente);
     Transaction(const Transaction& transaction);
     virtual ~Transaction();
 
     // Getters
+    const int& getDate() const;
     PtrPlateforme getPlateformeAchat() const;
     PtrPlateforme getPlateformeVente() const;
     PtrEchange getEchangeAchat() const;
     PtrEchange getEchangeVente() const;
     PtrCours getCoursAchat() const;
     PtrCours getCoursVente() const;
-    const int& getDate() const;
 
     // Setters
+    void setDate(const int& date);
     void setPlateformeAchat(const PtrPlateforme plateformeAchat);
     void setPlateformeVente(const PtrPlateforme plateformeVente);
     void setEchangeAchat(const PtrEchange echangeAchat);
     void setEchangeVente(const PtrEchange echangeVente);
     void setCoursAchat(const PtrCours coursAchat);
     void setCoursVente(const PtrCours coursVente);
-    void setDate(const int& date);
 
     // Méthodes génériques
     void clear();
-    void set(const PtrPlateforme plateformeAchat, const PtrPlateforme plateformeVente,
-            const PtrEchange echangeAchat, const PtrEchange echangeVente, const PtrCours coursAchat,
-            const PtrCours coursVente, const int& date);
+    void set(const int& date, const PtrPlateforme plateformeAchat,
+            const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
+            const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente);
     void copy(const Transaction& transaction);
     bool equals(const Transaction& transaction) const;
     void fromString(const std::string& fromString, const char& sep);
@@ -74,21 +74,21 @@ public:
 
 private:
     // Membres de classe
+    int m_date;
     PtrPlateforme m_plateformeAchat;
     PtrPlateforme m_plateformeVente;
     PtrEchange m_echangeAchat;
     PtrEchange m_echangeVente;
     PtrCours m_coursAchat;
     PtrCours m_coursVente;
-    int date;
 };
 
 typedef Transaction* PtrTransaction;
-typedef std::vector<Transaction> ListeTransaction_;
-typedef std::vector<PtrTransaction> ListePtrTransaction_;
-typedef std::map<int, Transaction> MapIdTransaction_;
-typedef std::map<int, PtrTransaction> MapIdPtrTransaction_;
-typedef std::map<std::string, Transaction> MapNomsTransaction_;
-typedef std::map<std::string, PtrTransaction> MapNomsPtrTransaction_;
+typedef std::vector<Transaction> ListeTransactions;
+typedef std::vector<PtrTransaction> ListePtrTransactions;
+typedef std::map<int, Transaction> MapIdTransactions;
+typedef std::map<int, PtrTransaction> MapIdPtrTransactions;
+typedef std::map<std::string, Transaction> MapNomsTransactions;
+typedef std::map<std::string, PtrTransaction> MapNomsPtrTransactions;
 
 #endif // TRANSACTION_H

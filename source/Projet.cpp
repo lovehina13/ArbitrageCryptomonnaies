@@ -64,13 +64,13 @@ bool Projet::equals(const Projet& projet) const
 void Projet::fromString(const std::string& fromString, const char& sep)
 {
     // TODO void Projet::fromString(const std::string& fromString, const char& sep)
-    // TODO #warning "'void Projet::fromString(const std::string& fromString, const char& sep)' not implemented"
+    // #warning "'void Projet::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
 const std::string Projet::toString(const char& sep) const
 {
     // TODO const std::string Projet::toString(const char& sep) const
-    // TODO #warning "'const std::string Projet::toString(const char& sep) const' not implemented"
+    // #warning "'const std::string Projet::toString(const char& sep) const' not implemented"
     return std::string();
 }
 
@@ -95,26 +95,18 @@ PtrPlateforme Projet::getPlateforme(const std::string& nom) const
     NULL);
 }
 
-bool Projet::ajouterPlateforme(const std::string& nom, const MapNomsEchanges& mapEchanges,
-        const Budget& budget)
+bool Projet::ajouterPlateforme(const std::string& nom, const Plateforme& plateforme)
 {
-    if (this->hasPlateforme(nom))
-        return false;
-    this->m_mapPlateformes.insert(
-            std::pair<std::string, Plateforme>(nom, Plateforme(nom, mapEchanges, budget)));
-    return true;
+    return (this->m_mapPlateformes.insert(std::pair<std::string, Plateforme>(nom, plateforme)).second);
 }
 
 bool Projet::supprimerPlateforme(const std::string& nom)
 {
-    if (!this->hasPlateforme(nom))
-        return false;
-    this->m_mapPlateformes.erase(nom);
-    return true;
+    return (this->m_mapPlateformes.erase(nom) > 0);
 }
 
-Transaction Projet::getTransactionOptimale(const int& date, const double& beneficeMinimal,
-        const double& ratioBeneficeMinimal)
+const Transaction Projet::getTransactionOptimale(const int& date, const double& beneficeMinimal,
+        const double& ratioBeneficeMinimal) const
 {
     // Définition de la transaction optimale
     Transaction transactionOptimale;
@@ -176,10 +168,10 @@ Transaction Projet::getTransactionOptimale(const int& date, const double& benefi
                         continue;
 
                     // Définition de la transaction
-                    Transaction transaction = Transaction((PtrPlateforme) &plateformeSource,
+                    Transaction transaction = Transaction(date, (PtrPlateforme) &plateformeSource,
                             (PtrPlateforme) &plateformeDestination, (PtrEchange) &echangeSource,
                             (PtrEchange) &echangeDestination, (PtrCours) coursSource,
-                            (PtrCours) coursDestination, date);
+                            (PtrCours) coursDestination);
 
                     // Récupération des bénéfices nets
                     const double beneficeNet = transaction.getBeneficeNet();
@@ -212,7 +204,7 @@ void Projet::actualiserBudgets(const Transaction& transaction)
     PtrBudget budgetAchat = (PtrBudget) &plateformeAchat->getBudget();
     PtrBudget budgetVente = (PtrBudget) &plateformeVente->getBudget();
 
-    // Récupération des monnaies d'achat et de vente
+    // Récupération des monnaies numériques et réelles d'achat et de vente
     PtrMonnaie monnaieNumeriqueAchat = budgetAchat->getMonnaie(
             transaction.getEchangeAchat()->getDeviseNumerique().getNom());
     PtrMonnaie monnaieReelleAchat = budgetAchat->getMonnaie(
@@ -239,7 +231,7 @@ void Projet::actualiserBudgets(const Transaction& transaction)
     monnaieReelleVente->setQuantite(quantiteMonnaieReelleVente);
 }
 
-void Projet::reequilibrerBudgets(const Transaction& transaction)
+void Projet::equilibrerBudgets(const Transaction& transaction)
 {
     // Définition du budget total
     Budget budgetTotal;
@@ -271,7 +263,7 @@ void Projet::reequilibrerBudgets(const Transaction& transaction)
             const std::string& nomMonnaie = monnaie.getDevise().getNom();
             if (!budgetTotal.hasMonnaie(nomMonnaie))
             {
-                budgetTotal.ajouterMonnaie(nomMonnaie, 0.0);
+                budgetTotal.ajouterMonnaie(nomMonnaie, Monnaie(nomMonnaie, 0.0));
             }
             PtrMonnaie monnaieTotale = budgetTotal.getMonnaie(nomMonnaie);
             monnaieTotale->setQuantite(monnaieTotale->getQuantite() + monnaie.getQuantite());
