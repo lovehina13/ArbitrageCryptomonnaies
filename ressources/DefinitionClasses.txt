@@ -27,10 +27,13 @@ m double fraisVariablesAchat
 m double fraisVariablesVente
 m MapIdCours mapCours
 
+c Client
+
 c Plateforme
 m std::string nom
 m MapNomsEchanges mapEchanges
 m Budget budget
+m PtrClient client
 
 c Transaction
 m int date

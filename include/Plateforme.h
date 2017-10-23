@@ -9,6 +9,7 @@
 #define PLATEFORME_H
 
 #include "Budget.h"
+#include "Client.h"
 #include "Echange.h"
 #include <map>
 #include <string>
@@ -19,7 +20,8 @@ class Plateforme
 public:
     // Constructeurs et destructeurs
     Plateforme();
-    Plateforme(const std::string& nom, const MapNomsEchanges& mapEchanges, const Budget& budget);
+    Plateforme(const std::string& nom, const MapNomsEchanges& mapEchanges, const Budget& budget,
+            const PtrClient client);
     Plateforme(const Plateforme& plateforme);
     virtual ~Plateforme();
 
@@ -27,15 +29,18 @@ public:
     const std::string& getNom() const;
     const MapNomsEchanges& getMapEchanges() const;
     const Budget& getBudget() const;
+    PtrClient getClient() const;
 
     // Setters
     void setNom(const std::string& nom);
     void setMapEchanges(const MapNomsEchanges& mapEchanges);
     void setBudget(const Budget& budget);
+    void setClient(const PtrClient client);
 
     // Méthodes génériques
     void clear();
-    void set(const std::string& nom, const MapNomsEchanges& mapEchanges, const Budget& budget);
+    void set(const std::string& nom, const MapNomsEchanges& mapEchanges, const Budget& budget,
+            const PtrClient client);
     void copy(const Plateforme& plateforme);
     bool equals(const Plateforme& plateforme) const;
     void fromString(const std::string& fromString, const char& sep);
@@ -56,6 +61,7 @@ private:
     std::string m_nom;
     MapNomsEchanges m_mapEchanges;
     Budget m_budget;
+    PtrClient m_client;
 };
 
 typedef Plateforme* PtrPlateforme;

@@ -7,16 +7,17 @@
 
 #include "Plateforme.h"
 
-Plateforme::Plateforme()
+Plateforme::Plateforme() :
+        m_client(NULL)
 {
     this->clear();
 }
 
 Plateforme::Plateforme(const std::string& nom, const MapNomsEchanges& mapEchanges,
-        const Budget& budget) :
+        const Budget& budget, const PtrClient client) :
         Plateforme()
 {
-    this->set(nom, mapEchanges, budget);
+    this->set(nom, mapEchanges, budget, client);
 }
 
 Plateforme::Plateforme(const Plateforme& plateforme) :
@@ -45,6 +46,11 @@ const Budget& Plateforme::getBudget() const
     return this->m_budget;
 }
 
+PtrClient Plateforme::getClient() const
+{
+    return this->m_client;
+}
+
 void Plateforme::setNom(const std::string& nom)
 {
     this->m_nom = nom;
@@ -60,22 +66,29 @@ void Plateforme::setBudget(const Budget& budget)
     this->m_budget = budget;
 }
 
+void Plateforme::setClient(const PtrClient client)
+{
+    this->m_client = client;
+}
+
 void Plateforme::clear()
 {
-    this->set(std::string(), MapNomsEchanges(), Budget());
+    this->set(std::string(), MapNomsEchanges(), Budget(), NULL);
 }
 
 void Plateforme::set(const std::string& nom, const MapNomsEchanges& mapEchanges,
-        const Budget& budget)
+        const Budget& budget, const PtrClient client)
 {
     this->setNom(nom);
     this->setMapEchanges(mapEchanges);
     this->setBudget(budget);
+    this->setClient(client);
 }
 
 void Plateforme::copy(const Plateforme& plateforme)
 {
-    this->set(plateforme.getNom(), plateforme.getMapEchanges(), plateforme.getBudget());
+    this->set(plateforme.getNom(), plateforme.getMapEchanges(), plateforme.getBudget(),
+            plateforme.getClient());
 }
 
 bool Plateforme::equals(const Plateforme& plateforme) const
@@ -85,6 +98,8 @@ bool Plateforme::equals(const Plateforme& plateforme) const
     if (this->getMapEchanges() != plateforme.getMapEchanges())
         return false;
     if (this->getBudget() != plateforme.getBudget())
+        return false;
+    if (this->getClient() != plateforme.getClient())
         return false;
     return true;
 }

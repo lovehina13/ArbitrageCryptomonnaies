@@ -183,10 +183,13 @@ double Transaction::getQuantiteAchat() const
 {
     const double quantiteMonnaie = this->m_plateformeAchat->getBudget().getMonnaie(
             this->m_echangeAchat->getDeviseReelle().getNom())->getQuantite();
-    const double quantiteBudget =
-            (quantiteMonnaie - this->m_echangeAchat->getFraisFixesAchat())
-                    / (this->m_echangeAchat->getFraisVariablesAchat()
-                            + this->m_coursAchat->getValeurVente());
+    // const double quantiteBudget =
+    //         (quantiteMonnaie - this->m_echangeAchat->getFraisFixesAchat())
+    //                 / (this->m_echangeAchat->getFraisVariablesAchat()
+    //                         + this->m_coursAchat->getValeurVente());
+    const double quantiteBudget = (quantiteMonnaie - this->m_echangeAchat->getFraisFixesAchat())
+            / (this->m_coursAchat->getValeurVente() * this->m_echangeAchat->getFraisVariablesAchat()
+                    + this->m_coursAchat->getValeurVente());
     const bool valeursAchatVenteIdentiques = (this->m_coursAchat->getValeurAchat()
             == this->m_coursAchat->getValeurVente());
     const double quantiteAchat =
@@ -243,22 +246,22 @@ double Transaction::getCoutBrutVente() const
 double Transaction::getCoutNetAchat() const
 {
     const double coutBrutAchat = this->getCoutBrutAchat();
-    const double quantiteTransaction = this->getQuantiteTransaction();
+    // const double quantiteTransaction = this->getQuantiteTransaction();
     const double fraisFixesAchat = this->m_echangeAchat->getFraisFixesAchat();
     const double fraisVariablesAchat = this->m_echangeAchat->getFraisVariablesAchat();
     const double coutNetAchat = coutBrutAchat + fraisFixesAchat
-            + quantiteTransaction * fraisVariablesAchat;
+            + coutBrutAchat * fraisVariablesAchat;
     return coutNetAchat;
 }
 
 double Transaction::getCoutNetVente() const
 {
     const double coutBrutVente = this->getCoutBrutVente();
-    const double quantiteTransaction = this->getQuantiteTransaction();
+    // const double quantiteTransaction = this->getQuantiteTransaction();
     const double fraisFixesVente = this->m_echangeVente->getFraisFixesVente();
     const double fraisVariablesVente = this->m_echangeVente->getFraisVariablesVente();
     const double coutNetVente = coutBrutVente - fraisFixesVente
-            - quantiteTransaction * fraisVariablesVente;
+            - coutBrutVente * fraisVariablesVente;
     return coutNetVente;
 }
 

@@ -12,6 +12,7 @@ INCLUDEPATH += . include
 OBJECTS_DIR = objects
 
 HEADERS += include/Budget.h \
+           include/Client.h \
            include/Cours.h \
            include/Devise.h \
            include/Echange.h \
@@ -21,6 +22,7 @@ HEADERS += include/Budget.h \
            include/Transaction.h
 SOURCES += source/ArbitrageCryptomonnaies.cpp \
            source/Budget.cpp \
+           source/Client.cpp \
            source/Cours.cpp \
            source/Devise.cpp \
            source/Echange.cpp \
@@ -29,4 +31,4 @@ SOURCES += source/ArbitrageCryptomonnaies.cpp \
            source/Projet.cpp \
            source/Transaction.cpp
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -pedantic -pedantic-errors -Wall -Wextra -Wconversion -Wno-unused-parameter -Werror -s
