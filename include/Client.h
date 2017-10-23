@@ -37,6 +37,16 @@ public:
     bool operator==(const Client& client) const;
     bool operator!=(const Client& client) const;
 
+    // Méthodes spécifiques (traitements)
+    double getValeurAchat(const std::string& nomDeviseNumerique,
+            const std::string& nomDeviseReelle) const;
+    double getValeurVente(const std::string& nomDeviseNumerique,
+            const std::string& nomDeviseReelle) const;
+    double getQuantiteAchat(const std::string& nomDeviseNumerique,
+            const std::string& nomDeviseReelle) const;
+    double getQuantiteVente(const std::string& nomDeviseNumerique,
+            const std::string& nomDeviseReelle) const;
+
 private:
     // Membres de classe
 };

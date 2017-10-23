@@ -71,3 +71,31 @@ bool Client::operator!=(const Client& client) const
 {
     return !(this->equals(client));
 }
+
+double Client::getValeurAchat(const std::string& nomDeviseNumerique,
+        const std::string& nomDeviseReelle) const
+{
+    // TODO double Client::getValeurAchat(const std::string& nomDeviseNumerique, const std::string& nomDeviseReelle) const
+    return 0.0;
+}
+
+double Client::getValeurVente(const std::string& nomDeviseNumerique,
+        const std::string& nomDeviseReelle) const
+{
+    // TODO double Client::getValeurVente(const std::string& nomDeviseNumerique, const std::string& nomDeviseReelle) const
+    return 0.0;
+}
+
+double Client::getQuantiteAchat(const std::string& nomDeviseNumerique,
+        const std::string& nomDeviseReelle) const
+{
+    // TODO double Client::getQuantiteAchat(const std::string& nomDeviseNumerique, const std::string& nomDeviseReelle) const
+    return 0.0;
+}
+
+double Client::getQuantiteVente(const std::string& nomDeviseNumerique,
+        const std::string& nomDeviseReelle) const
+{
+    // TODO double Client::getQuantiteVente(const std::string& nomDeviseNumerique, const std::string& nomDeviseReelle) const
+    return 0.0;
+}

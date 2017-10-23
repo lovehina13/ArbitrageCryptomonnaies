@@ -48,6 +48,8 @@ public:
     bool supprimerPlateforme(const std::string& nom);
 
     // Méthodes spécifiques (traitements)
+    void effacerNombreCours(const int& nombreCoursMaximal);
+    void recupererCours(const int& date);
     const Transaction getTransactionOptimale(const int& date, const double& beneficeMinimal,
             const double& ratioBeneficeMinimal) const;
     void actualiserBudgets(const Transaction& transaction);

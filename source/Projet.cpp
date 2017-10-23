@@ -105,6 +105,59 @@ bool Projet::supprimerPlateforme(const std::string& nom)
     return (this->m_mapPlateformes.erase(nom) > 0);
 }
 
+void Projet::effacerNombreCours(const int& nombreCoursMaximal)
+{
+    // TODO void Projet::effacerNombreCours(const int& nombreCoursMaximal)
+}
+
+void Projet::recupererCours(const int& date)
+{
+    // Récupération de l'ensemble des plateformes
+    const MapNomsPlateformes& mapPlateformes = this->m_mapPlateformes;
+
+    // Boucle sur les plateformes
+    for (MapNomsPlateformes::const_iterator itPlateforme = mapPlateformes.begin();
+            itPlateforme != mapPlateformes.end(); itPlateforme++)
+    {
+        // Récupération de la plateforme
+        const Plateforme& plateforme = itPlateforme->second;
+
+        // Récupération du client
+        const PtrClient client = plateforme.getClient();
+
+        // Récupération de l'ensemble des échanges
+        const MapNomsEchanges& mapEchanges = plateforme.getMapEchanges();
+
+        // Boucle sur les échanges
+        for (MapNomsEchanges::const_iterator itEchange = mapEchanges.begin();
+                itEchange != mapEchanges.end(); itEchange++)
+        {
+            // Récupération de l'échange
+            const Echange& echange = itEchange->second;
+
+            // Récupération des devises numériques et réelles
+            const Devise& deviseNumerique = echange.getDeviseNumerique();
+            const Devise& deviseReelle = echange.getDeviseReelle();
+
+            // Définition du cours
+            const double valeurAchat = client->getValeurAchat(deviseNumerique.getNom(),
+                    deviseReelle.getNom());
+            const double valeurVente = client->getValeurVente(deviseNumerique.getNom(),
+                    deviseReelle.getNom());
+            const double quantiteAchat = client->getQuantiteAchat(deviseNumerique.getNom(),
+                    deviseReelle.getNom());
+            const double quantiteVente = client->getQuantiteVente(deviseNumerique.getNom(),
+                    deviseReelle.getNom());
+            Cours cours = Cours(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente);
+
+            // Considération du cours
+            const std::string nomEchange = deviseReelle.getNom() + "/" + deviseNumerique.getNom();
+            PtrEchange pEchange = plateforme.getEchange(nomEchange);
+            pEchange->ajouterCours(date, cours);
+        }
+    }
+}
+
 const Transaction Projet::getTransactionOptimale(const int& date, const double& beneficeMinimal,
         const double& ratioBeneficeMinimal) const
 {
@@ -271,7 +324,7 @@ void Projet::equilibrerBudgets(const Transaction& transaction)
     }
 
     // Récupération du nombre de plateformes
-    const int nbPlateformes = mapPlateformes.size();
+    const int nbPlateformes = (int) mapPlateformes.size();
 
     // Récupération de l'ensemble des monnaies
     const MapNomsMonnaies& mapMonnaiesTotales = budgetTotal.getMapMonnaies();
