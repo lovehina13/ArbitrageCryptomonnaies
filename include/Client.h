@@ -17,17 +17,21 @@ class Client
 public:
     // Constructeurs et destructeurs
     Client();
-    // Client();
+    Client(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes);
     Client(const Client& client);
     virtual ~Client();
 
     // Getters
+    const std::string& getAdresseSite() const;
+    const std::string& getAdresseCarnetDeCommandes() const;
 
     // Setters
+    void setAdresseSite(const std::string& adresseSite);
+    void setAdresseCarnetDeCommandes(const std::string& adresseCarnetDeCommandes);
 
     // Méthodes génériques
     void clear();
-    void set();
+    void set(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes);
     void copy(const Client& client);
     bool equals(const Client& client) const;
     void fromString(const std::string& fromString, const char& sep);
@@ -38,17 +42,21 @@ public:
     bool operator!=(const Client& client) const;
 
     // Méthodes spécifiques (traitements)
-    double getValeurAchat(const std::string& nomDeviseNumerique,
+    virtual void recupererCarnetDeCommandes(const std::string& nomDeviseNumerique,
             const std::string& nomDeviseReelle) const;
-    double getValeurVente(const std::string& nomDeviseNumerique,
+    virtual double getValeurAchat(const std::string& nomDeviseNumerique,
             const std::string& nomDeviseReelle) const;
-    double getQuantiteAchat(const std::string& nomDeviseNumerique,
+    virtual double getValeurVente(const std::string& nomDeviseNumerique,
             const std::string& nomDeviseReelle) const;
-    double getQuantiteVente(const std::string& nomDeviseNumerique,
+    virtual double getQuantiteAchat(const std::string& nomDeviseNumerique,
+            const std::string& nomDeviseReelle) const;
+    virtual double getQuantiteVente(const std::string& nomDeviseNumerique,
             const std::string& nomDeviseReelle) const;
 
 private:
     // Membres de classe
+    std::string m_adresseSite;
+    std::string m_adresseCarnetDeCommandes;
 };
 
 typedef Client* PtrClient;

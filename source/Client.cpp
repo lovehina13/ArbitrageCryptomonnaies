@@ -12,11 +12,11 @@ Client::Client()
     this->clear();
 }
 
-//Client::Client() :
-//        Client()
-//{
-//    this->set();
-//}
+Client::Client(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes) :
+        Client()
+{
+    this->set(adresseSite, adresseCarnetDeCommandes);
+}
 
 Client::Client(const Client& client) :
         Client()
@@ -29,23 +29,48 @@ Client::~Client()
 
 }
 
-void Client::clear()
+const std::string& Client::getAdresseSite() const
 {
-    this->set();
+    return this->m_adresseSite;
 }
 
-void Client::set()
+const std::string& Client::getAdresseCarnetDeCommandes() const
 {
+    return this->m_adresseCarnetDeCommandes;
+}
 
+void Client::setAdresseSite(const std::string& adresseSite)
+{
+    this->m_adresseSite = adresseSite;
+}
+
+void Client::setAdresseCarnetDeCommandes(const std::string& adresseCarnetDeCommandes)
+{
+    this->m_adresseCarnetDeCommandes = adresseCarnetDeCommandes;
+}
+
+void Client::clear()
+{
+    this->set(std::string(), std::string());
+}
+
+void Client::set(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes)
+{
+    this->setAdresseSite(adresseSite);
+    this->setAdresseCarnetDeCommandes(adresseCarnetDeCommandes);
 }
 
 void Client::copy(const Client& client)
 {
-    this->set();
+    this->set(client.getAdresseSite(), client.getAdresseCarnetDeCommandes());
 }
 
 bool Client::equals(const Client& client) const
 {
+    if (this->getAdresseSite() != client.getAdresseSite())
+        return false;
+    if (this->getAdresseCarnetDeCommandes() != client.getAdresseCarnetDeCommandes())
+        return false;
     return true;
 }
 
@@ -70,6 +95,12 @@ bool Client::operator==(const Client& client) const
 bool Client::operator!=(const Client& client) const
 {
     return !(this->equals(client));
+}
+
+void Client::recupererCarnetDeCommandes(const std::string& nomDeviseNumerique,
+        const std::string& nomDeviseReelle) const
+{
+    // TODO void Client::recupererCarnetDeCommandes(const std::string& nomDeviseNumerique, const std::string& nomDeviseReelle) const
 }
 
 double Client::getValeurAchat(const std::string& nomDeviseNumerique,

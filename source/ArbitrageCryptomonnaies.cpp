@@ -14,6 +14,8 @@
 #include "Plateforme.h"
 #include "Projet.h"
 #include "Transaction.h"
+#include <chrono>
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -70,14 +72,23 @@ int main(int argc, char* argv[])
     const double ratioBeneficeNetMinimal = 0.0;
     for (int date = 0; date < 60; date++)
     {
+        const std::chrono::time_point<std::chrono::system_clock> start =
+                std::chrono::system_clock::now();
         projet.effacerNombreCours(nombreCoursMaximal);
         projet.recupererCours(date);
         const Transaction transaction = projet.getTransactionOptimale(date, beneficeNetMinimal,
                 ratioBeneficeNetMinimal);
-        if (!transaction.isSet())
-            continue;
-        projet.actualiserBudgets(transaction);
-        projet.equilibrerBudgets(transaction);
+        if (transaction.isSet())
+        {
+            projet.actualiserBudgets(transaction);
+            projet.equilibrerBudgets(transaction);
+        }
+        const std::chrono::time_point<std::chrono::system_clock> stop =
+                std::chrono::system_clock::now();
+        const int elapsed = (int) std::chrono::duration_cast<std::chrono::microseconds>(
+                stop - start).count();
+        std::cout << "Date " << date << " elapsed time: " << elapsed << " microseconds"
+                << std::endl;
     }
 
     return 0;
