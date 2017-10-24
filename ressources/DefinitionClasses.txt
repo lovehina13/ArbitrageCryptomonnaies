@@ -30,6 +30,7 @@ m MapIdCours mapCours
 c Client
 m std::string adresseSite
 m std::string adresseCarnetDeCommandes
+m MapNomsCours coursActuels
 
 c Plateforme
 m std::string nom

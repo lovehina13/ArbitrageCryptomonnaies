@@ -12,10 +12,11 @@ Client::Client()
     this->clear();
 }
 
-Client::Client(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes) :
+Client::Client(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
+        const MapNomsCours& coursActuels) :
         Client()
 {
-    this->set(adresseSite, adresseCarnetDeCommandes);
+    this->set(adresseSite, adresseCarnetDeCommandes, coursActuels);
 }
 
 Client::Client(const Client& client) :
@@ -39,6 +40,11 @@ const std::string& Client::getAdresseCarnetDeCommandes() const
     return this->m_adresseCarnetDeCommandes;
 }
 
+const MapNomsCours& Client::getCoursActuels() const
+{
+    return this->m_coursActuels;
+}
+
 void Client::setAdresseSite(const std::string& adresseSite)
 {
     this->m_adresseSite = adresseSite;
@@ -49,20 +55,28 @@ void Client::setAdresseCarnetDeCommandes(const std::string& adresseCarnetDeComma
     this->m_adresseCarnetDeCommandes = adresseCarnetDeCommandes;
 }
 
-void Client::clear()
+void Client::setCoursActuels(const MapNomsCours& coursActuels)
 {
-    this->set(std::string(), std::string());
+    this->m_coursActuels = coursActuels;
 }
 
-void Client::set(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes)
+void Client::clear()
+{
+    this->set(std::string(), std::string(), MapNomsCours());
+}
+
+void Client::set(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
+        const MapNomsCours& coursActuels)
 {
     this->setAdresseSite(adresseSite);
     this->setAdresseCarnetDeCommandes(adresseCarnetDeCommandes);
+    this->setCoursActuels(coursActuels);
 }
 
 void Client::copy(const Client& client)
 {
-    this->set(client.getAdresseSite(), client.getAdresseCarnetDeCommandes());
+    this->set(client.getAdresseSite(), client.getAdresseCarnetDeCommandes(),
+            client.getCoursActuels());
 }
 
 bool Client::equals(const Client& client) const
@@ -70,6 +84,8 @@ bool Client::equals(const Client& client) const
     if (this->getAdresseSite() != client.getAdresseSite())
         return false;
     if (this->getAdresseCarnetDeCommandes() != client.getAdresseCarnetDeCommandes())
+        return false;
+    if (this->getCoursActuels() != client.getCoursActuels())
         return false;
     return true;
 }
@@ -97,10 +113,10 @@ bool Client::operator!=(const Client& client) const
     return !(this->equals(client));
 }
 
-void Client::recupererCarnetDeCommandes(const std::string& nomDeviseNumerique,
+void Client::recupererCoursActuel(const std::string& nomDeviseNumerique,
         const std::string& nomDeviseReelle) const
 {
-    // TODO void Client::recupererCarnetDeCommandes(const std::string& nomDeviseNumerique, const std::string& nomDeviseReelle) const
+    // TODO void Client::recupererCoursActuel(const std::string& nomDeviseNumerique, const std::string& nomDeviseReelle) const
 }
 
 double Client::getValeurAchat(const std::string& nomDeviseNumerique,
