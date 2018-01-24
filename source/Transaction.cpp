@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "Transaction.h"
+#include <sstream>
 
 Transaction::Transaction() :
         m_date(0), m_plateformeAchat(NULL), m_plateformeVente(NULL), m_echangeAchat(NULL),
@@ -183,10 +184,6 @@ double Transaction::getQuantiteAchat() const
 {
     const double quantiteMonnaie = this->m_plateformeAchat->getBudget().getMonnaie(
             this->m_echangeAchat->getDeviseReelle().getNom())->getQuantite();
-    // const double quantiteBudget =
-    //         (quantiteMonnaie - this->m_echangeAchat->getFraisFixesAchat())
-    //                 / (this->m_echangeAchat->getFraisVariablesAchat()
-    //                         + this->m_coursAchat->getValeurVente());
     const double quantiteBudget = (quantiteMonnaie - this->m_echangeAchat->getFraisFixesAchat())
             / (this->m_coursAchat->getValeurVente() * this->m_echangeAchat->getFraisVariablesAchat()
                     + this->m_coursAchat->getValeurVente());
@@ -246,7 +243,6 @@ double Transaction::getCoutBrutVente() const
 double Transaction::getCoutNetAchat() const
 {
     const double coutBrutAchat = this->getCoutBrutAchat();
-    // const double quantiteTransaction = this->getQuantiteTransaction();
     const double fraisFixesAchat = this->m_echangeAchat->getFraisFixesAchat();
     const double fraisVariablesAchat = this->m_echangeAchat->getFraisVariablesAchat();
     const double coutNetAchat = coutBrutAchat + fraisFixesAchat
@@ -257,7 +253,6 @@ double Transaction::getCoutNetAchat() const
 double Transaction::getCoutNetVente() const
 {
     const double coutBrutVente = this->getCoutBrutVente();
-    // const double quantiteTransaction = this->getQuantiteTransaction();
     const double fraisFixesVente = this->m_echangeVente->getFraisFixesVente();
     const double fraisVariablesVente = this->m_echangeVente->getFraisVariablesVente();
     const double coutNetVente = coutBrutVente - fraisFixesVente
@@ -295,4 +290,24 @@ double Transaction::getRatioBeneficeNet() const
     const double coutNetVente = this->getCoutNetVente();
     const double ratioBeneficeNet = coutNetVente / coutNetAchat;
     return ratioBeneficeNet;
+}
+
+const std::string Transaction::getTexteSynthese() const
+{
+    std::stringstream stream;
+    stream << "Plateforme achat: " << this->getPlateformeAchat()->getNom() << std::endl;
+    stream << "Échange achat: " << this->getEchangeAchat()->getDeviseReelle().getNom() << " vers "
+            << this->getEchangeAchat()->getDeviseNumerique().getNom() << std::endl;
+    stream << "Cours achat: " << this->getCoursAchat()->getValeurVente() << std::endl;
+    stream << "Quantité achat: " << this->getQuantiteTransaction() << std::endl;
+    stream << "Coût net achat: " << this->getCoutNetAchat() << std::endl;
+    stream << "Plateforme vente: " << this->getPlateformeVente()->getNom() << std::endl;
+    stream << "Échange vente: " << this->getEchangeVente()->getDeviseNumerique().getNom()
+            << " vers " << this->getEchangeVente()->getDeviseReelle().getNom() << std::endl;
+    stream << "Cours vente: " << this->getCoursVente()->getValeurAchat() << std::endl;
+    stream << "Quantité vente: " << this->getQuantiteTransaction() << std::endl;
+    stream << "Coût net vente: " << this->getCoutNetVente() << std::endl;
+    stream << "Bénéfice net: " << this->getBeneficeNet() << std::endl;
+    stream << "Ratio bénéfice net: " << this->getRatioBeneficeNet() << std::endl;
+    return stream.str();
 }

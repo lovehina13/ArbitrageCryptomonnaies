@@ -71,6 +71,7 @@ public:
     double getBeneficeNet() const;
     double getRatioBeneficeBrut() const;
     double getRatioBeneficeNet() const;
+    const std::string getTexteSynthese() const;
 
 private:
     // Membres de classe

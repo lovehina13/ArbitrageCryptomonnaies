@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     Projet projet;
 
     ListeDevises devisesReelles;
-    devisesReelles.push_back(Devise("USDT"));
+    devisesReelles.push_back(Devise("USD"));
 
     ListeDevises devisesNumeriques;
     devisesNumeriques.push_back(Devise("BTC"));
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
             const Devise& deviseReelle = (*itDeviseReelle);
             const Devise& deviseNumerique = (*itDeviseNumerique);
             const std::string nomEchange = deviseReelle.getNom() + "/" + deviseNumerique.getNom();
-            const Echange echange = Echange(deviseNumerique, deviseReelle, 0.0, 0.0, 0.0025, 0.0025,
+            const Echange echange = Echange(deviseNumerique, deviseReelle, 0.0, 0.0, 0.002, 0.002,
                     MapIdCours());
             mapEchanges.insert(std::pair<std::string, Echange>(nomEchange, echange));
         }
@@ -67,11 +67,13 @@ int main(int argc, char* argv[])
     projet.ajouterPlateforme(plateforme_1.getNom(), plateforme_1);
     projet.ajouterPlateforme(plateforme_2.getNom(), plateforme_2);
 
+    double beneficeNetCumule = 0.0;
     const int nombreCoursMaximal = 60;
     const double beneficeNetMinimal = 0.0;
     const double ratioBeneficeNetMinimal = 0.0;
-    for (int date = 0; date < 60; date++)
+    for (int date = 1; date <= nombreCoursMaximal; date++)
     {
+        std::cout << "==================== Date " << date << " ====================" << std::endl;
         const std::chrono::time_point<std::chrono::system_clock> start =
                 std::chrono::system_clock::now();
         projet.effacerNombreCours(nombreCoursMaximal);
@@ -80,6 +82,9 @@ int main(int argc, char* argv[])
                 ratioBeneficeNetMinimal);
         if (transaction.isSet())
         {
+            beneficeNetCumule += transaction.getBeneficeNet();
+            std::cout << transaction.getTexteSynthese();
+            std::cout << "Bénéfice net cumulé: " << beneficeNetCumule << std::endl;
             projet.actualiserBudgets(transaction);
             projet.equilibrerBudgets(transaction);
         }
@@ -87,8 +92,7 @@ int main(int argc, char* argv[])
                 std::chrono::system_clock::now();
         const int elapsed = (int) std::chrono::duration_cast<std::chrono::microseconds>(
                 stop - start).count();
-        std::cout << "Date " << date << " elapsed time: " << elapsed << " microseconds"
-                << std::endl;
+        std::cout << "Temps traitement: " << elapsed << " microsecondes" << std::endl;
     }
 
     return 0;

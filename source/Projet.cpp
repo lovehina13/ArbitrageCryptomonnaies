@@ -230,8 +230,8 @@ const Transaction Projet::getTransactionOptimale(const int& date, const double& 
                     const double beneficeNet = transaction.getBeneficeNet();
                     const double ratioBeneficeNet = transaction.getRatioBeneficeNet();
                     const double beneficeNetOptimal =
-                            (transactionOptimale.isSet()) ? transactionOptimale.getBeneficeNet() :
-                                    0.0;
+                            (transactionOptimale.isSet()) ?
+                                    transactionOptimale.getBeneficeNet() : 0.0;
 
                     // Considération de la transaction comme optimale si le bénéfice net est supérieur au précédent
                     if (beneficeNet > beneficeNetOptimal && beneficeNet > beneficeMinimal
