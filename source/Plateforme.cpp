@@ -28,7 +28,7 @@ Plateforme::Plateforme(const Plateforme& plateforme) :
 
 Plateforme::~Plateforme()
 {
-
+    delete this->m_client;
 }
 
 const std::string& Plateforme::getNom() const
