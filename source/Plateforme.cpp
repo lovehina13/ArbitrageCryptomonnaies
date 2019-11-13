@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "Plateforme.h"
+#include <cstddef>
+#include <utility>
 
 Plateforme::Plateforme() :
         m_client(NULL)
@@ -134,7 +136,8 @@ bool Plateforme::hasEchange(const std::string& nom) const
 
 PtrEchange Plateforme::getEchange(const std::string& nom) const
 {
-    return (this->hasEchange(nom) ? (PtrEchange) &(this->m_mapEchanges.find(nom)->second) : NULL);
+    return (this->hasEchange(nom) ?
+            const_cast<PtrEchange>(&(this->m_mapEchanges.find(nom)->second)) : NULL);
 }
 
 bool Plateforme::ajouterEchange(const std::string& nom, const Echange& echange)

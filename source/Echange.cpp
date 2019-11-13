@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "Echange.h"
+#include <cstddef>
+#include <utility>
 
 Echange::Echange() :
         m_fraisFixesAchat(0.0), m_fraisFixesVente(0.0), m_fraisVariablesAchat(0.0),
@@ -180,7 +182,8 @@ bool Echange::hasCours(const int& date) const
 
 PtrCours Echange::getCours(const int& date) const
 {
-    return (this->hasCours(date) ? (PtrCours) &(this->m_mapCours.find(date)->second) : NULL);
+    return (this->hasCours(date) ?
+            const_cast<PtrCours>(&(this->m_mapCours.find(date)->second)) : NULL);
 }
 
 bool Echange::ajouterCours(const int& date, const Cours& cours)

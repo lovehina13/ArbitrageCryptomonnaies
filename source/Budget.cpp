@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "Budget.h"
+#include <cstddef>
+#include <utility>
 
 Budget::Budget()
 {
@@ -91,7 +93,8 @@ bool Budget::hasMonnaie(const std::string& nom) const
 
 PtrMonnaie Budget::getMonnaie(const std::string& nom) const
 {
-    return (this->hasMonnaie(nom) ? (PtrMonnaie) &(this->m_mapMonnaies.find(nom)->second) : NULL);
+    return (this->hasMonnaie(nom) ?
+            const_cast<PtrMonnaie>(&(this->m_mapMonnaies.find(nom)->second)) : NULL);
 }
 
 bool Budget::ajouterMonnaie(const std::string& nom, const Monnaie& monnaie)

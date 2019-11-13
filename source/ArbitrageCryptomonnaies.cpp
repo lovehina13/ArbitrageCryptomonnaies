@@ -16,6 +16,9 @@
 #include "Transaction.h"
 #include <chrono>
 #include <iostream>
+#include <string>
+#include <utility>
+#include <vector>
 
 int main(int argc, char* argv[])
 {
@@ -90,8 +93,8 @@ int main(int argc, char* argv[])
         }
         const std::chrono::time_point<std::chrono::system_clock> stop =
                 std::chrono::system_clock::now();
-        const int elapsed = (int) std::chrono::duration_cast<std::chrono::microseconds>(
-                stop - start).count();
+        const int elapsed = static_cast<int>(std::chrono::duration_cast<std::chrono::microseconds>(
+                stop - start).count());
         std::cout << "Temps traitement: " << elapsed << " microsecondes" << std::endl;
     }
 

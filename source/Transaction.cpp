@@ -6,6 +6,11 @@
 //==============================================================================
 
 #include "Transaction.h"
+#include "Budget.h"
+#include "Devise.h"
+#include "Monnaie.h"
+#include <algorithm>
+#include <cstddef>
 #include <sstream>
 
 Transaction::Transaction() :
@@ -175,9 +180,8 @@ bool Transaction::operator!=(const Transaction& transaction) const
 
 bool Transaction::isSet() const
 {
-    return (this->m_plateformeAchat != NULL && this->m_plateformeVente != NULL
-            && this->m_echangeAchat != NULL && this->m_echangeVente != NULL
-            && this->m_coursAchat != NULL && this->m_coursVente != NULL);
+    return (this->m_plateformeAchat && this->m_plateformeVente && this->m_echangeAchat
+            && this->m_echangeVente && this->m_coursAchat && this->m_coursVente);
 }
 
 double Transaction::getQuantiteAchat() const

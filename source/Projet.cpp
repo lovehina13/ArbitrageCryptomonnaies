@@ -6,6 +6,14 @@
 //==============================================================================
 
 #include "Projet.h"
+#include "Budget.h"
+#include "Client.h"
+#include "Cours.h"
+#include "Devise.h"
+#include "Echange.h"
+#include "Monnaie.h"
+#include <cstddef>
+#include <utility>
 
 Projet::Projet()
 {
@@ -91,8 +99,9 @@ bool Projet::hasPlateforme(const std::string& nom) const
 
 PtrPlateforme Projet::getPlateforme(const std::string& nom) const
 {
-    return (this->hasPlateforme(nom) ? (PtrPlateforme) &(this->m_mapPlateformes.find(nom)->second) :
-    NULL);
+    return (this->hasPlateforme(nom) ?
+            const_cast<PtrPlateforme>(&(this->m_mapPlateformes.find(nom)->second)) :
+            NULL);
 }
 
 bool Projet::ajouterPlateforme(const std::string& nom, const Plateforme& plateforme)
@@ -217,14 +226,17 @@ const Transaction Projet::getTransactionOptimale(const int& date, const double& 
                     const PtrCours coursDestination = echangeDestination.getCours(date);
 
                     // Considération des cours de source et de destination s'ils existent
-                    if (coursSource == NULL || coursDestination == NULL)
+                    if (!coursSource || !coursDestination)
                         continue;
 
                     // Définition de la transaction
-                    Transaction transaction = Transaction(date, (PtrPlateforme) &plateformeSource,
-                            (PtrPlateforme) &plateformeDestination, (PtrEchange) &echangeSource,
-                            (PtrEchange) &echangeDestination, (PtrCours) coursSource,
-                            (PtrCours) coursDestination);
+                    Transaction transaction = Transaction(date,
+                            const_cast<PtrPlateforme>(&plateformeSource),
+                            const_cast<PtrPlateforme>(&plateformeDestination),
+                            const_cast<PtrEchange>(&echangeSource),
+                            const_cast<PtrEchange>(&echangeDestination),
+                            const_cast<PtrCours>(coursSource),
+                            const_cast<PtrCours>(coursDestination));
 
                     // Récupération des bénéfices nets
                     const double beneficeNet = transaction.getBeneficeNet();
@@ -254,8 +266,8 @@ void Projet::actualiserBudgets(const Transaction& transaction)
     PtrPlateforme plateformeVente = transaction.getPlateformeVente();
 
     // Récupération des budgets d'achat et de vente
-    PtrBudget budgetAchat = (PtrBudget) &plateformeAchat->getBudget();
-    PtrBudget budgetVente = (PtrBudget) &plateformeVente->getBudget();
+    PtrBudget budgetAchat = const_cast<PtrBudget>(&plateformeAchat->getBudget());
+    PtrBudget budgetVente = const_cast<PtrBudget>(&plateformeVente->getBudget());
 
     // Récupération des monnaies numériques et réelles d'achat et de vente
     PtrMonnaie monnaieNumeriqueAchat = budgetAchat->getMonnaie(
@@ -324,7 +336,7 @@ void Projet::equilibrerBudgets(const Transaction& transaction)
     }
 
     // Récupération du nombre de plateformes
-    const int nbPlateformes = (int) mapPlateformes.size();
+    const int nbPlateformes = static_cast<int>(mapPlateformes.size());
 
     // Récupération de l'ensemble des monnaies
     const MapNomsMonnaies& mapMonnaiesTotales = budgetTotal.getMapMonnaies();
@@ -334,7 +346,7 @@ void Projet::equilibrerBudgets(const Transaction& transaction)
             itMonnaieTotale != mapMonnaiesTotales.end(); itMonnaieTotale++)
     {
         // Récupération de la monnaie
-        PtrMonnaie monnaieTotale = (PtrMonnaie) &itMonnaieTotale->second;
+        PtrMonnaie monnaieTotale = const_cast<PtrMonnaie>(&itMonnaieTotale->second);
 
         // Considération de la monnaie et équilibrage selon le budget total et le nombre de plateformes
         monnaieTotale->setQuantite(monnaieTotale->getQuantite() / nbPlateformes);
@@ -345,7 +357,7 @@ void Projet::equilibrerBudgets(const Transaction& transaction)
             itPlateforme != mapPlateformes.end(); itPlateforme++)
     {
         // Récupération de la plateforme
-        PtrPlateforme plateforme = (PtrPlateforme) &itPlateforme->second;
+        PtrPlateforme plateforme = const_cast<PtrPlateforme>(&itPlateforme->second);
 
         // Actualisation du budget
         plateforme->setBudget(budgetTotal);
