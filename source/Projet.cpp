@@ -100,8 +100,7 @@ bool Projet::hasPlateforme(const std::string& nom) const
 PtrPlateforme Projet::getPlateforme(const std::string& nom) const
 {
     return (this->hasPlateforme(nom) ?
-            const_cast<PtrPlateforme>(&(this->m_mapPlateformes.find(nom)->second)) :
-            NULL);
+            const_cast<PtrPlateforme>(&(this->m_mapPlateformes.find(nom)->second)) : nullptr);
 }
 
 bool Projet::ajouterPlateforme(const std::string& nom, const Plateforme& plateforme)

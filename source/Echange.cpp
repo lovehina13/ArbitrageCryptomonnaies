@@ -183,7 +183,7 @@ bool Echange::hasCours(const int& date) const
 PtrCours Echange::getCours(const int& date) const
 {
     return (this->hasCours(date) ?
-            const_cast<PtrCours>(&(this->m_mapCours.find(date)->second)) : NULL);
+            const_cast<PtrCours>(&(this->m_mapCours.find(date)->second)) : nullptr);
 }
 
 bool Echange::ajouterCours(const int& date, const Cours& cours)

@@ -94,7 +94,7 @@ bool Budget::hasMonnaie(const std::string& nom) const
 PtrMonnaie Budget::getMonnaie(const std::string& nom) const
 {
     return (this->hasMonnaie(nom) ?
-            const_cast<PtrMonnaie>(&(this->m_mapMonnaies.find(nom)->second)) : NULL);
+            const_cast<PtrMonnaie>(&(this->m_mapMonnaies.find(nom)->second)) : nullptr);
 }
 
 bool Budget::ajouterMonnaie(const std::string& nom, const Monnaie& monnaie)

@@ -14,8 +14,8 @@
 #include <sstream>
 
 Transaction::Transaction() :
-        m_date(0), m_plateformeAchat(NULL), m_plateformeVente(NULL), m_echangeAchat(NULL),
-                m_echangeVente(NULL), m_coursAchat(NULL), m_coursVente(NULL)
+        m_date(0), m_plateformeAchat(nullptr), m_plateformeVente(nullptr), m_echangeAchat(nullptr),
+                m_echangeVente(nullptr), m_coursAchat(nullptr), m_coursVente(nullptr)
 {
     this->clear();
 }
@@ -112,7 +112,7 @@ void Transaction::setCoursVente(const PtrCours coursVente)
 
 void Transaction::clear()
 {
-    this->set(0, NULL, NULL, NULL, NULL, NULL, NULL);
+    this->set(0, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
 }
 
 void Transaction::set(const int& date, const PtrPlateforme plateformeAchat,
