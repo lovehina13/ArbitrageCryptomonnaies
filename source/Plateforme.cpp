@@ -119,6 +119,12 @@ const std::string Plateforme::toString(const char& sep) const
     return std::string();
 }
 
+Plateforme& Plateforme::operator=(const Plateforme& plateforme)
+{
+    this->copy(plateforme);
+    return *this;
+}
+
 bool Plateforme::operator==(const Plateforme& plateforme) const
 {
     return this->equals(plateforme);

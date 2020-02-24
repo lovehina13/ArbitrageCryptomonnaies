@@ -76,6 +76,12 @@ const std::string Budget::toString(const char& sep) const
     return std::string();
 }
 
+Budget& Budget::operator=(const Budget& budget)
+{
+    this->copy(budget);
+    return *this;
+}
+
 bool Budget::operator==(const Budget& budget) const
 {
     return this->equals(budget);

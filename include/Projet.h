@@ -38,6 +38,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Projet& operator=(const Projet& projet);
     bool operator==(const Projet& projet) const;
     bool operator!=(const Projet& projet) const;
 

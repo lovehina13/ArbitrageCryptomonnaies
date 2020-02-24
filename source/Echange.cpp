@@ -165,6 +165,12 @@ const std::string Echange::toString(const char& sep) const
     return std::string();
 }
 
+Echange& Echange::operator=(const Echange& echange)
+{
+    this->copy(echange);
+    return *this;
+}
+
 bool Echange::operator==(const Echange& echange) const
 {
     return this->equals(echange);

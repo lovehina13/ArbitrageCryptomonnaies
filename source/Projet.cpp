@@ -82,6 +82,12 @@ const std::string Projet::toString(const char& sep) const
     return std::string();
 }
 
+Projet& Projet::operator=(const Projet& projet)
+{
+    this->copy(projet);
+    return *this;
+}
+
 bool Projet::operator==(const Projet& projet) const
 {
     return this->equals(projet);

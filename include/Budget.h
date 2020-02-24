@@ -37,6 +37,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Budget& operator=(const Budget& budget);
     bool operator==(const Budget& budget) const;
     bool operator!=(const Budget& budget) const;
 

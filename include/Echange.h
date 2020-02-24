@@ -56,6 +56,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Echange& operator=(const Echange& echange);
     bool operator==(const Echange& echange) const;
     bool operator!=(const Echange& echange) const;
 

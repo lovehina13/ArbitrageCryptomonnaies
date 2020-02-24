@@ -88,6 +88,12 @@ const std::string Monnaie::toString(const char& sep) const
     return std::string();
 }
 
+Monnaie& Monnaie::operator=(const Monnaie& monnaie)
+{
+    this->copy(monnaie);
+    return *this;
+}
+
 bool Monnaie::operator==(const Monnaie& monnaie) const
 {
     return this->equals(monnaie);

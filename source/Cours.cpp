@@ -131,6 +131,12 @@ const std::string Cours::toString(const char& sep) const
     return std::string();
 }
 
+Cours& Cours::operator=(const Cours& cours)
+{
+    this->copy(cours);
+    return *this;
+}
+
 bool Cours::operator==(const Cours& cours) const
 {
     return this->equals(cours);

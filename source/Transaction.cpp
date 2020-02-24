@@ -168,6 +168,12 @@ const std::string Transaction::toString(const char& sep) const
     return std::string();
 }
 
+Transaction& Transaction::operator=(const Transaction& transaction)
+{
+    this->copy(transaction);
+    return *this;
+}
+
 bool Transaction::operator==(const Transaction& transaction) const
 {
     return this->equals(transaction);

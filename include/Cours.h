@@ -46,6 +46,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Cours& operator=(const Cours& cours);
     bool operator==(const Cours& cours) const;
     bool operator!=(const Cours& cours) const;
 

@@ -36,6 +36,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Devise& operator=(const Devise& devise);
     bool operator==(const Devise& devise) const;
     bool operator!=(const Devise& devise) const;
 

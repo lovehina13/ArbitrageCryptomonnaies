@@ -74,6 +74,12 @@ const std::string Devise::toString(const char& sep) const
     return std::string();
 }
 
+Devise& Devise::operator=(const Devise& devise)
+{
+    this->copy(devise);
+    return *this;
+}
+
 bool Devise::operator==(const Devise& devise) const
 {
     return this->equals(devise);

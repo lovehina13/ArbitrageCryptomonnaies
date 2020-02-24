@@ -47,6 +47,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Plateforme& operator=(const Plateforme& plateforme);
     bool operator==(const Plateforme& plateforme) const;
     bool operator!=(const Plateforme& plateforme) const;
 

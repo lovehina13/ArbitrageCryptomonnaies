@@ -43,6 +43,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Client& operator=(const Client& client);
     bool operator==(const Client& client) const;
     bool operator!=(const Client& client) const;
 

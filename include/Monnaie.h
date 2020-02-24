@@ -39,6 +39,7 @@ public:
     const std::string toString(const char& sep) const;
 
     // Méthodes spécifiques (opérateurs)
+    Monnaie& operator=(const Monnaie& monnaie);
     bool operator==(const Monnaie& monnaie) const;
     bool operator!=(const Monnaie& monnaie) const;
 

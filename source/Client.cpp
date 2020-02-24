@@ -103,6 +103,12 @@ const std::string Client::toString(const char& sep) const
     return std::string();
 }
 
+Client& Client::operator=(const Client& client)
+{
+    this->copy(client);
+    return *this;
+}
+
 bool Client::operator==(const Client& client) const
 {
     return this->equals(client);
