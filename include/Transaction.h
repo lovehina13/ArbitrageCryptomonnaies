@@ -26,6 +26,11 @@ public:
     Transaction(const Transaction& transaction);
     virtual ~Transaction();
 
+    // Opérateurs
+    Transaction& operator=(const Transaction& transaction);
+    bool operator==(const Transaction& transaction) const;
+    bool operator!=(const Transaction& transaction) const;
+
     // Getters
     const int& getDate() const;
     PtrPlateforme getPlateformeAchat() const;
@@ -53,11 +58,6 @@ public:
     bool equals(const Transaction& transaction) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Transaction& operator=(const Transaction& transaction);
-    bool operator==(const Transaction& transaction) const;
-    bool operator!=(const Transaction& transaction) const;
 
     // Méthodes spécifiques (traitements)
     bool isSet() const;

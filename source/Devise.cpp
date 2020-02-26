@@ -7,7 +7,8 @@
 
 #include "Devise.h"
 
-Devise::Devise()
+Devise::Devise() :
+        m_nom(std::string())
 {
     this->clear();
 }
@@ -27,6 +28,22 @@ Devise::Devise(const Devise& devise) :
 Devise::~Devise()
 {
 
+}
+
+Devise& Devise::operator=(const Devise& devise)
+{
+    this->copy(devise);
+    return *this;
+}
+
+bool Devise::operator==(const Devise& devise) const
+{
+    return this->equals(devise);
+}
+
+bool Devise::operator!=(const Devise& devise) const
+{
+    return !this->equals(devise);
 }
 
 const std::string& Devise::getNom() const
@@ -72,20 +89,4 @@ const std::string Devise::toString(const char& sep) const
     // TODO const std::string Devise::toString(const char& sep) const
     // #warning "'const std::string Devise::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Devise& Devise::operator=(const Devise& devise)
-{
-    this->copy(devise);
-    return *this;
-}
-
-bool Devise::operator==(const Devise& devise) const
-{
-    return this->equals(devise);
-}
-
-bool Devise::operator!=(const Devise& devise) const
-{
-    return !(this->equals(devise));
 }

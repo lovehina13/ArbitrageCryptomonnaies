@@ -26,6 +26,11 @@ public:
     Echange(const Echange& echange);
     virtual ~Echange();
 
+    // Opérateurs
+    Echange& operator=(const Echange& echange);
+    bool operator==(const Echange& echange) const;
+    bool operator!=(const Echange& echange) const;
+
     // Getters
     const Devise& getDeviseNumerique() const;
     const Devise& getDeviseReelle() const;
@@ -54,11 +59,6 @@ public:
     bool equals(const Echange& echange) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Echange& operator=(const Echange& echange);
-    bool operator==(const Echange& echange) const;
-    bool operator!=(const Echange& echange) const;
 
     // Méthodes spécifiques (m_mapCours)
     bool hasCours(const int& date) const;

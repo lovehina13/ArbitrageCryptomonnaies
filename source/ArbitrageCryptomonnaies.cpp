@@ -20,7 +20,7 @@
 #include <utility>
 #include <vector>
 
-int main(int argc, char* argv[])
+int main()
 {
     Projet projet;
 

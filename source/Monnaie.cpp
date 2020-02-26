@@ -8,7 +8,7 @@
 #include "Monnaie.h"
 
 Monnaie::Monnaie() :
-        m_quantite(0.0)
+        m_devise(Devise()), m_quantite(0.0)
 {
     this->clear();
 }
@@ -28,6 +28,22 @@ Monnaie::Monnaie(const Monnaie& monnaie) :
 Monnaie::~Monnaie()
 {
 
+}
+
+Monnaie& Monnaie::operator=(const Monnaie& monnaie)
+{
+    this->copy(monnaie);
+    return *this;
+}
+
+bool Monnaie::operator==(const Monnaie& monnaie) const
+{
+    return this->equals(monnaie);
+}
+
+bool Monnaie::operator!=(const Monnaie& monnaie) const
+{
+    return !this->equals(monnaie);
 }
 
 const Devise& Monnaie::getDevise() const
@@ -86,20 +102,4 @@ const std::string Monnaie::toString(const char& sep) const
     // TODO const std::string Monnaie::toString(const char& sep) const
     // #warning "'const std::string Monnaie::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Monnaie& Monnaie::operator=(const Monnaie& monnaie)
-{
-    this->copy(monnaie);
-    return *this;
-}
-
-bool Monnaie::operator==(const Monnaie& monnaie) const
-{
-    return this->equals(monnaie);
-}
-
-bool Monnaie::operator!=(const Monnaie& monnaie) const
-{
-    return !(this->equals(monnaie));
 }

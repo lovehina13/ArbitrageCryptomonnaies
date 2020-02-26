@@ -23,6 +23,11 @@ public:
     Projet(const Projet& projet);
     virtual ~Projet();
 
+    // Opérateurs
+    Projet& operator=(const Projet& projet);
+    bool operator==(const Projet& projet) const;
+    bool operator!=(const Projet& projet) const;
+
     // Getters
     const MapNomsPlateformes& getMapPlateformes() const;
 
@@ -36,11 +41,6 @@ public:
     bool equals(const Projet& projet) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Projet& operator=(const Projet& projet);
-    bool operator==(const Projet& projet) const;
-    bool operator!=(const Projet& projet) const;
 
     // Méthodes spécifiques (m_mapPlateformes)
     bool hasPlateforme(const std::string& nom) const;

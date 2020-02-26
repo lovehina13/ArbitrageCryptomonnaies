@@ -22,6 +22,11 @@ public:
     Monnaie(const Monnaie& monnaie);
     virtual ~Monnaie();
 
+    // Opérateurs
+    Monnaie& operator=(const Monnaie& monnaie);
+    bool operator==(const Monnaie& monnaie) const;
+    bool operator!=(const Monnaie& monnaie) const;
+
     // Getters
     const Devise& getDevise() const;
     const double& getQuantite() const;
@@ -37,11 +42,6 @@ public:
     bool equals(const Monnaie& monnaie) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Monnaie& operator=(const Monnaie& monnaie);
-    bool operator==(const Monnaie& monnaie) const;
-    bool operator!=(const Monnaie& monnaie) const;
 
 private:
     // Membres de classe

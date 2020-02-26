@@ -25,6 +25,11 @@ public:
     Plateforme(const Plateforme& plateforme);
     virtual ~Plateforme();
 
+    // Opérateurs
+    Plateforme& operator=(const Plateforme& plateforme);
+    bool operator==(const Plateforme& plateforme) const;
+    bool operator!=(const Plateforme& plateforme) const;
+
     // Getters
     const std::string& getNom() const;
     const MapNomsEchanges& getMapEchanges() const;
@@ -45,11 +50,6 @@ public:
     bool equals(const Plateforme& plateforme) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Plateforme& operator=(const Plateforme& plateforme);
-    bool operator==(const Plateforme& plateforme) const;
-    bool operator!=(const Plateforme& plateforme) const;
 
     // Méthodes spécifiques (m_mapEchanges)
     bool hasEchange(const std::string& nom) const;

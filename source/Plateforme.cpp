@@ -10,7 +10,8 @@
 #include <utility>
 
 Plateforme::Plateforme() :
-        m_client(nullptr)
+        m_nom(std::string()), m_mapEchanges(MapNomsEchanges()), m_budget(Budget()),
+                m_client(nullptr)
 {
     this->clear();
 }
@@ -31,6 +32,22 @@ Plateforme::Plateforme(const Plateforme& plateforme) :
 Plateforme::~Plateforme()
 {
     delete this->m_client;
+}
+
+Plateforme& Plateforme::operator=(const Plateforme& plateforme)
+{
+    this->copy(plateforme);
+    return *this;
+}
+
+bool Plateforme::operator==(const Plateforme& plateforme) const
+{
+    return this->equals(plateforme);
+}
+
+bool Plateforme::operator!=(const Plateforme& plateforme) const
+{
+    return !this->equals(plateforme);
 }
 
 const std::string& Plateforme::getNom() const
@@ -70,7 +87,7 @@ void Plateforme::setBudget(const Budget& budget)
 
 void Plateforme::setClient(const PtrClient client)
 {
-    this->m_client = client;
+    this->m_client = const_cast<PtrClient>(client);
 }
 
 void Plateforme::clear()
@@ -117,22 +134,6 @@ const std::string Plateforme::toString(const char& sep) const
     // TODO const std::string Plateforme::toString(const char& sep) const
     // #warning "'const std::string Plateforme::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Plateforme& Plateforme::operator=(const Plateforme& plateforme)
-{
-    this->copy(plateforme);
-    return *this;
-}
-
-bool Plateforme::operator==(const Plateforme& plateforme) const
-{
-    return this->equals(plateforme);
-}
-
-bool Plateforme::operator!=(const Plateforme& plateforme) const
-{
-    return !(this->equals(plateforme));
 }
 
 bool Plateforme::hasEchange(const std::string& nom) const

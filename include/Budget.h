@@ -22,6 +22,11 @@ public:
     Budget(const Budget& budget);
     virtual ~Budget();
 
+    // Opérateurs
+    Budget& operator=(const Budget& budget);
+    bool operator==(const Budget& budget) const;
+    bool operator!=(const Budget& budget) const;
+
     // Getters
     const MapNomsMonnaies& getMapMonnaies() const;
 
@@ -35,11 +40,6 @@ public:
     bool equals(const Budget& budget) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Budget& operator=(const Budget& budget);
-    bool operator==(const Budget& budget) const;
-    bool operator!=(const Budget& budget) const;
 
     // Méthodes spécifiques (m_mapMonnaies)
     bool hasMonnaie(const std::string& nom) const;

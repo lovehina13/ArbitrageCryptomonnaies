@@ -9,7 +9,8 @@
 #include <cstddef>
 #include <utility>
 
-Budget::Budget()
+Budget::Budget() :
+        m_mapMonnaies(MapNomsMonnaies())
 {
     this->clear();
 }
@@ -29,6 +30,22 @@ Budget::Budget(const Budget& budget) :
 Budget::~Budget()
 {
 
+}
+
+Budget& Budget::operator=(const Budget& budget)
+{
+    this->copy(budget);
+    return *this;
+}
+
+bool Budget::operator==(const Budget& budget) const
+{
+    return this->equals(budget);
+}
+
+bool Budget::operator!=(const Budget& budget) const
+{
+    return !this->equals(budget);
 }
 
 const MapNomsMonnaies& Budget::getMapMonnaies() const
@@ -74,22 +91,6 @@ const std::string Budget::toString(const char& sep) const
     // TODO const std::string Budget::toString(const char& sep) const
     // #warning "'const std::string Budget::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Budget& Budget::operator=(const Budget& budget)
-{
-    this->copy(budget);
-    return *this;
-}
-
-bool Budget::operator==(const Budget& budget) const
-{
-    return this->equals(budget);
-}
-
-bool Budget::operator!=(const Budget& budget) const
-{
-    return !(this->equals(budget));
 }
 
 bool Budget::hasMonnaie(const std::string& nom) const

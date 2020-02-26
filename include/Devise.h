@@ -21,6 +21,11 @@ public:
     Devise(const Devise& devise);
     virtual ~Devise();
 
+    // Opérateurs
+    Devise& operator=(const Devise& devise);
+    bool operator==(const Devise& devise) const;
+    bool operator!=(const Devise& devise) const;
+
     // Getters
     const std::string& getNom() const;
 
@@ -34,11 +39,6 @@ public:
     bool equals(const Devise& devise) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Devise& operator=(const Devise& devise);
-    bool operator==(const Devise& devise) const;
-    bool operator!=(const Devise& devise) const;
 
 private:
     // Membres de classe

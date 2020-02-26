@@ -40,6 +40,22 @@ Transaction::~Transaction()
 
 }
 
+Transaction& Transaction::operator=(const Transaction& transaction)
+{
+    this->copy(transaction);
+    return *this;
+}
+
+bool Transaction::operator==(const Transaction& transaction) const
+{
+    return this->equals(transaction);
+}
+
+bool Transaction::operator!=(const Transaction& transaction) const
+{
+    return !this->equals(transaction);
+}
+
 const int& Transaction::getDate() const
 {
     return this->m_date;
@@ -82,32 +98,32 @@ void Transaction::setDate(const int& date)
 
 void Transaction::setPlateformeAchat(const PtrPlateforme plateformeAchat)
 {
-    this->m_plateformeAchat = plateformeAchat;
+    this->m_plateformeAchat = const_cast<PtrPlateforme>(plateformeAchat);
 }
 
 void Transaction::setPlateformeVente(const PtrPlateforme plateformeVente)
 {
-    this->m_plateformeVente = plateformeVente;
+    this->m_plateformeVente = const_cast<PtrPlateforme>(plateformeVente);
 }
 
 void Transaction::setEchangeAchat(const PtrEchange echangeAchat)
 {
-    this->m_echangeAchat = echangeAchat;
+    this->m_echangeAchat = const_cast<PtrEchange>(echangeAchat);
 }
 
 void Transaction::setEchangeVente(const PtrEchange echangeVente)
 {
-    this->m_echangeVente = echangeVente;
+    this->m_echangeVente = const_cast<PtrEchange>(echangeVente);
 }
 
 void Transaction::setCoursAchat(const PtrCours coursAchat)
 {
-    this->m_coursAchat = coursAchat;
+    this->m_coursAchat = const_cast<PtrCours>(coursAchat);
 }
 
 void Transaction::setCoursVente(const PtrCours coursVente)
 {
-    this->m_coursVente = coursVente;
+    this->m_coursVente = const_cast<PtrCours>(coursVente);
 }
 
 void Transaction::clear()
@@ -166,22 +182,6 @@ const std::string Transaction::toString(const char& sep) const
     // TODO const std::string Transaction::toString(const char& sep) const
     // #warning "'const std::string Transaction::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Transaction& Transaction::operator=(const Transaction& transaction)
-{
-    this->copy(transaction);
-    return *this;
-}
-
-bool Transaction::operator==(const Transaction& transaction) const
-{
-    return this->equals(transaction);
-}
-
-bool Transaction::operator!=(const Transaction& transaction) const
-{
-    return !(this->equals(transaction));
 }
 
 bool Transaction::isSet() const

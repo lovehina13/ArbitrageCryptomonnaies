@@ -22,6 +22,11 @@ public:
     Cours(const Cours& cours);
     virtual ~Cours();
 
+    // Opérateurs
+    Cours& operator=(const Cours& cours);
+    bool operator==(const Cours& cours) const;
+    bool operator!=(const Cours& cours) const;
+
     // Getters
     const int& getDate() const;
     const double& getValeurAchat() const;
@@ -44,11 +49,6 @@ public:
     bool equals(const Cours& cours) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Cours& operator=(const Cours& cours);
-    bool operator==(const Cours& cours) const;
-    bool operator!=(const Cours& cours) const;
 
 private:
     // Membres de classe

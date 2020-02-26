@@ -7,7 +7,9 @@
 
 #include "Client.h"
 
-Client::Client()
+Client::Client() :
+        m_adresseSite(std::string()), m_adresseCarnetDeCommandes(std::string()),
+                m_coursActuels(MapNomsCours())
 {
     this->clear();
 }
@@ -28,6 +30,22 @@ Client::Client(const Client& client) :
 Client::~Client()
 {
 
+}
+
+Client& Client::operator=(const Client& client)
+{
+    this->copy(client);
+    return *this;
+}
+
+bool Client::operator==(const Client& client) const
+{
+    return this->equals(client);
+}
+
+bool Client::operator!=(const Client& client) const
+{
+    return !this->equals(client);
 }
 
 const std::string& Client::getAdresseSite() const
@@ -101,22 +119,6 @@ const std::string Client::toString(const char& sep) const
     // TODO const std::string Client::toString(const char& sep) const
     // #warning "'const std::string Client::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Client& Client::operator=(const Client& client)
-{
-    this->copy(client);
-    return *this;
-}
-
-bool Client::operator==(const Client& client) const
-{
-    return this->equals(client);
-}
-
-bool Client::operator!=(const Client& client) const
-{
-    return !(this->equals(client));
 }
 
 void Client::recupererCoursActuel(const std::string& nomDeviseNumerique,

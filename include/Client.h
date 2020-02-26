@@ -23,6 +23,11 @@ public:
     Client(const Client& client);
     virtual ~Client();
 
+    // Opérateurs
+    Client& operator=(const Client& client);
+    bool operator==(const Client& client) const;
+    bool operator!=(const Client& client) const;
+
     // Getters
     const std::string& getAdresseSite() const;
     const std::string& getAdresseCarnetDeCommandes() const;
@@ -41,11 +46,6 @@ public:
     bool equals(const Client& client) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
-
-    // Méthodes spécifiques (opérateurs)
-    Client& operator=(const Client& client);
-    bool operator==(const Client& client) const;
-    bool operator!=(const Client& client) const;
 
     // Méthodes spécifiques (traitements)
     virtual void recupererCoursActuel(const std::string& nomDeviseNumerique,

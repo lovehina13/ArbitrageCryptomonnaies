@@ -15,7 +15,8 @@
 #include <cstddef>
 #include <utility>
 
-Projet::Projet()
+Projet::Projet() :
+        m_mapPlateformes(MapNomsPlateformes())
 {
     this->clear();
 }
@@ -35,6 +36,22 @@ Projet::Projet(const Projet& projet) :
 Projet::~Projet()
 {
 
+}
+
+Projet& Projet::operator=(const Projet& projet)
+{
+    this->copy(projet);
+    return *this;
+}
+
+bool Projet::operator==(const Projet& projet) const
+{
+    return this->equals(projet);
+}
+
+bool Projet::operator!=(const Projet& projet) const
+{
+    return !this->equals(projet);
 }
 
 const MapNomsPlateformes& Projet::getMapPlateformes() const
@@ -80,22 +97,6 @@ const std::string Projet::toString(const char& sep) const
     // TODO const std::string Projet::toString(const char& sep) const
     // #warning "'const std::string Projet::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Projet& Projet::operator=(const Projet& projet)
-{
-    this->copy(projet);
-    return *this;
-}
-
-bool Projet::operator==(const Projet& projet) const
-{
-    return this->equals(projet);
-}
-
-bool Projet::operator!=(const Projet& projet) const
-{
-    return !(this->equals(projet));
 }
 
 bool Projet::hasPlateforme(const std::string& nom) const

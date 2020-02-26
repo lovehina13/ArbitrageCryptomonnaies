@@ -32,6 +32,22 @@ Cours::~Cours()
 
 }
 
+Cours& Cours::operator=(const Cours& cours)
+{
+    this->copy(cours);
+    return *this;
+}
+
+bool Cours::operator==(const Cours& cours) const
+{
+    return this->equals(cours);
+}
+
+bool Cours::operator!=(const Cours& cours) const
+{
+    return !this->equals(cours);
+}
+
 const int& Cours::getDate() const
 {
     return this->m_date;
@@ -129,20 +145,4 @@ const std::string Cours::toString(const char& sep) const
     // TODO const std::string Cours::toString(const char& sep) const
     // #warning "'const std::string Cours::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Cours& Cours::operator=(const Cours& cours)
-{
-    this->copy(cours);
-    return *this;
-}
-
-bool Cours::operator==(const Cours& cours) const
-{
-    return this->equals(cours);
-}
-
-bool Cours::operator!=(const Cours& cours) const
-{
-    return !(this->equals(cours));
 }

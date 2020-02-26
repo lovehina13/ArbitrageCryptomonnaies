@@ -10,8 +10,9 @@
 #include <utility>
 
 Echange::Echange() :
-        m_fraisFixesAchat(0.0), m_fraisFixesVente(0.0), m_fraisVariablesAchat(0.0),
-                m_fraisVariablesVente(0.0)
+        m_deviseNumerique(Devise()), m_deviseReelle(Devise()), m_fraisFixesAchat(0.0),
+                m_fraisFixesVente(0.0), m_fraisVariablesAchat(0.0), m_fraisVariablesVente(0.0),
+                m_mapCours(MapIdCours())
 {
     this->clear();
 }
@@ -35,6 +36,22 @@ Echange::Echange(const Echange& echange) :
 Echange::~Echange()
 {
 
+}
+
+Echange& Echange::operator=(const Echange& echange)
+{
+    this->copy(echange);
+    return *this;
+}
+
+bool Echange::operator==(const Echange& echange) const
+{
+    return this->equals(echange);
+}
+
+bool Echange::operator!=(const Echange& echange) const
+{
+    return !this->equals(echange);
 }
 
 const Devise& Echange::getDeviseNumerique() const
@@ -163,22 +180,6 @@ const std::string Echange::toString(const char& sep) const
     // TODO const std::string Echange::toString(const char& sep) const
     // #warning "'const std::string Echange::toString(const char& sep) const' not implemented"
     return std::string();
-}
-
-Echange& Echange::operator=(const Echange& echange)
-{
-    this->copy(echange);
-    return *this;
-}
-
-bool Echange::operator==(const Echange& echange) const
-{
-    return this->equals(echange);
-}
-
-bool Echange::operator!=(const Echange& echange) const
-{
-    return !(this->equals(echange));
 }
 
 bool Echange::hasCours(const int& date) const

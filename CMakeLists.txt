@@ -14,6 +14,6 @@ add_executable(ArbitrageCryptomonnaies
     source/Projet.cpp
     source/Transaction.cpp)
 
-target_include_directories(ArbitrageCryptomonnaies PUBLIC "include")
+target_include_directories(ArbitrageCryptomonnaies PUBLIC include)
 
 install(TARGETS ArbitrageCryptomonnaies DESTINATION bin)
