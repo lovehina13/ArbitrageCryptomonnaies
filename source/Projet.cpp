@@ -120,7 +120,40 @@ bool Projet::supprimerPlateforme(const std::string& nom)
 
 void Projet::effacerNombreCours(const int& nombreCoursMaximal)
 {
-    // TODO void Projet::effacerNombreCours(const int& nombreCoursMaximal)
+    // Récupération de l'ensemble des plateformes
+    const MapNomsPlateformes& mapPlateformes = this->m_mapPlateformes;
+
+    // Boucle sur les plateformes
+    for (MapNomsPlateformes::const_iterator itPlateforme = mapPlateformes.begin();
+            itPlateforme != mapPlateformes.end(); itPlateforme++)
+    {
+        // Récupération de la plateforme
+        const Plateforme& plateforme = itPlateforme->second;
+
+        // Récupération de l'ensemble des échanges
+        const MapNomsEchanges& mapEchanges = plateforme.getMapEchanges();
+
+        // Boucle sur les échanges
+        for (MapNomsEchanges::const_iterator itEchange = mapEchanges.begin();
+                itEchange != mapEchanges.end(); itEchange++)
+        {
+            // Récupération de l'échange
+            PtrEchange echange = const_cast<PtrEchange>(&itEchange->second);
+
+            // Récupération de l'ensemble des cours
+            const MapIdCours& mapCours = echange->getMapCours();
+
+            // Actualisation de l'ensemble des cours
+            const int nbCours = static_cast<int>(mapCours.size());
+            if (nbCours > nombreCoursMaximal)
+            {
+                MapIdCours mapCoursNew = mapCours;
+                mapCoursNew.erase(mapCoursNew.begin(),
+                        std::next(mapCoursNew.begin(), nbCours - nombreCoursMaximal));
+                echange->setMapCours(mapCoursNew);
+            }
+        }
+    }
 }
 
 void Projet::recupererCours(const int& date)
@@ -146,11 +179,11 @@ void Projet::recupererCours(const int& date)
                 itEchange != mapEchanges.end(); itEchange++)
         {
             // Récupération de l'échange
-            const Echange& echange = itEchange->second;
+            PtrEchange echange = const_cast<PtrEchange>(&itEchange->second);
 
             // Récupération des devises numériques et réelles
-            const Devise& deviseNumerique = echange.getDeviseNumerique();
-            const Devise& deviseReelle = echange.getDeviseReelle();
+            const Devise& deviseNumerique = echange->getDeviseNumerique();
+            const Devise& deviseReelle = echange->getDeviseReelle();
 
             // Définition du cours
             const double valeurAchat = client->getValeurAchat(deviseNumerique.getNom(),
@@ -161,12 +194,10 @@ void Projet::recupererCours(const int& date)
                     deviseReelle.getNom());
             const double quantiteVente = client->getQuantiteVente(deviseNumerique.getNom(),
                     deviseReelle.getNom());
-            Cours cours = Cours(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente);
+            const Cours cours = Cours(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente);
 
-            // Considération du cours
-            const std::string nomEchange = deviseReelle.getNom() + "/" + deviseNumerique.getNom();
-            PtrEchange pEchange = const_cast<PtrEchange>(plateforme.getEchange(nomEchange));
-            pEchange->ajouterCours(date, cours);
+            // Ajout du cours
+            echange->ajouterCours(date, cours);
         }
     }
 }
