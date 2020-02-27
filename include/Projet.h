@@ -44,7 +44,7 @@ public:
 
     // Méthodes spécifiques (m_mapPlateformes)
     bool hasPlateforme(const std::string& nom) const;
-    PtrPlateforme getPlateforme(const std::string& nom) const;
+    CPtrPlateforme getPlateforme(const std::string& nom) const;
     bool ajouterPlateforme(const std::string& nom, const Plateforme& plateforme);
     bool supprimerPlateforme(const std::string& nom);
 
@@ -62,11 +62,15 @@ private:
 };
 
 typedef Projet* PtrProjet;
+typedef const Projet* CPtrProjet;
 typedef std::vector<Projet> ListeProjets;
 typedef std::vector<PtrProjet> ListePtrProjets;
+typedef std::vector<CPtrProjet> ListeCPtrProjets;
 typedef std::map<int, Projet> MapIdProjets;
 typedef std::map<int, PtrProjet> MapIdPtrProjets;
+typedef std::map<int, CPtrProjet> MapIdCPtrProjets;
 typedef std::map<std::string, Projet> MapNomsProjets;
 typedef std::map<std::string, PtrProjet> MapNomsPtrProjets;
+typedef std::map<std::string, CPtrProjet> MapNomsCPtrProjets;
 
 #endif // PROJET_H

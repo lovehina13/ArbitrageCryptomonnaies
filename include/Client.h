@@ -67,11 +67,15 @@ private:
 };
 
 typedef Client* PtrClient;
+typedef const Client* CPtrClient;
 typedef std::vector<Client> ListeClients;
 typedef std::vector<PtrClient> ListePtrClients;
+typedef std::vector<CPtrClient> ListeCPtrClients;
 typedef std::map<int, Client> MapIdClients;
 typedef std::map<int, PtrClient> MapIdPtrClients;
+typedef std::map<int, CPtrClient> MapIdCPtrClients;
 typedef std::map<std::string, Client> MapNomsClients;
 typedef std::map<std::string, PtrClient> MapNomsPtrClients;
+typedef std::map<std::string, CPtrClient> MapNomsCPtrClients;
 
 #endif // CLIENT_H

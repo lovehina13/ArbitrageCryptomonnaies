@@ -20,9 +20,9 @@ class Transaction
 public:
     // Constructeurs et destructeurs
     Transaction();
-    Transaction(const int& date, const PtrPlateforme plateformeAchat,
-            const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
-            const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente);
+    Transaction(const int& date, const CPtrPlateforme plateformeAchat,
+            const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
+            const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente);
     Transaction(const Transaction& transaction);
     virtual ~Transaction();
 
@@ -33,27 +33,27 @@ public:
 
     // Getters
     const int& getDate() const;
-    PtrPlateforme getPlateformeAchat() const;
-    PtrPlateforme getPlateformeVente() const;
-    PtrEchange getEchangeAchat() const;
-    PtrEchange getEchangeVente() const;
-    PtrCours getCoursAchat() const;
-    PtrCours getCoursVente() const;
+    CPtrPlateforme getPlateformeAchat() const;
+    CPtrPlateforme getPlateformeVente() const;
+    CPtrEchange getEchangeAchat() const;
+    CPtrEchange getEchangeVente() const;
+    CPtrCours getCoursAchat() const;
+    CPtrCours getCoursVente() const;
 
     // Setters
     void setDate(const int& date);
-    void setPlateformeAchat(const PtrPlateforme plateformeAchat);
-    void setPlateformeVente(const PtrPlateforme plateformeVente);
-    void setEchangeAchat(const PtrEchange echangeAchat);
-    void setEchangeVente(const PtrEchange echangeVente);
-    void setCoursAchat(const PtrCours coursAchat);
-    void setCoursVente(const PtrCours coursVente);
+    void setPlateformeAchat(const CPtrPlateforme plateformeAchat);
+    void setPlateformeVente(const CPtrPlateforme plateformeVente);
+    void setEchangeAchat(const CPtrEchange echangeAchat);
+    void setEchangeVente(const CPtrEchange echangeVente);
+    void setCoursAchat(const CPtrCours coursAchat);
+    void setCoursVente(const CPtrCours coursVente);
 
     // Méthodes génériques
     void clear();
-    void set(const int& date, const PtrPlateforme plateformeAchat,
-            const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
-            const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente);
+    void set(const int& date, const CPtrPlateforme plateformeAchat,
+            const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
+            const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente);
     void copy(const Transaction& transaction);
     bool equals(const Transaction& transaction) const;
     void fromString(const std::string& fromString, const char& sep);
@@ -86,11 +86,15 @@ private:
 };
 
 typedef Transaction* PtrTransaction;
+typedef const Transaction* CPtrTransaction;
 typedef std::vector<Transaction> ListeTransactions;
 typedef std::vector<PtrTransaction> ListePtrTransactions;
+typedef std::vector<CPtrTransaction> ListeCPtrTransactions;
 typedef std::map<int, Transaction> MapIdTransactions;
 typedef std::map<int, PtrTransaction> MapIdPtrTransactions;
+typedef std::map<int, CPtrTransaction> MapIdCPtrTransactions;
 typedef std::map<std::string, Transaction> MapNomsTransactions;
 typedef std::map<std::string, PtrTransaction> MapNomsPtrTransactions;
+typedef std::map<std::string, CPtrTransaction> MapNomsCPtrTransactions;
 
 #endif // TRANSACTION_H

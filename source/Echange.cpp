@@ -187,10 +187,9 @@ bool Echange::hasCours(const int& date) const
     return (this->m_mapCours.find(date) != this->m_mapCours.end());
 }
 
-PtrCours Echange::getCours(const int& date) const
+CPtrCours Echange::getCours(const int& date) const
 {
-    return (this->hasCours(date) ?
-            const_cast<PtrCours>(&(this->m_mapCours.find(date)->second)) : nullptr);
+    return (this->hasCours(date) ? &this->m_mapCours.find(date)->second : nullptr);
 }
 
 bool Echange::ajouterCours(const int& date, const Cours& cours)

@@ -60,11 +60,15 @@ private:
 };
 
 typedef Cours* PtrCours;
+typedef const Cours* CPtrCours;
 typedef std::vector<Cours> ListeCours;
 typedef std::vector<PtrCours> ListePtrCours;
+typedef std::vector<CPtrCours> ListeCPtrCours;
 typedef std::map<int, Cours> MapIdCours;
 typedef std::map<int, PtrCours> MapIdPtrCours;
+typedef std::map<int, CPtrCours> MapIdCPtrCours;
 typedef std::map<std::string, Cours> MapNomsCours;
 typedef std::map<std::string, PtrCours> MapNomsPtrCours;
+typedef std::map<std::string, CPtrCours> MapNomsCPtrCours;
 
 #endif // COURS_H

@@ -40,8 +40,8 @@ int main()
         for (ListeDevises::const_iterator itDeviseNumerique = devisesNumeriques.begin();
                 itDeviseNumerique != devisesNumeriques.end(); itDeviseNumerique++)
         {
-            const Devise& deviseReelle = (*itDeviseReelle);
-            const Devise& deviseNumerique = (*itDeviseNumerique);
+            const Devise& deviseReelle = *itDeviseReelle;
+            const Devise& deviseNumerique = *itDeviseNumerique;
             const std::string nomEchange = deviseReelle.getNom() + "/" + deviseNumerique.getNom();
             const Echange echange = Echange(deviseNumerique, deviseReelle, 0.0, 0.0, 0.002, 0.002,
                     MapIdCours());
@@ -53,14 +53,14 @@ int main()
     for (ListeDevises::const_iterator itDeviseReelle = devisesReelles.begin();
             itDeviseReelle != devisesReelles.end(); itDeviseReelle++)
     {
-        const Devise& deviseReelle = (*itDeviseReelle);
+        const Devise& deviseReelle = *itDeviseReelle;
         const Monnaie monnaieReelle = Monnaie(deviseReelle, 0.0);
         budget.ajouterMonnaie(deviseReelle.getNom(), monnaieReelle);
     }
     for (ListeDevises::const_iterator itDeviseNumerique = devisesNumeriques.begin();
             itDeviseNumerique != devisesNumeriques.end(); itDeviseNumerique++)
     {
-        const Devise& deviseNumerique = (*itDeviseNumerique);
+        const Devise& deviseNumerique = *itDeviseNumerique;
         const Monnaie monnaieNumerique = Monnaie(deviseNumerique, 0.0);
         budget.ajouterMonnaie(deviseNumerique.getNom(), monnaieNumerique);
     }

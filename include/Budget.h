@@ -43,7 +43,7 @@ public:
 
     // Méthodes spécifiques (m_mapMonnaies)
     bool hasMonnaie(const std::string& nom) const;
-    PtrMonnaie getMonnaie(const std::string& nom) const;
+    CPtrMonnaie getMonnaie(const std::string& nom) const;
     bool ajouterMonnaie(const std::string& nom, const Monnaie& monnaie);
     bool supprimerMonnaie(const std::string& nom);
 
@@ -53,11 +53,15 @@ private:
 };
 
 typedef Budget* PtrBudget;
+typedef const Budget* CPtrBudget;
 typedef std::vector<Budget> ListeBudgets;
 typedef std::vector<PtrBudget> ListePtrBudgets;
+typedef std::vector<CPtrBudget> ListeCPtrBudgets;
 typedef std::map<int, Budget> MapIdBudgets;
 typedef std::map<int, PtrBudget> MapIdPtrBudgets;
+typedef std::map<int, CPtrBudget> MapIdCPtrBudgets;
 typedef std::map<std::string, Budget> MapNomsBudgets;
 typedef std::map<std::string, PtrBudget> MapNomsPtrBudgets;
+typedef std::map<std::string, CPtrBudget> MapNomsCPtrBudgets;
 
 #endif // BUDGET_H

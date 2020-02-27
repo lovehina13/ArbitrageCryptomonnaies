@@ -104,10 +104,9 @@ bool Projet::hasPlateforme(const std::string& nom) const
     return (this->m_mapPlateformes.find(nom) != this->m_mapPlateformes.end());
 }
 
-PtrPlateforme Projet::getPlateforme(const std::string& nom) const
+CPtrPlateforme Projet::getPlateforme(const std::string& nom) const
 {
-    return (this->hasPlateforme(nom) ?
-            const_cast<PtrPlateforme>(&(this->m_mapPlateformes.find(nom)->second)) : nullptr);
+    return (this->hasPlateforme(nom) ? &this->m_mapPlateformes.find(nom)->second : nullptr);
 }
 
 bool Projet::ajouterPlateforme(const std::string& nom, const Plateforme& plateforme)
@@ -138,7 +137,7 @@ void Projet::recupererCours(const int& date)
         const Plateforme& plateforme = itPlateforme->second;
 
         // Récupération du client
-        const PtrClient client = plateforme.getClient();
+        const CPtrClient client = plateforme.getClient();
 
         // Récupération de l'ensemble des échanges
         const MapNomsEchanges& mapEchanges = plateforme.getMapEchanges();
@@ -167,7 +166,7 @@ void Projet::recupererCours(const int& date)
 
             // Considération du cours
             const std::string nomEchange = deviseReelle.getNom() + "/" + deviseNumerique.getNom();
-            PtrEchange pEchange = plateforme.getEchange(nomEchange);
+            PtrEchange pEchange = const_cast<PtrEchange>(plateforme.getEchange(nomEchange));
             pEchange->ajouterCours(date, cours);
         }
     }
@@ -228,21 +227,17 @@ const Transaction Projet::getTransactionOptimale(const int& date, const double& 
                     const Echange& echangeDestination = itEchangeDestination->second;
 
                     // Récupération des cours de source et de destination
-                    const PtrCours coursSource = echangeSource.getCours(date);
-                    const PtrCours coursDestination = echangeDestination.getCours(date);
+                    const CPtrCours coursSource = echangeSource.getCours(date);
+                    const CPtrCours coursDestination = echangeDestination.getCours(date);
 
                     // Considération des cours de source et de destination s'ils existent
                     if (!coursSource || !coursDestination)
                         continue;
 
                     // Définition de la transaction
-                    Transaction transaction = Transaction(date,
-                            const_cast<PtrPlateforme>(&plateformeSource),
-                            const_cast<PtrPlateforme>(&plateformeDestination),
-                            const_cast<PtrEchange>(&echangeSource),
-                            const_cast<PtrEchange>(&echangeDestination),
-                            const_cast<PtrCours>(coursSource),
-                            const_cast<PtrCours>(coursDestination));
+                    Transaction transaction = Transaction(date, &plateformeSource,
+                            &plateformeDestination, &echangeSource, &echangeDestination,
+                            coursSource, coursDestination);
 
                     // Récupération des bénéfices nets
                     const double beneficeNet = transaction.getBeneficeNet();
@@ -268,22 +263,22 @@ const Transaction Projet::getTransactionOptimale(const int& date, const double& 
 void Projet::actualiserBudgets(const Transaction& transaction)
 {
     // Récupération des plateformes d'achat et de vente
-    PtrPlateforme plateformeAchat = transaction.getPlateformeAchat();
-    PtrPlateforme plateformeVente = transaction.getPlateformeVente();
+    const CPtrPlateforme plateformeAchat = transaction.getPlateformeAchat();
+    const CPtrPlateforme plateformeVente = transaction.getPlateformeVente();
 
     // Récupération des budgets d'achat et de vente
-    PtrBudget budgetAchat = const_cast<PtrBudget>(&plateformeAchat->getBudget());
-    PtrBudget budgetVente = const_cast<PtrBudget>(&plateformeVente->getBudget());
+    const Budget& budgetAchat = plateformeAchat->getBudget();
+    const Budget& budgetVente = plateformeVente->getBudget();
 
     // Récupération des monnaies numériques et réelles d'achat et de vente
-    PtrMonnaie monnaieNumeriqueAchat = budgetAchat->getMonnaie(
-            transaction.getEchangeAchat()->getDeviseNumerique().getNom());
-    PtrMonnaie monnaieReelleAchat = budgetAchat->getMonnaie(
-            transaction.getEchangeAchat()->getDeviseReelle().getNom());
-    PtrMonnaie monnaieNumeriqueVente = budgetVente->getMonnaie(
-            transaction.getEchangeVente()->getDeviseNumerique().getNom());
-    PtrMonnaie monnaieReelleVente = budgetVente->getMonnaie(
-            transaction.getEchangeVente()->getDeviseReelle().getNom());
+    PtrMonnaie monnaieNumeriqueAchat = const_cast<PtrMonnaie>(budgetAchat.getMonnaie(
+            transaction.getEchangeAchat()->getDeviseNumerique().getNom()));
+    PtrMonnaie monnaieReelleAchat = const_cast<PtrMonnaie>(budgetAchat.getMonnaie(
+            transaction.getEchangeAchat()->getDeviseReelle().getNom()));
+    PtrMonnaie monnaieNumeriqueVente = const_cast<PtrMonnaie>(budgetVente.getMonnaie(
+            transaction.getEchangeVente()->getDeviseNumerique().getNom()));
+    PtrMonnaie monnaieReelleVente = const_cast<PtrMonnaie>(budgetVente.getMonnaie(
+            transaction.getEchangeVente()->getDeviseReelle().getNom()));
 
     // Récupération des quantités des monnaies numériques et réelles d'achat et de vente
     const double quantiteMonnaieNumeriqueAchat = monnaieNumeriqueAchat->getQuantite()
@@ -336,7 +331,7 @@ void Projet::equilibrerBudgets(const Transaction& transaction)
             {
                 budgetTotal.ajouterMonnaie(nomMonnaie, Monnaie(nomMonnaie, 0.0));
             }
-            PtrMonnaie monnaieTotale = budgetTotal.getMonnaie(nomMonnaie);
+            PtrMonnaie monnaieTotale = const_cast<PtrMonnaie>(budgetTotal.getMonnaie(nomMonnaie));
             monnaieTotale->setQuantite(monnaieTotale->getQuantite() + monnaie.getQuantite());
         }
     }

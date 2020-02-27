@@ -46,11 +46,15 @@ private:
 };
 
 typedef Devise* PtrDevise;
+typedef const Devise* CPtrDevise;
 typedef std::vector<Devise> ListeDevises;
 typedef std::vector<PtrDevise> ListePtrDevises;
+typedef std::vector<CPtrDevise> ListeCPtrDevises;
 typedef std::map<int, Devise> MapIdDevises;
 typedef std::map<int, PtrDevise> MapIdPtrDevises;
+typedef std::map<int, CPtrDevise> MapIdCPtrDevises;
 typedef std::map<std::string, Devise> MapNomsDevises;
 typedef std::map<std::string, PtrDevise> MapNomsPtrDevises;
+typedef std::map<std::string, CPtrDevise> MapNomsCPtrDevises;
 
 #endif // DEVISE_H

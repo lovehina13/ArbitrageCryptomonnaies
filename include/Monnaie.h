@@ -50,11 +50,15 @@ private:
 };
 
 typedef Monnaie* PtrMonnaie;
+typedef const Monnaie* CPtrMonnaie;
 typedef std::vector<Monnaie> ListeMonnaies;
 typedef std::vector<PtrMonnaie> ListePtrMonnaies;
+typedef std::vector<CPtrMonnaie> ListeCPtrMonnaies;
 typedef std::map<int, Monnaie> MapIdMonnaies;
 typedef std::map<int, PtrMonnaie> MapIdPtrMonnaies;
+typedef std::map<int, CPtrMonnaie> MapIdCPtrMonnaies;
 typedef std::map<std::string, Monnaie> MapNomsMonnaies;
 typedef std::map<std::string, PtrMonnaie> MapNomsPtrMonnaies;
+typedef std::map<std::string, CPtrMonnaie> MapNomsCPtrMonnaies;
 
 #endif // MONNAIE_H

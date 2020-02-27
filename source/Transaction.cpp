@@ -20,9 +20,9 @@ Transaction::Transaction() :
     this->clear();
 }
 
-Transaction::Transaction(const int& date, const PtrPlateforme plateformeAchat,
-        const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
-        const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente) :
+Transaction::Transaction(const int& date, const CPtrPlateforme plateformeAchat,
+        const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
+        const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente) :
         Transaction()
 {
     this->set(date, plateformeAchat, plateformeVente, echangeAchat, echangeVente, coursAchat,
@@ -61,32 +61,32 @@ const int& Transaction::getDate() const
     return this->m_date;
 }
 
-PtrPlateforme Transaction::getPlateformeAchat() const
+CPtrPlateforme Transaction::getPlateformeAchat() const
 {
     return this->m_plateformeAchat;
 }
 
-PtrPlateforme Transaction::getPlateformeVente() const
+CPtrPlateforme Transaction::getPlateformeVente() const
 {
     return this->m_plateformeVente;
 }
 
-PtrEchange Transaction::getEchangeAchat() const
+CPtrEchange Transaction::getEchangeAchat() const
 {
     return this->m_echangeAchat;
 }
 
-PtrEchange Transaction::getEchangeVente() const
+CPtrEchange Transaction::getEchangeVente() const
 {
     return this->m_echangeVente;
 }
 
-PtrCours Transaction::getCoursAchat() const
+CPtrCours Transaction::getCoursAchat() const
 {
     return this->m_coursAchat;
 }
 
-PtrCours Transaction::getCoursVente() const
+CPtrCours Transaction::getCoursVente() const
 {
     return this->m_coursVente;
 }
@@ -96,32 +96,32 @@ void Transaction::setDate(const int& date)
     this->m_date = date;
 }
 
-void Transaction::setPlateformeAchat(const PtrPlateforme plateformeAchat)
+void Transaction::setPlateformeAchat(const CPtrPlateforme plateformeAchat)
 {
     this->m_plateformeAchat = const_cast<PtrPlateforme>(plateformeAchat);
 }
 
-void Transaction::setPlateformeVente(const PtrPlateforme plateformeVente)
+void Transaction::setPlateformeVente(const CPtrPlateforme plateformeVente)
 {
     this->m_plateformeVente = const_cast<PtrPlateforme>(plateformeVente);
 }
 
-void Transaction::setEchangeAchat(const PtrEchange echangeAchat)
+void Transaction::setEchangeAchat(const CPtrEchange echangeAchat)
 {
     this->m_echangeAchat = const_cast<PtrEchange>(echangeAchat);
 }
 
-void Transaction::setEchangeVente(const PtrEchange echangeVente)
+void Transaction::setEchangeVente(const CPtrEchange echangeVente)
 {
     this->m_echangeVente = const_cast<PtrEchange>(echangeVente);
 }
 
-void Transaction::setCoursAchat(const PtrCours coursAchat)
+void Transaction::setCoursAchat(const CPtrCours coursAchat)
 {
     this->m_coursAchat = const_cast<PtrCours>(coursAchat);
 }
 
-void Transaction::setCoursVente(const PtrCours coursVente)
+void Transaction::setCoursVente(const CPtrCours coursVente)
 {
     this->m_coursVente = const_cast<PtrCours>(coursVente);
 }
@@ -131,9 +131,9 @@ void Transaction::clear()
     this->set(0, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
 }
 
-void Transaction::set(const int& date, const PtrPlateforme plateformeAchat,
-        const PtrPlateforme plateformeVente, const PtrEchange echangeAchat,
-        const PtrEchange echangeVente, const PtrCours coursAchat, const PtrCours coursVente)
+void Transaction::set(const int& date, const CPtrPlateforme plateformeAchat,
+        const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
+        const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente)
 {
     this->setDate(date);
     this->setPlateformeAchat(plateformeAchat);

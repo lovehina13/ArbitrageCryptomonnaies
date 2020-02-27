@@ -62,7 +62,7 @@ public:
 
     // Méthodes spécifiques (m_mapCours)
     bool hasCours(const int& date) const;
-    PtrCours getCours(const int& date) const;
+    CPtrCours getCours(const int& date) const;
     bool ajouterCours(const int& date, const Cours& cours);
     bool supprimerCours(const int& date);
 
@@ -78,11 +78,15 @@ private:
 };
 
 typedef Echange* PtrEchange;
+typedef const Echange* CPtrEchange;
 typedef std::vector<Echange> ListeEchanges;
 typedef std::vector<PtrEchange> ListePtrEchanges;
+typedef std::vector<CPtrEchange> ListeCPtrEchanges;
 typedef std::map<int, Echange> MapIdEchanges;
 typedef std::map<int, PtrEchange> MapIdPtrEchanges;
+typedef std::map<int, CPtrEchange> MapIdCPtrEchanges;
 typedef std::map<std::string, Echange> MapNomsEchanges;
 typedef std::map<std::string, PtrEchange> MapNomsPtrEchanges;
+typedef std::map<std::string, CPtrEchange> MapNomsCPtrEchanges;
 
 #endif // ECHANGE_H
