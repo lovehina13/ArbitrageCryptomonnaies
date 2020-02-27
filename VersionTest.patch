@@ -1,0 +1,54 @@
+diff --git a/source/ArbitrageCryptomonnaies.cpp b/source/ArbitrageCryptomonnaies.cpp
+index 54c72ce..659782a 100644
+--- a/source/ArbitrageCryptomonnaies.cpp
++++ b/source/ArbitrageCryptomonnaies.cpp
+@@ -30,9 +30,6 @@ int main()
+ 
+     ListeDevises devisesNumeriques;
+     devisesNumeriques.push_back(Devise("BTC"));
+-    devisesNumeriques.push_back(Devise("ETH"));
+-    devisesNumeriques.push_back(Devise("LTC"));
+-    devisesNumeriques.push_back(Devise("XRP"));
+ 
+     MapNomsEchanges mapEchanges;
+     for (ListeDevises::const_iterator itDeviseReelle = devisesReelles.begin();
+@@ -55,14 +52,14 @@ int main()
+             itDeviseReelle != devisesReelles.end(); itDeviseReelle++)
+     {
+         const Devise& deviseReelle = *itDeviseReelle;
+-        const Monnaie monnaieReelle = Monnaie(deviseReelle, 0.0);
++        const Monnaie monnaieReelle = Monnaie(deviseReelle, 100.0);
+         budget.ajouterMonnaie(deviseReelle.getNom(), monnaieReelle);
+     }
+     for (ListeDevises::const_iterator itDeviseNumerique = devisesNumeriques.begin();
+             itDeviseNumerique != devisesNumeriques.end(); itDeviseNumerique++)
+     {
+         const Devise& deviseNumerique = *itDeviseNumerique;
+-        const Monnaie monnaieNumerique = Monnaie(deviseNumerique, 0.0);
++        const Monnaie monnaieNumerique = Monnaie(deviseNumerique, 2.0);
+         budget.ajouterMonnaie(deviseNumerique.getNom(), monnaieNumerique);
+     }
+ 
+diff --git a/source/Projet.cpp b/source/Projet.cpp
+index 724bc92..f306f08 100644
+--- a/source/Projet.cpp
++++ b/source/Projet.cpp
+@@ -186,14 +186,10 @@ void Projet::recupererCours(const int& date)
+             const Devise& deviseReelle = echange->getDeviseReelle();
+ 
+             // Définition du cours
+-            const double valeurAchat = client->getValeurAchat(deviseNumerique.getNom(),
+-                    deviseReelle.getNom());
+-            const double valeurVente = client->getValeurVente(deviseNumerique.getNom(),
+-                    deviseReelle.getNom());
+-            const double quantiteAchat = client->getQuantiteAchat(deviseNumerique.getNom(),
+-                    deviseReelle.getNom());
+-            const double quantiteVente = client->getQuantiteVente(deviseNumerique.getNom(),
+-                    deviseReelle.getNom());
++            const double valeurAchat = plateforme.getNom() == "Plateforme_1" ? 100.0 : 102.0;
++            const double valeurVente = plateforme.getNom() == "Plateforme_1" ? 101.0 : 103.0;
++            const double quantiteAchat = 10.0;
++            const double quantiteVente = 10.0;
+             const Cours cours = Cours(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente);
+ 
+             // Ajout du cours
