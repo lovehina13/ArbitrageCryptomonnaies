@@ -12,7 +12,6 @@
 #include "Devise.h"
 #include "Echange.h"
 #include "Monnaie.h"
-#include <cstddef>
 #include <utility>
 
 Projet::Projet() :

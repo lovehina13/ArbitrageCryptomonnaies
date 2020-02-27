@@ -6,7 +6,6 @@
 //==============================================================================
 
 #include "Echange.h"
-#include <cstddef>
 #include <utility>
 
 Echange::Echange() :

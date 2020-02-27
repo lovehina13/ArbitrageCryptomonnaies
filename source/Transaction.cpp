@@ -10,7 +10,6 @@
 #include "Devise.h"
 #include "Monnaie.h"
 #include <algorithm>
-#include <cstddef>
 #include <sstream>
 
 Transaction::Transaction() :

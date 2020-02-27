@@ -6,7 +6,6 @@
 //==============================================================================
 
 #include "Plateforme.h"
-#include <cstddef>
 #include <utility>
 
 Plateforme::Plateforme() :
