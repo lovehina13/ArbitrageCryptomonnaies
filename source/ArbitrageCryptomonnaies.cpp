@@ -15,6 +15,7 @@
 #include "Projet.h"
 #include "Transaction.h"
 #include <chrono>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <utility>
@@ -65,8 +66,10 @@ int main()
         budget.ajouterMonnaie(deviseNumerique.getNom(), monnaieNumerique);
     }
 
-    Plateforme plateforme_1 = Plateforme("Plateforme_1", mapEchanges, budget, new Client());
-    Plateforme plateforme_2 = Plateforme("Plateforme_2", mapEchanges, budget, new Client());
+    CPtrClient client_1 = new Client();
+    CPtrClient client_2 = new Client();
+    Plateforme plateforme_1 = Plateforme("Plateforme_1", mapEchanges, budget, client_1);
+    Plateforme plateforme_2 = Plateforme("Plateforme_2", mapEchanges, budget, client_2);
     projet.ajouterPlateforme(plateforme_1.getNom(), plateforme_1);
     projet.ajouterPlateforme(plateforme_2.getNom(), plateforme_2);
 
@@ -98,5 +101,8 @@ int main()
         std::cout << "Temps traitement: " << elapsed << " microsecondes" << std::endl;
     }
 
-    return 0;
+    delete client_1;
+    delete client_2;
+
+    return EXIT_SUCCESS;
 }

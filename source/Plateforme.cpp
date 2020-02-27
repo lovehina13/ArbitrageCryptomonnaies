@@ -30,7 +30,7 @@ Plateforme::Plateforme(const Plateforme& plateforme) :
 
 Plateforme::~Plateforme()
 {
-    delete this->m_client;
+    // delete this->m_client;
 }
 
 Plateforme& Plateforme::operator=(const Plateforme& plateforme)
