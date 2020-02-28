@@ -30,10 +30,28 @@ index 54c72ce..659782a 100644
      }
  
 diff --git a/source/Projet.cpp b/source/Projet.cpp
-index 724bc92..f306f08 100644
+index a7ec1da..9e65233 100644
 --- a/source/Projet.cpp
 +++ b/source/Projet.cpp
-@@ -186,14 +186,10 @@ void Projet::recupererCours(const int& date)
+@@ -7,7 +7,6 @@
+ 
+ #include "Projet.h"
+ #include "Budget.h"
+-#include "Client.h"
+ #include "Cours.h"
+ #include "Devise.h"
+ #include "Echange.h"
+@@ -169,9 +168,6 @@ void Projet::recupererCours(const int& date)
+         // Récupération de la plateforme
+         const Plateforme& plateforme = itPlateforme->second;
+ 
+-        // Récupération du client
+-        const CPtrClient client = plateforme.getClient();
+-
+         // Récupération de l'ensemble des échanges
+         const MapNomsEchanges& mapEchanges = plateforme.getMapEchanges();
+ 
+@@ -187,14 +183,10 @@ void Projet::recupererCours(const int& date)
              const Devise& deviseReelle = echange->getDeviseReelle();
  
              // Définition du cours
