@@ -7,43 +7,9 @@
 
 #include "Devise.h"
 
-Devise::Devise() :
-        _nom(std::string())
-{
-    clear();
-}
-
 Devise::Devise(const std::string& nom) :
-        Devise()
+        _nom(nom)
 {
-    set(nom);
-}
-
-Devise::Devise(const Devise& devise) :
-        Devise()
-{
-    copy(devise);
-}
-
-Devise::~Devise()
-{
-
-}
-
-Devise& Devise::operator=(const Devise& devise)
-{
-    copy(devise);
-    return *this;
-}
-
-bool Devise::operator==(const Devise& devise) const
-{
-    return equals(devise);
-}
-
-bool Devise::operator!=(const Devise& devise) const
-{
-    return !equals(devise);
 }
 
 const std::string& Devise::getNom() const
@@ -58,24 +24,12 @@ void Devise::setNom(const std::string& nom)
 
 void Devise::clear()
 {
-    set(std::string());
+    *this = Devise();
 }
 
 void Devise::set(const std::string& nom)
 {
     setNom(nom);
-}
-
-void Devise::copy(const Devise& devise)
-{
-    set(devise.getNom());
-}
-
-bool Devise::equals(const Devise& devise) const
-{
-    if (getNom() != devise.getNom())
-        return false;
-    return true;
 }
 
 void Devise::fromString(const std::string& /*fromString*/, const char& /*sep*/)

@@ -18,18 +18,15 @@ class Echange
 {
 public:
     // Constructeurs et destructeurs
-    Echange();
+    Echange() = default;
     Echange(const Devise& deviseNumerique, const Devise& deviseReelle,
             const double& fraisFixesAchat, const double& fraisFixesVente,
             const double& fraisVariablesAchat, const double& fraisVariablesVente,
             const MapIdCours& mapCours);
-    Echange(const Echange& echange);
-    virtual ~Echange();
 
     // Opérateurs
-    Echange& operator=(const Echange& echange);
-    bool operator==(const Echange& echange) const;
-    bool operator!=(const Echange& echange) const;
+    bool operator==(const Echange& echange) const = default;
+    bool operator!=(const Echange& echange) const = default;
 
     // Getters
     const Devise& getDeviseNumerique() const;
@@ -55,8 +52,6 @@ public:
             const double& fraisFixesAchat, const double& fraisFixesVente,
             const double& fraisVariablesAchat, const double& fraisVariablesVente,
             const MapIdCours& mapCours);
-    void copy(const Echange& echange);
-    bool equals(const Echange& echange) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
@@ -70,23 +65,23 @@ private:
     // Membres de classe
     Devise _deviseNumerique;
     Devise _deviseReelle;
-    double _fraisFixesAchat;
-    double _fraisFixesVente;
-    double _fraisVariablesAchat;
-    double _fraisVariablesVente;
+    double _fraisFixesAchat { 0.0 };
+    double _fraisFixesVente { 0.0 };
+    double _fraisVariablesAchat { 0.0 };
+    double _fraisVariablesVente { 0.0 };
     MapIdCours _mapCours;
 };
 
-typedef Echange* PtrEchange;
-typedef const Echange* CPtrEchange;
-typedef std::vector<Echange> ListeEchanges;
-typedef std::vector<PtrEchange> ListePtrEchanges;
-typedef std::vector<CPtrEchange> ListeCPtrEchanges;
-typedef std::map<int, Echange> MapIdEchanges;
-typedef std::map<int, PtrEchange> MapIdPtrEchanges;
-typedef std::map<int, CPtrEchange> MapIdCPtrEchanges;
-typedef std::map<std::string, Echange> MapNomsEchanges;
-typedef std::map<std::string, PtrEchange> MapNomsPtrEchanges;
-typedef std::map<std::string, CPtrEchange> MapNomsCPtrEchanges;
+using PtrEchange = Echange*;
+using CPtrEchange = const Echange*;
+using ListeEchanges = std::vector<Echange>;
+using ListePtrEchanges = std::vector<PtrEchange>;
+using ListeCPtrEchanges = std::vector<CPtrEchange>;
+using MapIdEchanges = std::map<int, Echange>;
+using MapIdPtrEchanges = std::map<int, PtrEchange>;
+using MapIdCPtrEchanges= std::map<int, CPtrEchange>;
+using MapNomsEchanges = std::map<std::string, Echange>;
+using MapNomsPtrEchanges = std::map<std::string, PtrEchange>;
+using MapNomsCPtrEchanges = std::map<std::string, CPtrEchange>;
 
 #endif // ECHANGE_H

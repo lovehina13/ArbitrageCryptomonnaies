@@ -17,15 +17,12 @@ class Monnaie
 {
 public:
     // Constructeurs et destructeurs
-    Monnaie();
+    Monnaie() = default;
     Monnaie(const Devise& devise, const double& quantite);
-    Monnaie(const Monnaie& monnaie);
-    virtual ~Monnaie();
 
     // Opérateurs
-    Monnaie& operator=(const Monnaie& monnaie);
-    bool operator==(const Monnaie& monnaie) const;
-    bool operator!=(const Monnaie& monnaie) const;
+    bool operator==(const Monnaie& monnaie) const = default;
+    bool operator!=(const Monnaie& monnaie) const = default;
 
     // Getters
     const Devise& getDevise() const;
@@ -38,27 +35,25 @@ public:
     // Méthodes génériques
     void clear();
     void set(const Devise& devise, const double& quantite);
-    void copy(const Monnaie& monnaie);
-    bool equals(const Monnaie& monnaie) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
 private:
     // Membres de classe
     Devise _devise;
-    double _quantite;
+    double _quantite { 0.0 };
 };
 
-typedef Monnaie* PtrMonnaie;
-typedef const Monnaie* CPtrMonnaie;
-typedef std::vector<Monnaie> ListeMonnaies;
-typedef std::vector<PtrMonnaie> ListePtrMonnaies;
-typedef std::vector<CPtrMonnaie> ListeCPtrMonnaies;
-typedef std::map<int, Monnaie> MapIdMonnaies;
-typedef std::map<int, PtrMonnaie> MapIdPtrMonnaies;
-typedef std::map<int, CPtrMonnaie> MapIdCPtrMonnaies;
-typedef std::map<std::string, Monnaie> MapNomsMonnaies;
-typedef std::map<std::string, PtrMonnaie> MapNomsPtrMonnaies;
-typedef std::map<std::string, CPtrMonnaie> MapNomsCPtrMonnaies;
+using PtrMonnaie = Monnaie*;
+using CPtrMonnaie = const Monnaie*;
+using ListeMonnaies = std::vector<Monnaie>;
+using ListePtrMonnaies = std::vector<PtrMonnaie>;
+using ListeCPtrMonnaies = std::vector<CPtrMonnaie>;
+using MapIdMonnaies = std::map<int, Monnaie>;
+using MapIdPtrMonnaies = std::map<int, PtrMonnaie>;
+using MapIdCPtrMonnaies = std::map<int, CPtrMonnaie>;
+using MapNomsMonnaies = std::map<std::string, Monnaie>;
+using MapNomsPtrMonnaies = std::map<std::string, PtrMonnaie>;
+using MapNomsCPtrMonnaies = std::map<std::string, CPtrMonnaie>;
 
 #endif // MONNAIE_H

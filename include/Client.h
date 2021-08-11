@@ -17,16 +17,14 @@ class Client
 {
 public:
     // Constructeurs et destructeurs
-    Client();
+    Client() = default;
     Client(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
             const MapNomsCours& coursActuels);
-    Client(const Client& client);
-    virtual ~Client();
+    virtual ~Client() = default;
 
     // Opérateurs
-    Client& operator=(const Client& client);
-    bool operator==(const Client& client) const;
-    bool operator!=(const Client& client) const;
+    bool operator==(const Client& client) const = default;
+    bool operator!=(const Client& client) const = default;
 
     // Getters
     const std::string& getAdresseSite() const;
@@ -42,8 +40,6 @@ public:
     void clear();
     void set(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
             const MapNomsCours& coursActuels);
-    void copy(const Client& client);
-    bool equals(const Client& client) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
@@ -66,16 +62,16 @@ private:
     MapNomsCours _coursActuels;
 };
 
-typedef Client* PtrClient;
-typedef const Client* CPtrClient;
-typedef std::vector<Client> ListeClients;
-typedef std::vector<PtrClient> ListePtrClients;
-typedef std::vector<CPtrClient> ListeCPtrClients;
-typedef std::map<int, Client> MapIdClients;
-typedef std::map<int, PtrClient> MapIdPtrClients;
-typedef std::map<int, CPtrClient> MapIdCPtrClients;
-typedef std::map<std::string, Client> MapNomsClients;
-typedef std::map<std::string, PtrClient> MapNomsPtrClients;
-typedef std::map<std::string, CPtrClient> MapNomsCPtrClients;
+using PtrClient = Client*;
+using CPtrClient = const Client*;
+using ListeClients = std::vector<Client>;
+using ListePtrClients = std::vector<PtrClient>;
+using ListeCPtrClients = std::vector<CPtrClient>;
+using MapIdClients = std::map<int, Client>;
+using MapIdPtrClients = std::map<int, PtrClient>;
+using MapIdCPtrClients = std::map<int, CPtrClient>;
+using MapNomsClients = std::map<std::string, Client>;
+using MapNomsPtrClients = std::map<std::string, PtrClient>;
+using MapNomsCPtrClients = std::map<std::string, CPtrClient>;
 
 #endif // CLIENT_H

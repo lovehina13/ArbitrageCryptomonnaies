@@ -18,15 +18,12 @@ class Projet
 {
 public:
     // Constructeurs et destructeurs
-    Projet();
+    Projet() = default;
     Projet(const MapNomsPlateformes& mapPlateformes);
-    Projet(const Projet& projet);
-    virtual ~Projet();
 
     // Opérateurs
-    Projet& operator=(const Projet& projet);
-    bool operator==(const Projet& projet) const;
-    bool operator!=(const Projet& projet) const;
+    bool operator==(const Projet& projet) const = default;
+    bool operator!=(const Projet& projet) const = default;
 
     // Getters
     const MapNomsPlateformes& getMapPlateformes() const;
@@ -37,8 +34,6 @@ public:
     // Méthodes génériques
     void clear();
     void set(const MapNomsPlateformes& mapPlateformes);
-    void copy(const Projet& projet);
-    bool equals(const Projet& projet) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
@@ -61,16 +56,16 @@ private:
     MapNomsPlateformes _mapPlateformes;
 };
 
-typedef Projet* PtrProjet;
-typedef const Projet* CPtrProjet;
-typedef std::vector<Projet> ListeProjets;
-typedef std::vector<PtrProjet> ListePtrProjets;
-typedef std::vector<CPtrProjet> ListeCPtrProjets;
-typedef std::map<int, Projet> MapIdProjets;
-typedef std::map<int, PtrProjet> MapIdPtrProjets;
-typedef std::map<int, CPtrProjet> MapIdCPtrProjets;
-typedef std::map<std::string, Projet> MapNomsProjets;
-typedef std::map<std::string, PtrProjet> MapNomsPtrProjets;
-typedef std::map<std::string, CPtrProjet> MapNomsCPtrProjets;
+using PtrProjet = Projet*;
+using CPtrProjet = const Projet*;
+using ListeProjets = std::vector<Projet>;
+using ListePtrProjets = std::vector<PtrProjet>;
+using ListeCPtrProjets = std::vector<CPtrProjet>;
+using MapIdProjets = std::map<int, Projet>;
+using MapIdPtrProjets = std::map<int, PtrProjet>;
+using MapIdCPtrProjets = std::map<int, CPtrProjet>;
+using MapNomsProjets = std::map<std::string, Projet>;
+using MapNomsPtrProjets = std::map<std::string, PtrProjet>;
+using MapNomsCPtrProjets = std::map<std::string, CPtrProjet>;
 
 #endif // PROJET_H

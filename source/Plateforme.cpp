@@ -8,44 +8,10 @@
 #include "Plateforme.h"
 #include <utility>
 
-Plateforme::Plateforme() :
-        _nom(std::string()), _mapEchanges(MapNomsEchanges()), _budget(Budget()), _client(nullptr)
-{
-    clear();
-}
-
 Plateforme::Plateforme(const std::string& nom, const MapNomsEchanges& mapEchanges,
-        const Budget& budget, const CPtrClient client) :
-        Plateforme()
+        const Budget& budget, const std::shared_ptr<Client>& client) :
+        _nom(nom), _mapEchanges(mapEchanges), _budget(budget), _client(client)
 {
-    set(nom, mapEchanges, budget, client);
-}
-
-Plateforme::Plateforme(const Plateforme& plateforme) :
-        Plateforme()
-{
-    copy(plateforme);
-}
-
-Plateforme::~Plateforme()
-{
-    // delete m_client;
-}
-
-Plateforme& Plateforme::operator=(const Plateforme& plateforme)
-{
-    copy(plateforme);
-    return *this;
-}
-
-bool Plateforme::operator==(const Plateforme& plateforme) const
-{
-    return equals(plateforme);
-}
-
-bool Plateforme::operator!=(const Plateforme& plateforme) const
-{
-    return !equals(plateforme);
 }
 
 const std::string& Plateforme::getNom() const
@@ -63,7 +29,7 @@ const Budget& Plateforme::getBudget() const
     return _budget;
 }
 
-CPtrClient Plateforme::getClient() const
+const std::shared_ptr<Client>& Plateforme::getClient() const
 {
     return _client;
 }
@@ -83,42 +49,23 @@ void Plateforme::setBudget(const Budget& budget)
     _budget = budget;
 }
 
-void Plateforme::setClient(const CPtrClient client)
+void Plateforme::setClient(const std::shared_ptr<Client>& client)
 {
-    _client = const_cast<PtrClient>(client);
+    _client = client;
 }
 
 void Plateforme::clear()
 {
-    set(std::string(), MapNomsEchanges(), Budget(), nullptr);
+    *this = Plateforme();
 }
 
 void Plateforme::set(const std::string& nom, const MapNomsEchanges& mapEchanges,
-        const Budget& budget, const CPtrClient client)
+        const Budget& budget, const std::shared_ptr<Client>& client)
 {
     setNom(nom);
     setMapEchanges(mapEchanges);
     setBudget(budget);
     setClient(client);
-}
-
-void Plateforme::copy(const Plateforme& plateforme)
-{
-    set(plateforme.getNom(), plateforme.getMapEchanges(), plateforme.getBudget(),
-            plateforme.getClient());
-}
-
-bool Plateforme::equals(const Plateforme& plateforme) const
-{
-    if (getNom() != plateforme.getNom())
-        return false;
-    if (getMapEchanges() != plateforme.getMapEchanges())
-        return false;
-    if (getBudget() != plateforme.getBudget())
-        return false;
-    if (getClient() != plateforme.getClient())
-        return false;
-    return true;
 }
 
 void Plateforme::fromString(const std::string& /*fromString*/, const char& /*sep*/)

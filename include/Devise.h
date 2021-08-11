@@ -16,15 +16,12 @@ class Devise
 {
 public:
     // Constructeurs et destructeurs
-    Devise();
+    Devise() = default;
     Devise(const std::string& nom);
-    Devise(const Devise& devise);
-    virtual ~Devise();
 
     // Opérateurs
-    Devise& operator=(const Devise& devise);
-    bool operator==(const Devise& devise) const;
-    bool operator!=(const Devise& devise) const;
+    bool operator==(const Devise& devise) const = default;
+    bool operator!=(const Devise& devise) const = default;
 
     // Getters
     const std::string& getNom() const;
@@ -35,8 +32,6 @@ public:
     // Méthodes génériques
     void clear();
     void set(const std::string& nom);
-    void copy(const Devise& devise);
-    bool equals(const Devise& devise) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
@@ -45,16 +40,16 @@ private:
     std::string _nom;
 };
 
-typedef Devise* PtrDevise;
-typedef const Devise* CPtrDevise;
-typedef std::vector<Devise> ListeDevises;
-typedef std::vector<PtrDevise> ListePtrDevises;
-typedef std::vector<CPtrDevise> ListeCPtrDevises;
-typedef std::map<int, Devise> MapIdDevises;
-typedef std::map<int, PtrDevise> MapIdPtrDevises;
-typedef std::map<int, CPtrDevise> MapIdCPtrDevises;
-typedef std::map<std::string, Devise> MapNomsDevises;
-typedef std::map<std::string, PtrDevise> MapNomsPtrDevises;
-typedef std::map<std::string, CPtrDevise> MapNomsCPtrDevises;
+using PtrDevise = Devise*;
+using CPtrDevise = const Devise*;
+using ListeDevises = std::vector<Devise>;
+using ListePtrDevises = std::vector<PtrDevise>;
+using ListeCPtrDevises = std::vector<CPtrDevise>;
+using MapIdDevises = std::map<int, Devise>;
+using MapIdPtrDevises = std::map<int, PtrDevise>;
+using MapIdCPtrDevises = std::map<int, CPtrDevise>;
+using MapNomsDevises = std::map<std::string, Devise>;
+using MapNomsPtrDevises = std::map<std::string, PtrDevise>;
+using MapNomsCPtrDevises = std::map<std::string, CPtrDevise>;
 
 #endif // DEVISE_H

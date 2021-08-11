@@ -7,43 +7,9 @@
 
 #include "Monnaie.h"
 
-Monnaie::Monnaie() :
-        _devise(Devise()), _quantite(0.0)
-{
-    clear();
-}
-
 Monnaie::Monnaie(const Devise& devise, const double& quantite) :
-        Monnaie()
+        _devise(devise), _quantite(quantite)
 {
-    set(devise, quantite);
-}
-
-Monnaie::Monnaie(const Monnaie& monnaie) :
-        Monnaie()
-{
-    copy(monnaie);
-}
-
-Monnaie::~Monnaie()
-{
-
-}
-
-Monnaie& Monnaie::operator=(const Monnaie& monnaie)
-{
-    copy(monnaie);
-    return *this;
-}
-
-bool Monnaie::operator==(const Monnaie& monnaie) const
-{
-    return equals(monnaie);
-}
-
-bool Monnaie::operator!=(const Monnaie& monnaie) const
-{
-    return !equals(monnaie);
 }
 
 const Devise& Monnaie::getDevise() const
@@ -68,27 +34,13 @@ void Monnaie::setQuantite(const double& quantite)
 
 void Monnaie::clear()
 {
-    set(Devise(), 0.0);
+    *this = Monnaie();
 }
 
 void Monnaie::set(const Devise& devise, const double& quantite)
 {
     setDevise(devise);
     setQuantite(quantite);
-}
-
-void Monnaie::copy(const Monnaie& monnaie)
-{
-    set(monnaie.getDevise(), monnaie.getQuantite());
-}
-
-bool Monnaie::equals(const Monnaie& monnaie) const
-{
-    if (getDevise() != monnaie.getDevise())
-        return false;
-    if (getQuantite() != monnaie.getQuantite())
-        return false;
-    return true;
 }
 
 void Monnaie::fromString(const std::string& /*fromString*/, const char& /*sep*/)

@@ -12,6 +12,7 @@
 #include "Client.h"
 #include "Echange.h"
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -19,35 +20,30 @@ class Plateforme
 {
 public:
     // Constructeurs et destructeurs
-    Plateforme();
+    Plateforme() = default;
     Plateforme(const std::string& nom, const MapNomsEchanges& mapEchanges, const Budget& budget,
-            const CPtrClient client);
-    Plateforme(const Plateforme& plateforme);
-    virtual ~Plateforme();
+            const std::shared_ptr<Client>& client);
 
     // Opérateurs
-    Plateforme& operator=(const Plateforme& plateforme);
-    bool operator==(const Plateforme& plateforme) const;
-    bool operator!=(const Plateforme& plateforme) const;
+    bool operator==(const Plateforme& plateforme) const = default;
+    bool operator!=(const Plateforme& plateforme) const = default;
 
     // Getters
     const std::string& getNom() const;
     const MapNomsEchanges& getMapEchanges() const;
     const Budget& getBudget() const;
-    CPtrClient getClient() const;
+    const std::shared_ptr<Client>& getClient() const;
 
     // Setters
     void setNom(const std::string& nom);
     void setMapEchanges(const MapNomsEchanges& mapEchanges);
     void setBudget(const Budget& budget);
-    void setClient(const CPtrClient client);
+    void setClient(const std::shared_ptr<Client>& client);
 
     // Méthodes génériques
     void clear();
     void set(const std::string& nom, const MapNomsEchanges& mapEchanges, const Budget& budget,
-            const CPtrClient client);
-    void copy(const Plateforme& plateforme);
-    bool equals(const Plateforme& plateforme) const;
+            const std::shared_ptr<Client>& client);
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
@@ -62,19 +58,19 @@ private:
     std::string _nom;
     MapNomsEchanges _mapEchanges;
     Budget _budget;
-    PtrClient _client;
+    std::shared_ptr<Client> _client { std::make_shared<Client>() };
 };
 
-typedef Plateforme* PtrPlateforme;
-typedef const Plateforme* CPtrPlateforme;
-typedef std::vector<Plateforme> ListePlateformes;
-typedef std::vector<PtrPlateforme> ListePtrPlateformes;
-typedef std::vector<CPtrPlateforme> ListeCPtrPlateformes;
-typedef std::map<int, Plateforme> MapIdPlateformes;
-typedef std::map<int, PtrPlateforme> MapIdPtrPlateformes;
-typedef std::map<int, CPtrPlateforme> MapIdCPtrPlateformes;
-typedef std::map<std::string, Plateforme> MapNomsPlateformes;
-typedef std::map<std::string, PtrPlateforme> MapNomsPtrPlateformes;
-typedef std::map<std::string, CPtrPlateforme> MapNomsCPtrPlateformes;
+using PtrPlateforme = Plateforme*;
+using CPtrPlateforme = const Plateforme*;
+using ListePlateformes = std::vector<Plateforme>;
+using ListePtrPlateformes = std::vector<PtrPlateforme>;
+using ListeCPtrPlateformes = std::vector<CPtrPlateforme>;
+using MapIdPlateformes = std::map<int, Plateforme>;
+using MapIdPtrPlateformes = std::map<int, PtrPlateforme>;
+using MapIdCPtrPlateformes = std::map<int, CPtrPlateforme>;
+using MapNomsPlateformes = std::map<std::string, Plateforme>;
+using MapNomsPtrPlateformes = std::map<std::string, PtrPlateforme>;
+using MapNomsCPtrPlateformes= std::map<std::string, CPtrPlateforme>;
 
 #endif // PLATEFORME_H

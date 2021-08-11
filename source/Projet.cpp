@@ -13,45 +13,12 @@
 #include "Echange.h"
 #include "Monnaie.h"
 #include <iterator>
+#include <memory>
 #include <utility>
 
-Projet::Projet() :
-        _mapPlateformes(MapNomsPlateformes())
-{
-    clear();
-}
-
 Projet::Projet(const MapNomsPlateformes& mapPlateformes) :
-        Projet()
+        _mapPlateformes(mapPlateformes)
 {
-    set(mapPlateformes);
-}
-
-Projet::Projet(const Projet& projet) :
-        Projet()
-{
-    copy(projet);
-}
-
-Projet::~Projet()
-{
-
-}
-
-Projet& Projet::operator=(const Projet& projet)
-{
-    copy(projet);
-    return *this;
-}
-
-bool Projet::operator==(const Projet& projet) const
-{
-    return equals(projet);
-}
-
-bool Projet::operator!=(const Projet& projet) const
-{
-    return !equals(projet);
 }
 
 const MapNomsPlateformes& Projet::getMapPlateformes() const
@@ -66,24 +33,12 @@ void Projet::setMapPlateformes(const MapNomsPlateformes& mapPlateformes)
 
 void Projet::clear()
 {
-    set(MapNomsPlateformes());
+    *this = Projet();
 }
 
 void Projet::set(const MapNomsPlateformes& mapPlateformes)
 {
     setMapPlateformes(mapPlateformes);
-}
-
-void Projet::copy(const Projet& projet)
-{
-    set(projet.getMapPlateformes());
-}
-
-bool Projet::equals(const Projet& projet) const
-{
-    if (getMapPlateformes() != projet.getMapPlateformes())
-        return false;
-    return true;
 }
 
 void Projet::fromString(const std::string& /*fromString*/, const char& /*sep*/)
@@ -170,7 +125,7 @@ void Projet::recupererCours(const int& date)
         const Plateforme& plateforme = itPlateforme->second;
 
         // Récupération du client
-        const CPtrClient client = plateforme.getClient();
+        const std::shared_ptr<Client>& client = plateforme.getClient();
 
         // Récupération de l'ensemble des échanges
         const MapNomsEchanges& mapEchanges = plateforme.getMapEchanges();

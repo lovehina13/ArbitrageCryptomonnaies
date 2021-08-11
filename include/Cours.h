@@ -16,16 +16,13 @@ class Cours
 {
 public:
     // Constructeurs et destructeurs
-    Cours();
+    Cours() = default;
     Cours(const int& date, const double& valeurAchat, const double& valeurVente,
             const double& quantiteAchat, const double& quantiteVente);
-    Cours(const Cours& cours);
-    virtual ~Cours();
 
     // Opérateurs
-    Cours& operator=(const Cours& cours);
-    bool operator==(const Cours& cours) const;
-    bool operator!=(const Cours& cours) const;
+    bool operator==(const Cours& cours) const = default;
+    bool operator!=(const Cours& cours) const = default;
 
     // Getters
     const int& getDate() const;
@@ -45,30 +42,28 @@ public:
     void clear();
     void set(const int& date, const double& valeurAchat, const double& valeurVente,
             const double& quantiteAchat, const double& quantiteVente);
-    void copy(const Cours& cours);
-    bool equals(const Cours& cours) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
 private:
     // Membres de classe
-    int _date;
-    double _valeurAchat;
-    double _valeurVente;
-    double _quantiteAchat;
-    double _quantiteVente;
+    int _date { 0 };
+    double _valeurAchat { 0.0 };
+    double _valeurVente { 0.0 };
+    double _quantiteAchat { 0.0 };
+    double _quantiteVente { 0.0 };
 };
 
-typedef Cours* PtrCours;
-typedef const Cours* CPtrCours;
-typedef std::vector<Cours> ListeCours;
-typedef std::vector<PtrCours> ListePtrCours;
-typedef std::vector<CPtrCours> ListeCPtrCours;
-typedef std::map<int, Cours> MapIdCours;
-typedef std::map<int, PtrCours> MapIdPtrCours;
-typedef std::map<int, CPtrCours> MapIdCPtrCours;
-typedef std::map<std::string, Cours> MapNomsCours;
-typedef std::map<std::string, PtrCours> MapNomsPtrCours;
-typedef std::map<std::string, CPtrCours> MapNomsCPtrCours;
+using PtrCours = Cours*;
+using CPtrCours = const Cours*;
+using ListeCours = std::vector<Cours>;
+using ListePtrCours = std::vector<PtrCours>;
+using ListeCPtrCours = std::vector<CPtrCours>;
+using MapIdCours = std::map<int, Cours>;
+using MapIdPtrCours = std::map<int, PtrCours>;
+using MapIdCPtrCours = std::map<int, CPtrCours>;
+using MapNomsCours = std::map<std::string, Cours>;
+using MapNomsPtrCours = std::map<std::string, PtrCours>;
+using MapNomsCPtrCours = std::map<std::string, CPtrCours>;
 
 #endif // COURS_H

@@ -17,15 +17,12 @@ class Budget
 {
 public:
     // Constructeurs et destructeurs
-    Budget();
+    Budget() = default;
     Budget(const MapNomsMonnaies& mapMonnaies);
-    Budget(const Budget& budget);
-    virtual ~Budget();
 
     // Opérateurs
-    Budget& operator=(const Budget& budget);
-    bool operator==(const Budget& budget) const;
-    bool operator!=(const Budget& budget) const;
+    bool operator==(const Budget& budget) const = default;
+    bool operator!=(const Budget& budget) const = default;
 
     // Getters
     const MapNomsMonnaies& getMapMonnaies() const;
@@ -36,8 +33,6 @@ public:
     // Méthodes génériques
     void clear();
     void set(const MapNomsMonnaies& mapMonnaies);
-    void copy(const Budget& budget);
-    bool equals(const Budget& budget) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
@@ -52,16 +47,16 @@ private:
     MapNomsMonnaies _mapMonnaies;
 };
 
-typedef Budget* PtrBudget;
-typedef const Budget* CPtrBudget;
-typedef std::vector<Budget> ListeBudgets;
-typedef std::vector<PtrBudget> ListePtrBudgets;
-typedef std::vector<CPtrBudget> ListeCPtrBudgets;
-typedef std::map<int, Budget> MapIdBudgets;
-typedef std::map<int, PtrBudget> MapIdPtrBudgets;
-typedef std::map<int, CPtrBudget> MapIdCPtrBudgets;
-typedef std::map<std::string, Budget> MapNomsBudgets;
-typedef std::map<std::string, PtrBudget> MapNomsPtrBudgets;
-typedef std::map<std::string, CPtrBudget> MapNomsCPtrBudgets;
+using PtrBudget = Budget*;
+using CPtrBudget = const Budget*;
+using ListeBudgets = std::vector<Budget>;
+using ListePtrBudgets = std::vector<PtrBudget>;
+using ListeCPtrBudgets = std::vector<CPtrBudget>;
+using MapIdBudgets = std::map<int, Budget>;
+using MapIdPtrBudgets = std::map<int, PtrBudget>;
+using MapIdCPtrBudgets = std::map<int, CPtrBudget>;
+using MapNomsBudgets = std::map<std::string, Budget>;
+using MapNomsPtrBudgets = std::map<std::string, PtrBudget>;
+using MapNomsCPtrBudgets = std::map<std::string, CPtrBudget>;
 
 #endif // BUDGET_H

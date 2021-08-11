@@ -17,6 +17,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
@@ -66,8 +67,8 @@ int main()
         budget.ajouterMonnaie(deviseNumerique.getNom(), monnaieNumerique);
     }
 
-    CPtrClient client_1 = new Client();
-    CPtrClient client_2 = new Client();
+    std::shared_ptr<Client> client_1 = std::make_shared<Client>();
+    std::shared_ptr<Client> client_2 = std::make_shared<Client>();
     Plateforme plateforme_1 = Plateforme("Plateforme_1", mapEchanges, budget, client_1);
     Plateforme plateforme_2 = Plateforme("Plateforme_2", mapEchanges, budget, client_2);
     projet.ajouterPlateforme(plateforme_1.getNom(), plateforme_1);
@@ -100,9 +101,6 @@ int main()
                 stop - start).count());
         std::cout << "Temps traitement: " << elapsed << " microsecondes" << std::endl;
     }
-
-    delete client_1;
-    delete client_2;
 
     return EXIT_SUCCESS;
 }

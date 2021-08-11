@@ -8,49 +8,15 @@
 #include "Echange.h"
 #include <utility>
 
-Echange::Echange() :
-        _deviseNumerique(Devise()), _deviseReelle(Devise()), _fraisFixesAchat(0.0),
-                _fraisFixesVente(0.0), _fraisVariablesAchat(0.0), _fraisVariablesVente(0.0),
-                _mapCours(MapIdCours())
-{
-    clear();
-}
-
 Echange::Echange(const Devise& deviseNumerique, const Devise& deviseReelle,
         const double& fraisFixesAchat, const double& fraisFixesVente,
         const double& fraisVariablesAchat, const double& fraisVariablesVente,
         const MapIdCours& mapCours) :
-        Echange()
+        _deviseNumerique(deviseNumerique), _deviseReelle(deviseReelle),
+                _fraisFixesAchat(fraisFixesAchat), _fraisFixesVente(fraisFixesVente),
+                _fraisVariablesAchat(fraisVariablesAchat),
+                _fraisVariablesVente(fraisVariablesVente), _mapCours(mapCours)
 {
-    set(deviseNumerique, deviseReelle, fraisFixesAchat, fraisFixesVente, fraisVariablesAchat,
-            fraisVariablesVente, mapCours);
-}
-
-Echange::Echange(const Echange& echange) :
-        Echange()
-{
-    copy(echange);
-}
-
-Echange::~Echange()
-{
-
-}
-
-Echange& Echange::operator=(const Echange& echange)
-{
-    copy(echange);
-    return *this;
-}
-
-bool Echange::operator==(const Echange& echange) const
-{
-    return equals(echange);
-}
-
-bool Echange::operator!=(const Echange& echange) const
-{
-    return !equals(echange);
 }
 
 const Devise& Echange::getDeviseNumerique() const
@@ -125,7 +91,7 @@ void Echange::setMapCours(const MapIdCours& mapCours)
 
 void Echange::clear()
 {
-    set(Devise(), Devise(), 0.0, 0.0, 0.0, 0.0, MapIdCours());
+    *this = Echange();
 }
 
 void Echange::set(const Devise& deviseNumerique, const Devise& deviseReelle,
@@ -140,32 +106,6 @@ void Echange::set(const Devise& deviseNumerique, const Devise& deviseReelle,
     setFraisVariablesAchat(fraisVariablesAchat);
     setFraisVariablesVente(fraisVariablesVente);
     setMapCours(mapCours);
-}
-
-void Echange::copy(const Echange& echange)
-{
-    set(echange.getDeviseNumerique(), echange.getDeviseReelle(), echange.getFraisFixesAchat(),
-            echange.getFraisFixesVente(), echange.getFraisVariablesAchat(),
-            echange.getFraisVariablesVente(), echange.getMapCours());
-}
-
-bool Echange::equals(const Echange& echange) const
-{
-    if (getDeviseNumerique() != echange.getDeviseNumerique())
-        return false;
-    if (getDeviseReelle() != echange.getDeviseReelle())
-        return false;
-    if (getFraisFixesAchat() != echange.getFraisFixesAchat())
-        return false;
-    if (getFraisFixesVente() != echange.getFraisFixesVente())
-        return false;
-    if (getFraisVariablesAchat() != echange.getFraisVariablesAchat())
-        return false;
-    if (getFraisVariablesVente() != echange.getFraisVariablesVente())
-        return false;
-    if (getMapCours() != echange.getMapCours())
-        return false;
-    return true;
 }
 
 void Echange::fromString(const std::string& /*fromString*/, const char& /*sep*/)

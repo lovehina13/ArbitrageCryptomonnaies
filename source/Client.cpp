@@ -7,45 +7,11 @@
 
 #include "Client.h"
 
-Client::Client() :
-        _adresseSite(std::string()), _adresseCarnetDeCommandes(std::string()),
-                _coursActuels(MapNomsCours())
-{
-    clear();
-}
-
 Client::Client(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
         const MapNomsCours& coursActuels) :
-        Client()
+        _adresseSite(adresseSite), _adresseCarnetDeCommandes(adresseCarnetDeCommandes),
+                _coursActuels(coursActuels)
 {
-    set(adresseSite, adresseCarnetDeCommandes, coursActuels);
-}
-
-Client::Client(const Client& client) :
-        Client()
-{
-    copy(client);
-}
-
-Client::~Client()
-{
-
-}
-
-Client& Client::operator=(const Client& client)
-{
-    copy(client);
-    return *this;
-}
-
-bool Client::operator==(const Client& client) const
-{
-    return equals(client);
-}
-
-bool Client::operator!=(const Client& client) const
-{
-    return !equals(client);
 }
 
 const std::string& Client::getAdresseSite() const
@@ -80,7 +46,7 @@ void Client::setCoursActuels(const MapNomsCours& coursActuels)
 
 void Client::clear()
 {
-    set(std::string(), std::string(), MapNomsCours());
+    *this = Client();
 }
 
 void Client::set(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
@@ -89,22 +55,6 @@ void Client::set(const std::string& adresseSite, const std::string& adresseCarne
     setAdresseSite(adresseSite);
     setAdresseCarnetDeCommandes(adresseCarnetDeCommandes);
     setCoursActuels(coursActuels);
-}
-
-void Client::copy(const Client& client)
-{
-    set(client.getAdresseSite(), client.getAdresseCarnetDeCommandes(), client.getCoursActuels());
-}
-
-bool Client::equals(const Client& client) const
-{
-    if (getAdresseSite() != client.getAdresseSite())
-        return false;
-    if (getAdresseCarnetDeCommandes() != client.getAdresseCarnetDeCommandes())
-        return false;
-    if (getCoursActuels() != client.getCoursActuels())
-        return false;
-    return true;
 }
 
 void Client::fromString(const std::string& /*fromString*/, const char& /*sep*/)

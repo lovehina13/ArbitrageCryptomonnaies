@@ -8,43 +8,9 @@
 #include "Budget.h"
 #include <utility>
 
-Budget::Budget() :
-        _mapMonnaies(MapNomsMonnaies())
-{
-    clear();
-}
-
 Budget::Budget(const MapNomsMonnaies& mapMonnaies) :
-        Budget()
+        _mapMonnaies(mapMonnaies)
 {
-    set(mapMonnaies);
-}
-
-Budget::Budget(const Budget& budget) :
-        Budget()
-{
-    copy(budget);
-}
-
-Budget::~Budget()
-{
-
-}
-
-Budget& Budget::operator=(const Budget& budget)
-{
-    copy(budget);
-    return *this;
-}
-
-bool Budget::operator==(const Budget& budget) const
-{
-    return equals(budget);
-}
-
-bool Budget::operator!=(const Budget& budget) const
-{
-    return !equals(budget);
 }
 
 const MapNomsMonnaies& Budget::getMapMonnaies() const
@@ -59,24 +25,12 @@ void Budget::setMapMonnaies(const MapNomsMonnaies& mapMonnaies)
 
 void Budget::clear()
 {
-    set(MapNomsMonnaies());
+    *this = Budget();
 }
 
 void Budget::set(const MapNomsMonnaies& mapMonnaies)
 {
     setMapMonnaies(mapMonnaies);
-}
-
-void Budget::copy(const Budget& budget)
-{
-    set(budget.getMapMonnaies());
-}
-
-bool Budget::equals(const Budget& budget) const
-{
-    if (getMapMonnaies() != budget.getMapMonnaies())
-        return false;
-    return true;
 }
 
 void Budget::fromString(const std::string& /*fromString*/, const char& /*sep*/)

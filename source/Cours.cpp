@@ -7,44 +7,11 @@
 
 #include "Cours.h"
 
-Cours::Cours() :
-        _date(0), _valeurAchat(0.0), _valeurVente(0.0), _quantiteAchat(0.0), _quantiteVente(0.0)
-{
-    clear();
-}
-
 Cours::Cours(const int& date, const double& valeurAchat, const double& valeurVente,
         const double& quantiteAchat, const double& quantiteVente) :
-        Cours()
+        _date(date), _valeurAchat(valeurAchat), _valeurVente(valeurVente),
+                _quantiteAchat(quantiteAchat), _quantiteVente(quantiteVente)
 {
-    set(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente);
-}
-
-Cours::Cours(const Cours& cours) :
-        Cours()
-{
-    copy(cours);
-}
-
-Cours::~Cours()
-{
-
-}
-
-Cours& Cours::operator=(const Cours& cours)
-{
-    copy(cours);
-    return *this;
-}
-
-bool Cours::operator==(const Cours& cours) const
-{
-    return equals(cours);
-}
-
-bool Cours::operator!=(const Cours& cours) const
-{
-    return !equals(cours);
 }
 
 const int& Cours::getDate() const
@@ -99,7 +66,7 @@ void Cours::setQuantiteVente(const double& quantiteVente)
 
 void Cours::clear()
 {
-    set(0, 0.0, 0.0, 0.0, 0.0);
+    *this = Cours();
 }
 
 void Cours::set(const int& date, const double& valeurAchat, const double& valeurVente,
@@ -110,27 +77,6 @@ void Cours::set(const int& date, const double& valeurAchat, const double& valeur
     setValeurVente(valeurVente);
     setQuantiteAchat(quantiteAchat);
     setQuantiteVente(quantiteVente);
-}
-
-void Cours::copy(const Cours& cours)
-{
-    set(cours.getDate(), cours.getValeurAchat(), cours.getValeurVente(), cours.getQuantiteAchat(),
-            cours.getQuantiteVente());
-}
-
-bool Cours::equals(const Cours& cours) const
-{
-    if (getDate() != cours.getDate())
-        return false;
-    if (getValeurAchat() != cours.getValeurAchat())
-        return false;
-    if (getValeurVente() != cours.getValeurVente())
-        return false;
-    if (getQuantiteAchat() != cours.getQuantiteAchat())
-        return false;
-    if (getQuantiteVente() != cours.getQuantiteVente())
-        return false;
-    return true;
 }
 
 void Cours::fromString(const std::string& /*fromString*/, const char& /*sep*/)

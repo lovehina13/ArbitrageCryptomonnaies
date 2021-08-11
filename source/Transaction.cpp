@@ -12,46 +12,16 @@
 #include <algorithm>
 #include <sstream>
 
-Transaction::Transaction() :
-        _date(0), _plateformeAchat(nullptr), _plateformeVente(nullptr), _echangeAchat(nullptr),
-                _echangeVente(nullptr), _coursAchat(nullptr), _coursVente(nullptr)
-{
-    clear();
-}
-
 Transaction::Transaction(const int& date, const CPtrPlateforme plateformeAchat,
         const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
         const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente) :
-        Transaction()
+        _date(date), _plateformeAchat(const_cast<PtrPlateforme>(plateformeAchat)),
+                _plateformeVente(const_cast<PtrPlateforme>(plateformeVente)),
+                _echangeAchat(const_cast<PtrEchange>(echangeAchat)),
+                _echangeVente(const_cast<PtrEchange>(echangeVente)),
+                _coursAchat(const_cast<PtrCours>(coursAchat)),
+                _coursVente(const_cast<PtrCours>(coursVente))
 {
-    set(date, plateformeAchat, plateformeVente, echangeAchat, echangeVente, coursAchat, coursVente);
-}
-
-Transaction::Transaction(const Transaction& transaction) :
-        Transaction()
-{
-    copy(transaction);
-}
-
-Transaction::~Transaction()
-{
-
-}
-
-Transaction& Transaction::operator=(const Transaction& transaction)
-{
-    copy(transaction);
-    return *this;
-}
-
-bool Transaction::operator==(const Transaction& transaction) const
-{
-    return equals(transaction);
-}
-
-bool Transaction::operator!=(const Transaction& transaction) const
-{
-    return !equals(transaction);
 }
 
 const int& Transaction::getDate() const
@@ -126,7 +96,7 @@ void Transaction::setCoursVente(const CPtrCours coursVente)
 
 void Transaction::clear()
 {
-    set(0, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+    *this = Transaction();
 }
 
 void Transaction::set(const int& date, const CPtrPlateforme plateformeAchat,
@@ -140,32 +110,6 @@ void Transaction::set(const int& date, const CPtrPlateforme plateformeAchat,
     setEchangeVente(echangeVente);
     setCoursAchat(coursAchat);
     setCoursVente(coursVente);
-}
-
-void Transaction::copy(const Transaction& transaction)
-{
-    set(transaction.getDate(), transaction.getPlateformeAchat(), transaction.getPlateformeVente(),
-            transaction.getEchangeAchat(), transaction.getEchangeVente(),
-            transaction.getCoursAchat(), transaction.getCoursVente());
-}
-
-bool Transaction::equals(const Transaction& transaction) const
-{
-    if (getDate() != transaction.getDate())
-        return false;
-    if (getPlateformeAchat() != transaction.getPlateformeAchat())
-        return false;
-    if (getPlateformeVente() != transaction.getPlateformeVente())
-        return false;
-    if (getEchangeAchat() != transaction.getEchangeAchat())
-        return false;
-    if (getEchangeVente() != transaction.getEchangeVente())
-        return false;
-    if (getCoursAchat() != transaction.getCoursAchat())
-        return false;
-    if (getCoursVente() != transaction.getCoursVente())
-        return false;
-    return true;
 }
 
 void Transaction::fromString(const std::string& /*fromString*/, const char& /*sep*/)

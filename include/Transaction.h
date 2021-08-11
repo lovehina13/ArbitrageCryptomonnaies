@@ -19,17 +19,14 @@ class Transaction
 {
 public:
     // Constructeurs et destructeurs
-    Transaction();
+    Transaction() = default;
     Transaction(const int& date, const CPtrPlateforme plateformeAchat,
             const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
             const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente);
-    Transaction(const Transaction& transaction);
-    virtual ~Transaction();
 
     // Opérateurs
-    Transaction& operator=(const Transaction& transaction);
-    bool operator==(const Transaction& transaction) const;
-    bool operator!=(const Transaction& transaction) const;
+    bool operator==(const Transaction& transaction) const = default;
+    bool operator!=(const Transaction& transaction) const = default;
 
     // Getters
     const int& getDate() const;
@@ -54,8 +51,6 @@ public:
     void set(const int& date, const CPtrPlateforme plateformeAchat,
             const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
             const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente);
-    void copy(const Transaction& transaction);
-    bool equals(const Transaction& transaction) const;
     void fromString(const std::string& fromString, const char& sep);
     const std::string toString(const char& sep) const;
 
@@ -76,25 +71,25 @@ public:
 
 private:
     // Membres de classe
-    int _date;
-    PtrPlateforme _plateformeAchat;
-    PtrPlateforme _plateformeVente;
-    PtrEchange _echangeAchat;
-    PtrEchange _echangeVente;
-    PtrCours _coursAchat;
-    PtrCours _coursVente;
+    int _date { 0 };
+    PtrPlateforme _plateformeAchat { nullptr };
+    PtrPlateforme _plateformeVente { nullptr };
+    PtrEchange _echangeAchat { nullptr };
+    PtrEchange _echangeVente { nullptr };
+    PtrCours _coursAchat { nullptr };
+    PtrCours _coursVente { nullptr };
 };
 
-typedef Transaction* PtrTransaction;
-typedef const Transaction* CPtrTransaction;
-typedef std::vector<Transaction> ListeTransactions;
-typedef std::vector<PtrTransaction> ListePtrTransactions;
-typedef std::vector<CPtrTransaction> ListeCPtrTransactions;
-typedef std::map<int, Transaction> MapIdTransactions;
-typedef std::map<int, PtrTransaction> MapIdPtrTransactions;
-typedef std::map<int, CPtrTransaction> MapIdCPtrTransactions;
-typedef std::map<std::string, Transaction> MapNomsTransactions;
-typedef std::map<std::string, PtrTransaction> MapNomsPtrTransactions;
-typedef std::map<std::string, CPtrTransaction> MapNomsCPtrTransactions;
+using PtrTransaction = Transaction*;
+using CPtrTransaction = const Transaction*;
+using ListeTransactions = std::vector<Transaction>;
+using ListePtrTransactions = std::vector<PtrTransaction>;
+using ListeCPtrTransactions = std::vector<CPtrTransaction>;
+using MapIdTransactions = std::map<int, Transaction>;
+using MapIdPtrTransactions = std::map<int, PtrTransaction>;
+using MapIdCPtrTransactions = std::map<int, CPtrTransaction>;
+using MapNomsTransactions = std::map<std::string, Transaction>;
+using MapNomsPtrTransactions = std::map<std::string, PtrTransaction>;
+using MapNomsCPtrTransactions = std::map<std::string, CPtrTransaction>;
 
 #endif // TRANSACTION_H
