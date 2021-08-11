@@ -16,21 +16,21 @@
 #include <utility>
 
 Projet::Projet() :
-        m_mapPlateformes(MapNomsPlateformes())
+        _mapPlateformes(MapNomsPlateformes())
 {
-    this->clear();
+    clear();
 }
 
 Projet::Projet(const MapNomsPlateformes& mapPlateformes) :
         Projet()
 {
-    this->set(mapPlateformes);
+    set(mapPlateformes);
 }
 
 Projet::Projet(const Projet& projet) :
         Projet()
 {
-    this->copy(projet);
+    copy(projet);
 }
 
 Projet::~Projet()
@@ -40,48 +40,48 @@ Projet::~Projet()
 
 Projet& Projet::operator=(const Projet& projet)
 {
-    this->copy(projet);
+    copy(projet);
     return *this;
 }
 
 bool Projet::operator==(const Projet& projet) const
 {
-    return this->equals(projet);
+    return equals(projet);
 }
 
 bool Projet::operator!=(const Projet& projet) const
 {
-    return !this->equals(projet);
+    return !equals(projet);
 }
 
 const MapNomsPlateformes& Projet::getMapPlateformes() const
 {
-    return this->m_mapPlateformes;
+    return _mapPlateformes;
 }
 
 void Projet::setMapPlateformes(const MapNomsPlateformes& mapPlateformes)
 {
-    this->m_mapPlateformes = mapPlateformes;
+    _mapPlateformes = mapPlateformes;
 }
 
 void Projet::clear()
 {
-    this->set(MapNomsPlateformes());
+    set(MapNomsPlateformes());
 }
 
 void Projet::set(const MapNomsPlateformes& mapPlateformes)
 {
-    this->setMapPlateformes(mapPlateformes);
+    setMapPlateformes(mapPlateformes);
 }
 
 void Projet::copy(const Projet& projet)
 {
-    this->set(projet.getMapPlateformes());
+    set(projet.getMapPlateformes());
 }
 
 bool Projet::equals(const Projet& projet) const
 {
-    if (this->getMapPlateformes() != projet.getMapPlateformes())
+    if (getMapPlateformes() != projet.getMapPlateformes())
         return false;
     return true;
 }
@@ -101,28 +101,28 @@ const std::string Projet::toString(const char& sep) const
 
 bool Projet::hasPlateforme(const std::string& nom) const
 {
-    return (this->m_mapPlateformes.find(nom) != this->m_mapPlateformes.end());
+    return (_mapPlateformes.find(nom) != _mapPlateformes.end());
 }
 
 CPtrPlateforme Projet::getPlateforme(const std::string& nom) const
 {
-    return (this->hasPlateforme(nom) ? &this->m_mapPlateformes.find(nom)->second : nullptr);
+    return (hasPlateforme(nom) ? &_mapPlateformes.find(nom)->second : nullptr);
 }
 
 bool Projet::ajouterPlateforme(const std::string& nom, const Plateforme& plateforme)
 {
-    return (this->m_mapPlateformes.insert(std::pair<std::string, Plateforme>(nom, plateforme)).second);
+    return (_mapPlateformes.insert(std::pair<std::string, Plateforme>(nom, plateforme)).second);
 }
 
 bool Projet::supprimerPlateforme(const std::string& nom)
 {
-    return (this->m_mapPlateformes.erase(nom) > 0);
+    return (_mapPlateformes.erase(nom) > 0);
 }
 
 void Projet::effacerNombreCours(const int& nombreCoursMaximal)
 {
     // Récupération de l'ensemble des plateformes
-    const MapNomsPlateformes& mapPlateformes = this->m_mapPlateformes;
+    const MapNomsPlateformes& mapPlateformes = _mapPlateformes;
 
     // Boucle sur les plateformes
     for (MapNomsPlateformes::const_iterator itPlateforme = mapPlateformes.begin();
@@ -160,7 +160,7 @@ void Projet::effacerNombreCours(const int& nombreCoursMaximal)
 void Projet::recupererCours(const int& date)
 {
     // Récupération de l'ensemble des plateformes
-    const MapNomsPlateformes& mapPlateformes = this->m_mapPlateformes;
+    const MapNomsPlateformes& mapPlateformes = _mapPlateformes;
 
     // Boucle sur les plateformes
     for (MapNomsPlateformes::const_iterator itPlateforme = mapPlateformes.begin();
@@ -210,8 +210,8 @@ const Transaction Projet::getTransactionOptimale(const int& date, const double& 
     Transaction transactionOptimale;
 
     // Récupération de l'ensemble des plateformes de source et de destination
-    const MapNomsPlateformes& mapPlateformesSource = this->m_mapPlateformes;
-    const MapNomsPlateformes& mapPlateformesDestination = this->m_mapPlateformes;
+    const MapNomsPlateformes& mapPlateformesSource = _mapPlateformes;
+    const MapNomsPlateformes& mapPlateformesDestination = _mapPlateformes;
 
     // Boucle sur les plateformes de source
     for (MapNomsPlateformes::const_iterator itPlateformeSource = mapPlateformesSource.begin();
@@ -334,7 +334,7 @@ void Projet::equilibrerBudgets(const Transaction& transaction)
     Budget budgetTotal;
 
     // Récupération de l'ensemble des plateformes
-    const MapNomsPlateformes& mapPlateformes = this->m_mapPlateformes;
+    const MapNomsPlateformes& mapPlateformes = _mapPlateformes;
 
     // Boucle sur les plateformes
     for (MapNomsPlateformes::const_iterator itPlateforme = mapPlateformes.begin();

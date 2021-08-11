@@ -52,11 +52,11 @@ public:
 
 private:
     // Membres de classe
-    int m_date;
-    double m_valeurAchat;
-    double m_valeurVente;
-    double m_quantiteAchat;
-    double m_quantiteVente;
+    int _date;
+    double _valeurAchat;
+    double _valeurVente;
+    double _quantiteAchat;
+    double _quantiteVente;
 };
 
 typedef Cours* PtrCours;

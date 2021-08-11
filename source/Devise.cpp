@@ -8,21 +8,21 @@
 #include "Devise.h"
 
 Devise::Devise() :
-        m_nom(std::string())
+        _nom(std::string())
 {
-    this->clear();
+    clear();
 }
 
 Devise::Devise(const std::string& nom) :
         Devise()
 {
-    this->set(nom);
+    set(nom);
 }
 
 Devise::Devise(const Devise& devise) :
         Devise()
 {
-    this->copy(devise);
+    copy(devise);
 }
 
 Devise::~Devise()
@@ -32,48 +32,48 @@ Devise::~Devise()
 
 Devise& Devise::operator=(const Devise& devise)
 {
-    this->copy(devise);
+    copy(devise);
     return *this;
 }
 
 bool Devise::operator==(const Devise& devise) const
 {
-    return this->equals(devise);
+    return equals(devise);
 }
 
 bool Devise::operator!=(const Devise& devise) const
 {
-    return !this->equals(devise);
+    return !equals(devise);
 }
 
 const std::string& Devise::getNom() const
 {
-    return this->m_nom;
+    return _nom;
 }
 
 void Devise::setNom(const std::string& nom)
 {
-    this->m_nom = nom;
+    _nom = nom;
 }
 
 void Devise::clear()
 {
-    this->set(std::string());
+    set(std::string());
 }
 
 void Devise::set(const std::string& nom)
 {
-    this->setNom(nom);
+    setNom(nom);
 }
 
 void Devise::copy(const Devise& devise)
 {
-    this->set(devise.getNom());
+    set(devise.getNom());
 }
 
 bool Devise::equals(const Devise& devise) const
 {
-    if (this->getNom() != devise.getNom())
+    if (getNom() != devise.getNom())
         return false;
     return true;
 }

@@ -45,8 +45,8 @@ public:
 
 private:
     // Membres de classe
-    Devise m_devise;
-    double m_quantite;
+    Devise _devise;
+    double _quantite;
 };
 
 typedef Monnaie* PtrMonnaie;

@@ -8,21 +8,21 @@
 #include "Monnaie.h"
 
 Monnaie::Monnaie() :
-        m_devise(Devise()), m_quantite(0.0)
+        _devise(Devise()), _quantite(0.0)
 {
-    this->clear();
+    clear();
 }
 
 Monnaie::Monnaie(const Devise& devise, const double& quantite) :
         Monnaie()
 {
-    this->set(devise, quantite);
+    set(devise, quantite);
 }
 
 Monnaie::Monnaie(const Monnaie& monnaie) :
         Monnaie()
 {
-    this->copy(monnaie);
+    copy(monnaie);
 }
 
 Monnaie::~Monnaie()
@@ -32,61 +32,61 @@ Monnaie::~Monnaie()
 
 Monnaie& Monnaie::operator=(const Monnaie& monnaie)
 {
-    this->copy(monnaie);
+    copy(monnaie);
     return *this;
 }
 
 bool Monnaie::operator==(const Monnaie& monnaie) const
 {
-    return this->equals(monnaie);
+    return equals(monnaie);
 }
 
 bool Monnaie::operator!=(const Monnaie& monnaie) const
 {
-    return !this->equals(monnaie);
+    return !equals(monnaie);
 }
 
 const Devise& Monnaie::getDevise() const
 {
-    return this->m_devise;
+    return _devise;
 }
 
 const double& Monnaie::getQuantite() const
 {
-    return this->m_quantite;
+    return _quantite;
 }
 
 void Monnaie::setDevise(const Devise& devise)
 {
-    this->m_devise = devise;
+    _devise = devise;
 }
 
 void Monnaie::setQuantite(const double& quantite)
 {
-    this->m_quantite = quantite;
+    _quantite = quantite;
 }
 
 void Monnaie::clear()
 {
-    this->set(Devise(), 0.0);
+    set(Devise(), 0.0);
 }
 
 void Monnaie::set(const Devise& devise, const double& quantite)
 {
-    this->setDevise(devise);
-    this->setQuantite(quantite);
+    setDevise(devise);
+    setQuantite(quantite);
 }
 
 void Monnaie::copy(const Monnaie& monnaie)
 {
-    this->set(monnaie.getDevise(), monnaie.getQuantite());
+    set(monnaie.getDevise(), monnaie.getQuantite());
 }
 
 bool Monnaie::equals(const Monnaie& monnaie) const
 {
-    if (this->getDevise() != monnaie.getDevise())
+    if (getDevise() != monnaie.getDevise())
         return false;
-    if (this->getQuantite() != monnaie.getQuantite())
+    if (getQuantite() != monnaie.getQuantite())
         return false;
     return true;
 }

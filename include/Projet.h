@@ -58,7 +58,7 @@ public:
 
 private:
     // Membres de classe
-    MapNomsPlateformes m_mapPlateformes;
+    MapNomsPlateformes _mapPlateformes;
 };
 
 typedef Projet* PtrProjet;

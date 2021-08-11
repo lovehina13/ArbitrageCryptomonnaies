@@ -9,115 +9,114 @@
 #include <utility>
 
 Plateforme::Plateforme() :
-        m_nom(std::string()), m_mapEchanges(MapNomsEchanges()), m_budget(Budget()),
-                m_client(nullptr)
+        _nom(std::string()), _mapEchanges(MapNomsEchanges()), _budget(Budget()), _client(nullptr)
 {
-    this->clear();
+    clear();
 }
 
 Plateforme::Plateforme(const std::string& nom, const MapNomsEchanges& mapEchanges,
         const Budget& budget, const CPtrClient client) :
         Plateforme()
 {
-    this->set(nom, mapEchanges, budget, client);
+    set(nom, mapEchanges, budget, client);
 }
 
 Plateforme::Plateforme(const Plateforme& plateforme) :
         Plateforme()
 {
-    this->copy(plateforme);
+    copy(plateforme);
 }
 
 Plateforme::~Plateforme()
 {
-    // delete this->m_client;
+    // delete m_client;
 }
 
 Plateforme& Plateforme::operator=(const Plateforme& plateforme)
 {
-    this->copy(plateforme);
+    copy(plateforme);
     return *this;
 }
 
 bool Plateforme::operator==(const Plateforme& plateforme) const
 {
-    return this->equals(plateforme);
+    return equals(plateforme);
 }
 
 bool Plateforme::operator!=(const Plateforme& plateforme) const
 {
-    return !this->equals(plateforme);
+    return !equals(plateforme);
 }
 
 const std::string& Plateforme::getNom() const
 {
-    return this->m_nom;
+    return _nom;
 }
 
 const MapNomsEchanges& Plateforme::getMapEchanges() const
 {
-    return this->m_mapEchanges;
+    return _mapEchanges;
 }
 
 const Budget& Plateforme::getBudget() const
 {
-    return this->m_budget;
+    return _budget;
 }
 
 CPtrClient Plateforme::getClient() const
 {
-    return this->m_client;
+    return _client;
 }
 
 void Plateforme::setNom(const std::string& nom)
 {
-    this->m_nom = nom;
+    _nom = nom;
 }
 
 void Plateforme::setMapEchanges(const MapNomsEchanges& mapEchanges)
 {
-    this->m_mapEchanges = mapEchanges;
+    _mapEchanges = mapEchanges;
 }
 
 void Plateforme::setBudget(const Budget& budget)
 {
-    this->m_budget = budget;
+    _budget = budget;
 }
 
 void Plateforme::setClient(const CPtrClient client)
 {
-    this->m_client = const_cast<PtrClient>(client);
+    _client = const_cast<PtrClient>(client);
 }
 
 void Plateforme::clear()
 {
-    this->set(std::string(), MapNomsEchanges(), Budget(), nullptr);
+    set(std::string(), MapNomsEchanges(), Budget(), nullptr);
 }
 
 void Plateforme::set(const std::string& nom, const MapNomsEchanges& mapEchanges,
         const Budget& budget, const CPtrClient client)
 {
-    this->setNom(nom);
-    this->setMapEchanges(mapEchanges);
-    this->setBudget(budget);
-    this->setClient(client);
+    setNom(nom);
+    setMapEchanges(mapEchanges);
+    setBudget(budget);
+    setClient(client);
 }
 
 void Plateforme::copy(const Plateforme& plateforme)
 {
-    this->set(plateforme.getNom(), plateforme.getMapEchanges(), plateforme.getBudget(),
+    set(plateforme.getNom(), plateforme.getMapEchanges(), plateforme.getBudget(),
             plateforme.getClient());
 }
 
 bool Plateforme::equals(const Plateforme& plateforme) const
 {
-    if (this->getNom() != plateforme.getNom())
+    if (getNom() != plateforme.getNom())
         return false;
-    if (this->getMapEchanges() != plateforme.getMapEchanges())
+    if (getMapEchanges() != plateforme.getMapEchanges())
         return false;
-    if (this->getBudget() != plateforme.getBudget())
+    if (getBudget() != plateforme.getBudget())
         return false;
-    if (this->getClient() != plateforme.getClient())
+    if (getClient() != plateforme.getClient())
         return false;
     return true;
 }
@@ -137,20 +136,20 @@ const std::string Plateforme::toString(const char& sep) const
 
 bool Plateforme::hasEchange(const std::string& nom) const
 {
-    return (this->m_mapEchanges.find(nom) != this->m_mapEchanges.end());
+    return (_mapEchanges.find(nom) != _mapEchanges.end());
 }
 
 CPtrEchange Plateforme::getEchange(const std::string& nom) const
 {
-    return (this->hasEchange(nom) ? &this->m_mapEchanges.find(nom)->second : nullptr);
+    return (hasEchange(nom) ? &_mapEchanges.find(nom)->second : nullptr);
 }
 
 bool Plateforme::ajouterEchange(const std::string& nom, const Echange& echange)
 {
-    return (this->m_mapEchanges.insert(std::pair<std::string, Echange>(nom, echange)).second);
+    return (_mapEchanges.insert(std::pair<std::string, Echange>(nom, echange)).second);
 }
 
 bool Plateforme::supprimerEchange(const std::string& nom)
 {
-    return (this->m_mapEchanges.erase(nom) > 0);
+    return (_mapEchanges.erase(nom) > 0);
 }

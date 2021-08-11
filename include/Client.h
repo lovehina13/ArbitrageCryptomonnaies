@@ -61,9 +61,9 @@ public:
 
 private:
     // Membres de classe
-    std::string m_adresseSite;
-    std::string m_adresseCarnetDeCommandes;
-    MapNomsCours m_coursActuels;
+    std::string _adresseSite;
+    std::string _adresseCarnetDeCommandes;
+    MapNomsCours _coursActuels;
 };
 
 typedef Client* PtrClient;

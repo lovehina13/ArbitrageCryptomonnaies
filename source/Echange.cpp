@@ -9,11 +9,11 @@
 #include <utility>
 
 Echange::Echange() :
-        m_deviseNumerique(Devise()), m_deviseReelle(Devise()), m_fraisFixesAchat(0.0),
-                m_fraisFixesVente(0.0), m_fraisVariablesAchat(0.0), m_fraisVariablesVente(0.0),
-                m_mapCours(MapIdCours())
+        _deviseNumerique(Devise()), _deviseReelle(Devise()), _fraisFixesAchat(0.0),
+                _fraisFixesVente(0.0), _fraisVariablesAchat(0.0), _fraisVariablesVente(0.0),
+                _mapCours(MapIdCours())
 {
-    this->clear();
+    clear();
 }
 
 Echange::Echange(const Devise& deviseNumerique, const Devise& deviseReelle,
@@ -22,14 +22,14 @@ Echange::Echange(const Devise& deviseNumerique, const Devise& deviseReelle,
         const MapIdCours& mapCours) :
         Echange()
 {
-    this->set(deviseNumerique, deviseReelle, fraisFixesAchat, fraisFixesVente, fraisVariablesAchat,
+    set(deviseNumerique, deviseReelle, fraisFixesAchat, fraisFixesVente, fraisVariablesAchat,
             fraisVariablesVente, mapCours);
 }
 
 Echange::Echange(const Echange& echange) :
         Echange()
 {
-    this->copy(echange);
+    copy(echange);
 }
 
 Echange::~Echange()
@@ -39,93 +39,93 @@ Echange::~Echange()
 
 Echange& Echange::operator=(const Echange& echange)
 {
-    this->copy(echange);
+    copy(echange);
     return *this;
 }
 
 bool Echange::operator==(const Echange& echange) const
 {
-    return this->equals(echange);
+    return equals(echange);
 }
 
 bool Echange::operator!=(const Echange& echange) const
 {
-    return !this->equals(echange);
+    return !equals(echange);
 }
 
 const Devise& Echange::getDeviseNumerique() const
 {
-    return this->m_deviseNumerique;
+    return _deviseNumerique;
 }
 
 const Devise& Echange::getDeviseReelle() const
 {
-    return this->m_deviseReelle;
+    return _deviseReelle;
 }
 
 const double& Echange::getFraisFixesAchat() const
 {
-    return this->m_fraisFixesAchat;
+    return _fraisFixesAchat;
 }
 
 const double& Echange::getFraisFixesVente() const
 {
-    return this->m_fraisFixesVente;
+    return _fraisFixesVente;
 }
 
 const double& Echange::getFraisVariablesAchat() const
 {
-    return this->m_fraisVariablesAchat;
+    return _fraisVariablesAchat;
 }
 
 const double& Echange::getFraisVariablesVente() const
 {
-    return this->m_fraisVariablesVente;
+    return _fraisVariablesVente;
 }
 
 const MapIdCours& Echange::getMapCours() const
 {
-    return this->m_mapCours;
+    return _mapCours;
 }
 
 void Echange::setDeviseNumerique(const Devise& deviseNumerique)
 {
-    this->m_deviseNumerique = deviseNumerique;
+    _deviseNumerique = deviseNumerique;
 }
 
 void Echange::setDeviseReelle(const Devise& deviseReelle)
 {
-    this->m_deviseReelle = deviseReelle;
+    _deviseReelle = deviseReelle;
 }
 
 void Echange::setFraisFixesAchat(const double& fraisFixesAchat)
 {
-    this->m_fraisFixesAchat = fraisFixesAchat;
+    _fraisFixesAchat = fraisFixesAchat;
 }
 
 void Echange::setFraisFixesVente(const double& fraisFixesVente)
 {
-    this->m_fraisFixesVente = fraisFixesVente;
+    _fraisFixesVente = fraisFixesVente;
 }
 
 void Echange::setFraisVariablesAchat(const double& fraisVariablesAchat)
 {
-    this->m_fraisVariablesAchat = fraisVariablesAchat;
+    _fraisVariablesAchat = fraisVariablesAchat;
 }
 
 void Echange::setFraisVariablesVente(const double& fraisVariablesVente)
 {
-    this->m_fraisVariablesVente = fraisVariablesVente;
+    _fraisVariablesVente = fraisVariablesVente;
 }
 
 void Echange::setMapCours(const MapIdCours& mapCours)
 {
-    this->m_mapCours = mapCours;
+    _mapCours = mapCours;
 }
 
 void Echange::clear()
 {
-    this->set(Devise(), Devise(), 0.0, 0.0, 0.0, 0.0, MapIdCours());
+    set(Devise(), Devise(), 0.0, 0.0, 0.0, 0.0, MapIdCours());
 }
 
 void Echange::set(const Devise& deviseNumerique, const Devise& deviseReelle,
@@ -133,37 +133,37 @@ void Echange::set(const Devise& deviseNumerique, const Devise& deviseReelle,
         const double& fraisVariablesAchat, const double& fraisVariablesVente,
         const MapIdCours& mapCours)
 {
-    this->setDeviseNumerique(deviseNumerique);
-    this->setDeviseReelle(deviseReelle);
-    this->setFraisFixesAchat(fraisFixesAchat);
-    this->setFraisFixesVente(fraisFixesVente);
-    this->setFraisVariablesAchat(fraisVariablesAchat);
-    this->setFraisVariablesVente(fraisVariablesVente);
-    this->setMapCours(mapCours);
+    setDeviseNumerique(deviseNumerique);
+    setDeviseReelle(deviseReelle);
+    setFraisFixesAchat(fraisFixesAchat);
+    setFraisFixesVente(fraisFixesVente);
+    setFraisVariablesAchat(fraisVariablesAchat);
+    setFraisVariablesVente(fraisVariablesVente);
+    setMapCours(mapCours);
 }
 
 void Echange::copy(const Echange& echange)
 {
-    this->set(echange.getDeviseNumerique(), echange.getDeviseReelle(), echange.getFraisFixesAchat(),
+    set(echange.getDeviseNumerique(), echange.getDeviseReelle(), echange.getFraisFixesAchat(),
             echange.getFraisFixesVente(), echange.getFraisVariablesAchat(),
             echange.getFraisVariablesVente(), echange.getMapCours());
 }
 
 bool Echange::equals(const Echange& echange) const
 {
-    if (this->getDeviseNumerique() != echange.getDeviseNumerique())
+    if (getDeviseNumerique() != echange.getDeviseNumerique())
         return false;
-    if (this->getDeviseReelle() != echange.getDeviseReelle())
+    if (getDeviseReelle() != echange.getDeviseReelle())
         return false;
-    if (this->getFraisFixesAchat() != echange.getFraisFixesAchat())
+    if (getFraisFixesAchat() != echange.getFraisFixesAchat())
         return false;
-    if (this->getFraisFixesVente() != echange.getFraisFixesVente())
+    if (getFraisFixesVente() != echange.getFraisFixesVente())
         return false;
-    if (this->getFraisVariablesAchat() != echange.getFraisVariablesAchat())
+    if (getFraisVariablesAchat() != echange.getFraisVariablesAchat())
         return false;
-    if (this->getFraisVariablesVente() != echange.getFraisVariablesVente())
+    if (getFraisVariablesVente() != echange.getFraisVariablesVente())
         return false;
-    if (this->getMapCours() != echange.getMapCours())
+    if (getMapCours() != echange.getMapCours())
         return false;
     return true;
 }
@@ -183,20 +183,20 @@ const std::string Echange::toString(const char& sep) const
 
 bool Echange::hasCours(const int& date) const
 {
-    return (this->m_mapCours.find(date) != this->m_mapCours.end());
+    return (_mapCours.find(date) != _mapCours.end());
 }
 
 CPtrCours Echange::getCours(const int& date) const
 {
-    return (this->hasCours(date) ? &this->m_mapCours.find(date)->second : nullptr);
+    return (hasCours(date) ? &_mapCours.find(date)->second : nullptr);
 }
 
 bool Echange::ajouterCours(const int& date, const Cours& cours)
 {
-    return (this->m_mapCours.insert(std::pair<int, Cours>(date, cours)).second);
+    return (_mapCours.insert(std::pair<int, Cours>(date, cours)).second);
 }
 
 bool Echange::supprimerCours(const int& date)
 {
-    return (this->m_mapCours.erase(date) > 0);
+    return (_mapCours.erase(date) > 0);
 }

@@ -42,7 +42,7 @@ public:
 
 private:
     // Membres de classe
-    std::string m_nom;
+    std::string _nom;
 };
 
 typedef Devise* PtrDevise;

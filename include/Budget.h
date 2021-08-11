@@ -49,7 +49,7 @@ public:
 
 private:
     // Membres de classe
-    MapNomsMonnaies m_mapMonnaies;
+    MapNomsMonnaies _mapMonnaies;
 };
 
 typedef Budget* PtrBudget;

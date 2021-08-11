@@ -76,13 +76,13 @@ public:
 
 private:
     // Membres de classe
-    int m_date;
-    PtrPlateforme m_plateformeAchat;
-    PtrPlateforme m_plateformeVente;
-    PtrEchange m_echangeAchat;
-    PtrEchange m_echangeVente;
-    PtrCours m_coursAchat;
-    PtrCours m_coursVente;
+    int _date;
+    PtrPlateforme _plateformeAchat;
+    PtrPlateforme _plateformeVente;
+    PtrEchange _echangeAchat;
+    PtrEchange _echangeVente;
+    PtrCours _coursAchat;
+    PtrCours _coursVente;
 };
 
 typedef Transaction* PtrTransaction;

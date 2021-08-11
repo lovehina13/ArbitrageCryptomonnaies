@@ -8,23 +8,23 @@
 #include "Client.h"
 
 Client::Client() :
-        m_adresseSite(std::string()), m_adresseCarnetDeCommandes(std::string()),
-                m_coursActuels(MapNomsCours())
+        _adresseSite(std::string()), _adresseCarnetDeCommandes(std::string()),
+                _coursActuels(MapNomsCours())
 {
-    this->clear();
+    clear();
 }
 
 Client::Client(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
         const MapNomsCours& coursActuels) :
         Client()
 {
-    this->set(adresseSite, adresseCarnetDeCommandes, coursActuels);
+    set(adresseSite, adresseCarnetDeCommandes, coursActuels);
 }
 
 Client::Client(const Client& client) :
         Client()
 {
-    this->copy(client);
+    copy(client);
 }
 
 Client::~Client()
@@ -34,76 +34,75 @@ Client::~Client()
 
 Client& Client::operator=(const Client& client)
 {
-    this->copy(client);
+    copy(client);
     return *this;
 }
 
 bool Client::operator==(const Client& client) const
 {
-    return this->equals(client);
+    return equals(client);
 }
 
 bool Client::operator!=(const Client& client) const
 {
-    return !this->equals(client);
+    return !equals(client);
 }
 
 const std::string& Client::getAdresseSite() const
 {
-    return this->m_adresseSite;
+    return _adresseSite;
 }
 
 const std::string& Client::getAdresseCarnetDeCommandes() const
 {
-    return this->m_adresseCarnetDeCommandes;
+    return _adresseCarnetDeCommandes;
 }
 
 const MapNomsCours& Client::getCoursActuels() const
 {
-    return this->m_coursActuels;
+    return _coursActuels;
 }
 
 void Client::setAdresseSite(const std::string& adresseSite)
 {
-    this->m_adresseSite = adresseSite;
+    _adresseSite = adresseSite;
 }
 
 void Client::setAdresseCarnetDeCommandes(const std::string& adresseCarnetDeCommandes)
 {
-    this->m_adresseCarnetDeCommandes = adresseCarnetDeCommandes;
+    _adresseCarnetDeCommandes = adresseCarnetDeCommandes;
 }
 
 void Client::setCoursActuels(const MapNomsCours& coursActuels)
 {
-    this->m_coursActuels = coursActuels;
+    _coursActuels = coursActuels;
 }
 
 void Client::clear()
 {
-    this->set(std::string(), std::string(), MapNomsCours());
+    set(std::string(), std::string(), MapNomsCours());
 }
 
 void Client::set(const std::string& adresseSite, const std::string& adresseCarnetDeCommandes,
         const MapNomsCours& coursActuels)
 {
-    this->setAdresseSite(adresseSite);
-    this->setAdresseCarnetDeCommandes(adresseCarnetDeCommandes);
-    this->setCoursActuels(coursActuels);
+    setAdresseSite(adresseSite);
+    setAdresseCarnetDeCommandes(adresseCarnetDeCommandes);
+    setCoursActuels(coursActuels);
 }
 
 void Client::copy(const Client& client)
 {
-    this->set(client.getAdresseSite(), client.getAdresseCarnetDeCommandes(),
-            client.getCoursActuels());
+    set(client.getAdresseSite(), client.getAdresseCarnetDeCommandes(), client.getCoursActuels());
 }
 
 bool Client::equals(const Client& client) const
 {
-    if (this->getAdresseSite() != client.getAdresseSite())
+    if (getAdresseSite() != client.getAdresseSite())
         return false;
-    if (this->getAdresseCarnetDeCommandes() != client.getAdresseCarnetDeCommandes())
+    if (getAdresseCarnetDeCommandes() != client.getAdresseCarnetDeCommandes())
         return false;
-    if (this->getCoursActuels() != client.getCoursActuels())
+    if (getCoursActuels() != client.getCoursActuels())
         return false;
     return true;
 }

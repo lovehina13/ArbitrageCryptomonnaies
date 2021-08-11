@@ -13,10 +13,10 @@
 #include <sstream>
 
 Transaction::Transaction() :
-        m_date(0), m_plateformeAchat(nullptr), m_plateformeVente(nullptr), m_echangeAchat(nullptr),
-                m_echangeVente(nullptr), m_coursAchat(nullptr), m_coursVente(nullptr)
+        _date(0), _plateformeAchat(nullptr), _plateformeVente(nullptr), _echangeAchat(nullptr),
+                _echangeVente(nullptr), _coursAchat(nullptr), _coursVente(nullptr)
 {
-    this->clear();
+    clear();
 }
 
 Transaction::Transaction(const int& date, const CPtrPlateforme plateformeAchat,
@@ -24,14 +24,13 @@ Transaction::Transaction(const int& date, const CPtrPlateforme plateformeAchat,
         const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente) :
         Transaction()
 {
-    this->set(date, plateformeAchat, plateformeVente, echangeAchat, echangeVente, coursAchat,
-            coursVente);
+    set(date, plateformeAchat, plateformeVente, echangeAchat, echangeVente, coursAchat, coursVente);
 }
 
 Transaction::Transaction(const Transaction& transaction) :
         Transaction()
 {
-    this->copy(transaction);
+    copy(transaction);
 }
 
 Transaction::~Transaction()
@@ -41,131 +40,130 @@ Transaction::~Transaction()
 
 Transaction& Transaction::operator=(const Transaction& transaction)
 {
-    this->copy(transaction);
+    copy(transaction);
     return *this;
 }
 
 bool Transaction::operator==(const Transaction& transaction) const
 {
-    return this->equals(transaction);
+    return equals(transaction);
 }
 
 bool Transaction::operator!=(const Transaction& transaction) const
 {
-    return !this->equals(transaction);
+    return !equals(transaction);
 }
 
 const int& Transaction::getDate() const
 {
-    return this->m_date;
+    return _date;
 }
 
 CPtrPlateforme Transaction::getPlateformeAchat() const
 {
-    return this->m_plateformeAchat;
+    return _plateformeAchat;
 }
 
 CPtrPlateforme Transaction::getPlateformeVente() const
 {
-    return this->m_plateformeVente;
+    return _plateformeVente;
 }
 
 CPtrEchange Transaction::getEchangeAchat() const
 {
-    return this->m_echangeAchat;
+    return _echangeAchat;
 }
 
 CPtrEchange Transaction::getEchangeVente() const
 {
-    return this->m_echangeVente;
+    return _echangeVente;
 }
 
 CPtrCours Transaction::getCoursAchat() const
 {
-    return this->m_coursAchat;
+    return _coursAchat;
 }
 
 CPtrCours Transaction::getCoursVente() const
 {
-    return this->m_coursVente;
+    return _coursVente;
 }
 
 void Transaction::setDate(const int& date)
 {
-    this->m_date = date;
+    _date = date;
 }
 
 void Transaction::setPlateformeAchat(const CPtrPlateforme plateformeAchat)
 {
-    this->m_plateformeAchat = const_cast<PtrPlateforme>(plateformeAchat);
+    _plateformeAchat = const_cast<PtrPlateforme>(plateformeAchat);
 }
 
 void Transaction::setPlateformeVente(const CPtrPlateforme plateformeVente)
 {
-    this->m_plateformeVente = const_cast<PtrPlateforme>(plateformeVente);
+    _plateformeVente = const_cast<PtrPlateforme>(plateformeVente);
 }
 
 void Transaction::setEchangeAchat(const CPtrEchange echangeAchat)
 {
-    this->m_echangeAchat = const_cast<PtrEchange>(echangeAchat);
+    _echangeAchat = const_cast<PtrEchange>(echangeAchat);
 }
 
 void Transaction::setEchangeVente(const CPtrEchange echangeVente)
 {
-    this->m_echangeVente = const_cast<PtrEchange>(echangeVente);
+    _echangeVente = const_cast<PtrEchange>(echangeVente);
 }
 
 void Transaction::setCoursAchat(const CPtrCours coursAchat)
 {
-    this->m_coursAchat = const_cast<PtrCours>(coursAchat);
+    _coursAchat = const_cast<PtrCours>(coursAchat);
 }
 
 void Transaction::setCoursVente(const CPtrCours coursVente)
 {
-    this->m_coursVente = const_cast<PtrCours>(coursVente);
+    _coursVente = const_cast<PtrCours>(coursVente);
 }
 
 void Transaction::clear()
 {
-    this->set(0, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+    set(0, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
 }
 
 void Transaction::set(const int& date, const CPtrPlateforme plateformeAchat,
         const CPtrPlateforme plateformeVente, const CPtrEchange echangeAchat,
         const CPtrEchange echangeVente, const CPtrCours coursAchat, const CPtrCours coursVente)
 {
-    this->setDate(date);
-    this->setPlateformeAchat(plateformeAchat);
-    this->setPlateformeVente(plateformeVente);
-    this->setEchangeAchat(echangeAchat);
-    this->setEchangeVente(echangeVente);
-    this->setCoursAchat(coursAchat);
-    this->setCoursVente(coursVente);
+    setDate(date);
+    setPlateformeAchat(plateformeAchat);
+    setPlateformeVente(plateformeVente);
+    setEchangeAchat(echangeAchat);
+    setEchangeVente(echangeVente);
+    setCoursAchat(coursAchat);
+    setCoursVente(coursVente);
 }
 
 void Transaction::copy(const Transaction& transaction)
 {
-    this->set(transaction.getDate(), transaction.getPlateformeAchat(),
-            transaction.getPlateformeVente(), transaction.getEchangeAchat(),
-            transaction.getEchangeVente(), transaction.getCoursAchat(),
-            transaction.getCoursVente());
+    set(transaction.getDate(), transaction.getPlateformeAchat(), transaction.getPlateformeVente(),
+            transaction.getEchangeAchat(), transaction.getEchangeVente(),
+            transaction.getCoursAchat(), transaction.getCoursVente());
 }
 
 bool Transaction::equals(const Transaction& transaction) const
 {
-    if (this->getDate() != transaction.getDate())
+    if (getDate() != transaction.getDate())
         return false;
-    if (this->getPlateformeAchat() != transaction.getPlateformeAchat())
+    if (getPlateformeAchat() != transaction.getPlateformeAchat())
         return false;
-    if (this->getPlateformeVente() != transaction.getPlateformeVente())
+    if (getPlateformeVente() != transaction.getPlateformeVente())
         return false;
-    if (this->getEchangeAchat() != transaction.getEchangeAchat())
+    if (getEchangeAchat() != transaction.getEchangeAchat())
         return false;
-    if (this->getEchangeVente() != transaction.getEchangeVente())
+    if (getEchangeVente() != transaction.getEchangeVente())
         return false;
-    if (this->getCoursAchat() != transaction.getCoursAchat())
+    if (getCoursAchat() != transaction.getCoursAchat())
         return false;
-    if (this->getCoursVente() != transaction.getCoursVente())
+    if (getCoursVente() != transaction.getCoursVente())
         return false;
     return true;
 }
@@ -185,75 +183,75 @@ const std::string Transaction::toString(const char& sep) const
 
 bool Transaction::isSet() const
 {
-    return (this->m_plateformeAchat && this->m_plateformeVente && this->m_echangeAchat
-            && this->m_echangeVente && this->m_coursAchat && this->m_coursVente);
+    return (_plateformeAchat && _plateformeVente && _echangeAchat && _echangeVente && _coursAchat
+            && _coursVente);
 }
 
 double Transaction::getQuantiteAchat() const
 {
-    const double quantiteMonnaie = this->m_plateformeAchat->getBudget().getMonnaie(
-            this->m_echangeAchat->getDeviseReelle().getNom())->getQuantite();
-    const double quantiteBudget = (quantiteMonnaie - this->m_echangeAchat->getFraisFixesAchat())
-            / (this->m_coursAchat->getValeurVente() * this->m_echangeAchat->getFraisVariablesAchat()
-                    + this->m_coursAchat->getValeurVente());
-    const bool valeursAchatVenteIdentiques = (this->m_coursAchat->getValeurAchat()
-            == this->m_coursAchat->getValeurVente());
+    const double quantiteMonnaie = _plateformeAchat->getBudget().getMonnaie(
+            _echangeAchat->getDeviseReelle().getNom())->getQuantite();
+    const double quantiteBudget = (quantiteMonnaie - _echangeAchat->getFraisFixesAchat())
+            / (_coursAchat->getValeurVente() * _echangeAchat->getFraisVariablesAchat()
+                    + _coursAchat->getValeurVente());
+    const bool valeursAchatVenteIdentiques = (_coursAchat->getValeurAchat()
+            == _coursAchat->getValeurVente());
     const double quantiteAchat =
             (valeursAchatVenteIdentiques) ?
                     std::min(quantiteBudget,
                             std::max(
-                                    this->m_coursAchat->getQuantiteVente()
-                                            - this->m_coursAchat->getQuantiteAchat(), 0.0)) :
-                    std::min(quantiteBudget, this->m_coursAchat->getQuantiteVente());
+                                    _coursAchat->getQuantiteVente()
+                                            - _coursAchat->getQuantiteAchat(), 0.0)) :
+                    std::min(quantiteBudget, _coursAchat->getQuantiteVente());
     return quantiteAchat;
 }
 
 double Transaction::getQuantiteVente() const
 {
-    const double quantiteMonnaie = this->m_plateformeVente->getBudget().getMonnaie(
-            this->m_echangeVente->getDeviseNumerique().getNom())->getQuantite();
+    const double quantiteMonnaie = _plateformeVente->getBudget().getMonnaie(
+            _echangeVente->getDeviseNumerique().getNom())->getQuantite();
     const double quantiteBudget = quantiteMonnaie;
-    const bool valeursAchatVenteIdentiques = (this->m_coursVente->getValeurAchat()
-            == this->m_coursVente->getValeurVente());
+    const bool valeursAchatVenteIdentiques = (_coursVente->getValeurAchat()
+            == _coursVente->getValeurVente());
     const double quantiteVente =
             (valeursAchatVenteIdentiques) ?
                     std::min(quantiteBudget,
                             std::max(
-                                    this->m_coursVente->getQuantiteAchat()
-                                            - this->m_coursVente->getQuantiteVente(), 0.0)) :
-                    std::min(quantiteBudget, this->m_coursVente->getQuantiteAchat());
+                                    _coursVente->getQuantiteAchat()
+                                            - _coursVente->getQuantiteVente(), 0.0)) :
+                    std::min(quantiteBudget, _coursVente->getQuantiteAchat());
     return quantiteVente;
 }
 
 double Transaction::getQuantiteTransaction() const
 {
-    const double quantiteAchat = this->getQuantiteAchat();
-    const double quantiteVente = this->getQuantiteVente();
+    const double quantiteAchat = getQuantiteAchat();
+    const double quantiteVente = getQuantiteVente();
     const double quantiteTransaction = std::min(quantiteAchat, quantiteVente);
     return quantiteTransaction;
 }
 
 double Transaction::getCoutBrutAchat() const
 {
-    const double quantiteTransaction = this->getQuantiteTransaction();
-    const double valeurAchat = this->m_coursAchat->getValeurVente();
+    const double quantiteTransaction = getQuantiteTransaction();
+    const double valeurAchat = _coursAchat->getValeurVente();
     const double coutBrutAchat = quantiteTransaction * valeurAchat;
     return coutBrutAchat;
 }
 
 double Transaction::getCoutBrutVente() const
 {
-    const double quantiteTransaction = this->getQuantiteTransaction();
-    const double valeurVente = this->m_coursVente->getValeurAchat();
+    const double quantiteTransaction = getQuantiteTransaction();
+    const double valeurVente = _coursVente->getValeurAchat();
     const double coutBrutVente = quantiteTransaction * valeurVente;
     return coutBrutVente;
 }
 
 double Transaction::getCoutNetAchat() const
 {
-    const double coutBrutAchat = this->getCoutBrutAchat();
-    const double fraisFixesAchat = this->m_echangeAchat->getFraisFixesAchat();
-    const double fraisVariablesAchat = this->m_echangeAchat->getFraisVariablesAchat();
+    const double coutBrutAchat = getCoutBrutAchat();
+    const double fraisFixesAchat = _echangeAchat->getFraisFixesAchat();
+    const double fraisVariablesAchat = _echangeAchat->getFraisVariablesAchat();
     const double coutNetAchat = coutBrutAchat + fraisFixesAchat
             + coutBrutAchat * fraisVariablesAchat;
     return coutNetAchat;
@@ -261,9 +259,9 @@ double Transaction::getCoutNetAchat() const
 
 double Transaction::getCoutNetVente() const
 {
-    const double coutBrutVente = this->getCoutBrutVente();
-    const double fraisFixesVente = this->m_echangeVente->getFraisFixesVente();
-    const double fraisVariablesVente = this->m_echangeVente->getFraisVariablesVente();
+    const double coutBrutVente = getCoutBrutVente();
+    const double fraisFixesVente = _echangeVente->getFraisFixesVente();
+    const double fraisVariablesVente = _echangeVente->getFraisVariablesVente();
     const double coutNetVente = coutBrutVente - fraisFixesVente
             - coutBrutVente * fraisVariablesVente;
     return coutNetVente;
@@ -271,32 +269,32 @@ double Transaction::getCoutNetVente() const
 
 double Transaction::getBeneficeBrut() const
 {
-    const double coutBrutAchat = this->getCoutBrutAchat();
-    const double coutBrutVente = this->getCoutBrutVente();
+    const double coutBrutAchat = getCoutBrutAchat();
+    const double coutBrutVente = getCoutBrutVente();
     const double beneficeBrut = coutBrutVente - coutBrutAchat;
     return beneficeBrut;
 }
 
 double Transaction::getBeneficeNet() const
 {
-    const double coutNetAchat = this->getCoutNetAchat();
-    const double coutNetVente = this->getCoutNetVente();
+    const double coutNetAchat = getCoutNetAchat();
+    const double coutNetVente = getCoutNetVente();
     const double beneficeNet = coutNetVente - coutNetAchat;
     return beneficeNet;
 }
 
 double Transaction::getRatioBeneficeBrut() const
 {
-    const double coutBrutAchat = this->getCoutBrutAchat();
-    const double coutBrutVente = this->getCoutBrutVente();
+    const double coutBrutAchat = getCoutBrutAchat();
+    const double coutBrutVente = getCoutBrutVente();
     const double ratioBeneficeBrut = coutBrutVente / coutBrutAchat;
     return ratioBeneficeBrut;
 }
 
 double Transaction::getRatioBeneficeNet() const
 {
-    const double coutNetAchat = this->getCoutNetAchat();
-    const double coutNetVente = this->getCoutNetVente();
+    const double coutNetAchat = getCoutNetAchat();
+    const double coutNetVente = getCoutNetVente();
     const double ratioBeneficeNet = coutNetVente / coutNetAchat;
     return ratioBeneficeNet;
 }
@@ -304,19 +302,19 @@ double Transaction::getRatioBeneficeNet() const
 const std::string Transaction::getTexteSynthese() const
 {
     std::stringstream stream;
-    stream << "Plateforme achat: " << this->getPlateformeAchat()->getNom() << std::endl;
-    stream << "Échange achat: " << this->getEchangeAchat()->getDeviseReelle().getNom() << " vers "
-            << this->getEchangeAchat()->getDeviseNumerique().getNom() << std::endl;
-    stream << "Cours achat: " << this->getCoursAchat()->getValeurVente() << std::endl;
-    stream << "Quantité achat: " << this->getQuantiteTransaction() << std::endl;
-    stream << "Coût net achat: " << this->getCoutNetAchat() << std::endl;
-    stream << "Plateforme vente: " << this->getPlateformeVente()->getNom() << std::endl;
-    stream << "Échange vente: " << this->getEchangeVente()->getDeviseNumerique().getNom()
-            << " vers " << this->getEchangeVente()->getDeviseReelle().getNom() << std::endl;
-    stream << "Cours vente: " << this->getCoursVente()->getValeurAchat() << std::endl;
-    stream << "Quantité vente: " << this->getQuantiteTransaction() << std::endl;
-    stream << "Coût net vente: " << this->getCoutNetVente() << std::endl;
-    stream << "Bénéfice net: " << this->getBeneficeNet() << std::endl;
-    stream << "Ratio bénéfice net: " << this->getRatioBeneficeNet() << std::endl;
+    stream << "Plateforme achat: " << getPlateformeAchat()->getNom() << std::endl;
+    stream << "Échange achat: " << getEchangeAchat()->getDeviseReelle().getNom() << " vers "
+            << getEchangeAchat()->getDeviseNumerique().getNom() << std::endl;
+    stream << "Cours achat: " << getCoursAchat()->getValeurVente() << std::endl;
+    stream << "Quantité achat: " << getQuantiteTransaction() << std::endl;
+    stream << "Coût net achat: " << getCoutNetAchat() << std::endl;
+    stream << "Plateforme vente: " << getPlateformeVente()->getNom() << std::endl;
+    stream << "Échange vente: " << getEchangeVente()->getDeviseNumerique().getNom() << " vers "
+            << getEchangeVente()->getDeviseReelle().getNom() << std::endl;
+    stream << "Cours vente: " << getCoursVente()->getValeurAchat() << std::endl;
+    stream << "Quantité vente: " << getQuantiteTransaction() << std::endl;
+    stream << "Coût net vente: " << getCoutNetVente() << std::endl;
+    stream << "Bénéfice net: " << getBeneficeNet() << std::endl;
+    stream << "Ratio bénéfice net: " << getRatioBeneficeNet() << std::endl;
     return stream.str();
 }

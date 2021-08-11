@@ -9,21 +9,21 @@
 #include <utility>
 
 Budget::Budget() :
-        m_mapMonnaies(MapNomsMonnaies())
+        _mapMonnaies(MapNomsMonnaies())
 {
-    this->clear();
+    clear();
 }
 
 Budget::Budget(const MapNomsMonnaies& mapMonnaies) :
         Budget()
 {
-    this->set(mapMonnaies);
+    set(mapMonnaies);
 }
 
 Budget::Budget(const Budget& budget) :
         Budget()
 {
-    this->copy(budget);
+    copy(budget);
 }
 
 Budget::~Budget()
@@ -33,48 +33,48 @@ Budget::~Budget()
 
 Budget& Budget::operator=(const Budget& budget)
 {
-    this->copy(budget);
+    copy(budget);
     return *this;
 }
 
 bool Budget::operator==(const Budget& budget) const
 {
-    return this->equals(budget);
+    return equals(budget);
 }
 
 bool Budget::operator!=(const Budget& budget) const
 {
-    return !this->equals(budget);
+    return !equals(budget);
 }
 
 const MapNomsMonnaies& Budget::getMapMonnaies() const
 {
-    return this->m_mapMonnaies;
+    return _mapMonnaies;
 }
 
 void Budget::setMapMonnaies(const MapNomsMonnaies& mapMonnaies)
 {
-    this->m_mapMonnaies = mapMonnaies;
+    _mapMonnaies = mapMonnaies;
 }
 
 void Budget::clear()
 {
-    this->set(MapNomsMonnaies());
+    set(MapNomsMonnaies());
 }
 
 void Budget::set(const MapNomsMonnaies& mapMonnaies)
 {
-    this->setMapMonnaies(mapMonnaies);
+    setMapMonnaies(mapMonnaies);
 }
 
 void Budget::copy(const Budget& budget)
 {
-    this->set(budget.getMapMonnaies());
+    set(budget.getMapMonnaies());
 }
 
 bool Budget::equals(const Budget& budget) const
 {
-    if (this->getMapMonnaies() != budget.getMapMonnaies())
+    if (getMapMonnaies() != budget.getMapMonnaies())
         return false;
     return true;
 }
@@ -94,20 +94,20 @@ const std::string Budget::toString(const char& sep) const
 
 bool Budget::hasMonnaie(const std::string& nom) const
 {
-    return (this->m_mapMonnaies.find(nom) != this->m_mapMonnaies.end());
+    return (_mapMonnaies.find(nom) != _mapMonnaies.end());
 }
 
 CPtrMonnaie Budget::getMonnaie(const std::string& nom) const
 {
-    return (this->hasMonnaie(nom) ? &this->m_mapMonnaies.find(nom)->second : nullptr);
+    return (hasMonnaie(nom) ? &_mapMonnaies.find(nom)->second : nullptr);
 }
 
 bool Budget::ajouterMonnaie(const std::string& nom, const Monnaie& monnaie)
 {
-    return (this->m_mapMonnaies.insert(std::pair<std::string, Monnaie>(nom, monnaie)).second);
+    return (_mapMonnaies.insert(std::pair<std::string, Monnaie>(nom, monnaie)).second);
 }
 
 bool Budget::supprimerMonnaie(const std::string& nom)
 {
-    return (this->m_mapMonnaies.erase(nom) > 0);
+    return (_mapMonnaies.erase(nom) > 0);
 }

@@ -68,13 +68,13 @@ public:
 
 private:
     // Membres de classe
-    Devise m_deviseNumerique;
-    Devise m_deviseReelle;
-    double m_fraisFixesAchat;
-    double m_fraisFixesVente;
-    double m_fraisVariablesAchat;
-    double m_fraisVariablesVente;
-    MapIdCours m_mapCours;
+    Devise _deviseNumerique;
+    Devise _deviseReelle;
+    double _fraisFixesAchat;
+    double _fraisFixesVente;
+    double _fraisVariablesAchat;
+    double _fraisVariablesVente;
+    MapIdCours _mapCours;
 };
 
 typedef Echange* PtrEchange;

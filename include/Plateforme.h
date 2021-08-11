@@ -59,10 +59,10 @@ public:
 
 private:
     // Membres de classe
-    std::string m_nom;
-    MapNomsEchanges m_mapEchanges;
-    Budget m_budget;
-    PtrClient m_client;
+    std::string _nom;
+    MapNomsEchanges _mapEchanges;
+    Budget _budget;
+    PtrClient _client;
 };
 
 typedef Plateforme* PtrPlateforme;

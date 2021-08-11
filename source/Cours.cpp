@@ -8,23 +8,22 @@
 #include "Cours.h"
 
 Cours::Cours() :
-        m_date(0), m_valeurAchat(0.0), m_valeurVente(0.0), m_quantiteAchat(0.0),
-                m_quantiteVente(0.0)
+        _date(0), _valeurAchat(0.0), _valeurVente(0.0), _quantiteAchat(0.0), _quantiteVente(0.0)
 {
-    this->clear();
+    clear();
 }
 
 Cours::Cours(const int& date, const double& valeurAchat, const double& valeurVente,
         const double& quantiteAchat, const double& quantiteVente) :
         Cours()
 {
-    this->set(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente);
+    set(date, valeurAchat, valeurVente, quantiteAchat, quantiteVente);
 }
 
 Cours::Cours(const Cours& cours) :
         Cours()
 {
-    this->copy(cours);
+    copy(cours);
 }
 
 Cours::~Cours()
@@ -34,102 +33,102 @@ Cours::~Cours()
 
 Cours& Cours::operator=(const Cours& cours)
 {
-    this->copy(cours);
+    copy(cours);
     return *this;
 }
 
 bool Cours::operator==(const Cours& cours) const
 {
-    return this->equals(cours);
+    return equals(cours);
 }
 
 bool Cours::operator!=(const Cours& cours) const
 {
-    return !this->equals(cours);
+    return !equals(cours);
 }
 
 const int& Cours::getDate() const
 {
-    return this->m_date;
+    return _date;
 }
 
 const double& Cours::getValeurAchat() const
 {
-    return this->m_valeurAchat;
+    return _valeurAchat;
 }
 
 const double& Cours::getValeurVente() const
 {
-    return this->m_valeurVente;
+    return _valeurVente;
 }
 
 const double& Cours::getQuantiteAchat() const
 {
-    return this->m_quantiteAchat;
+    return _quantiteAchat;
 }
 
 const double& Cours::getQuantiteVente() const
 {
-    return this->m_quantiteVente;
+    return _quantiteVente;
 }
 
 void Cours::setDate(const int& date)
 {
-    this->m_date = date;
+    _date = date;
 }
 
 void Cours::setValeurAchat(const double& valeurAchat)
 {
-    this->m_valeurAchat = valeurAchat;
+    _valeurAchat = valeurAchat;
 }
 
 void Cours::setValeurVente(const double& valeurVente)
 {
-    this->m_valeurVente = valeurVente;
+    _valeurVente = valeurVente;
 }
 
 void Cours::setQuantiteAchat(const double& quantiteAchat)
 {
-    this->m_quantiteAchat = quantiteAchat;
+    _quantiteAchat = quantiteAchat;
 }
 
 void Cours::setQuantiteVente(const double& quantiteVente)
 {
-    this->m_quantiteVente = quantiteVente;
+    _quantiteVente = quantiteVente;
 }
 
 void Cours::clear()
 {
-    this->set(0, 0.0, 0.0, 0.0, 0.0);
+    set(0, 0.0, 0.0, 0.0, 0.0);
 }
 
 void Cours::set(const int& date, const double& valeurAchat, const double& valeurVente,
         const double& quantiteAchat, const double& quantiteVente)
 {
-    this->setDate(date);
-    this->setValeurAchat(valeurAchat);
-    this->setValeurVente(valeurVente);
-    this->setQuantiteAchat(quantiteAchat);
-    this->setQuantiteVente(quantiteVente);
+    setDate(date);
+    setValeurAchat(valeurAchat);
+    setValeurVente(valeurVente);
+    setQuantiteAchat(quantiteAchat);
+    setQuantiteVente(quantiteVente);
 }
 
 void Cours::copy(const Cours& cours)
 {
-    this->set(cours.getDate(), cours.getValeurAchat(), cours.getValeurVente(),
-            cours.getQuantiteAchat(), cours.getQuantiteVente());
+    set(cours.getDate(), cours.getValeurAchat(), cours.getValeurVente(), cours.getQuantiteAchat(),
+            cours.getQuantiteVente());
 }
 
 bool Cours::equals(const Cours& cours) const
 {
-    if (this->getDate() != cours.getDate())
+    if (getDate() != cours.getDate())
         return false;
-    if (this->getValeurAchat() != cours.getValeurAchat())
+    if (getValeurAchat() != cours.getValeurAchat())
         return false;
-    if (this->getValeurVente() != cours.getValeurVente())
+    if (getValeurVente() != cours.getValeurVente())
         return false;
-    if (this->getQuantiteAchat() != cours.getQuantiteAchat())
+    if (getQuantiteAchat() != cours.getQuantiteAchat())
         return false;
-    if (this->getQuantiteVente() != cours.getQuantiteVente())
+    if (getQuantiteVente() != cours.getQuantiteVente())
         return false;
     return true;
 }
