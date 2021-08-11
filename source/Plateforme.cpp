@@ -121,13 +121,13 @@ bool Plateforme::equals(const Plateforme& plateforme) const
     return true;
 }
 
-void Plateforme::fromString(const std::string& fromString, const char& sep)
+void Plateforme::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Plateforme::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Plateforme::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Plateforme::toString(const char& sep) const
+const std::string Plateforme::toString(const char& /*sep*/) const
 {
     // TODO const std::string Plateforme::toString(const char& sep) const
     // #warning "'const std::string Plateforme::toString(const char& sep) const' not implemented"

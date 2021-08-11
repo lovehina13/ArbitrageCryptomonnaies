@@ -91,13 +91,13 @@ bool Monnaie::equals(const Monnaie& monnaie) const
     return true;
 }
 
-void Monnaie::fromString(const std::string& fromString, const char& sep)
+void Monnaie::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Monnaie::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Monnaie::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Monnaie::toString(const char& sep) const
+const std::string Monnaie::toString(const char& /*sep*/) const
 {
     // TODO const std::string Monnaie::toString(const char& sep) const
     // #warning "'const std::string Monnaie::toString(const char& sep) const' not implemented"

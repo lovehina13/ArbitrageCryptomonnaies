@@ -168,13 +168,13 @@ bool Transaction::equals(const Transaction& transaction) const
     return true;
 }
 
-void Transaction::fromString(const std::string& fromString, const char& sep)
+void Transaction::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Transaction::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Transaction::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Transaction::toString(const char& sep) const
+const std::string Transaction::toString(const char& /*sep*/) const
 {
     // TODO const std::string Transaction::toString(const char& sep) const
     // #warning "'const std::string Transaction::toString(const char& sep) const' not implemented"

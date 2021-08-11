@@ -78,13 +78,13 @@ bool Devise::equals(const Devise& devise) const
     return true;
 }
 
-void Devise::fromString(const std::string& fromString, const char& sep)
+void Devise::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Devise::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Devise::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Devise::toString(const char& sep) const
+const std::string Devise::toString(const char& /*sep*/) const
 {
     // TODO const std::string Devise::toString(const char& sep) const
     // #warning "'const std::string Devise::toString(const char& sep) const' not implemented"

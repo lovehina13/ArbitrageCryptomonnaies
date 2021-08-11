@@ -133,13 +133,13 @@ bool Cours::equals(const Cours& cours) const
     return true;
 }
 
-void Cours::fromString(const std::string& fromString, const char& sep)
+void Cours::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Cours::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Cours::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Cours::toString(const char& sep) const
+const std::string Cours::toString(const char& /*sep*/) const
 {
     // TODO const std::string Cours::toString(const char& sep) const
     // #warning "'const std::string Cours::toString(const char& sep) const' not implemented"

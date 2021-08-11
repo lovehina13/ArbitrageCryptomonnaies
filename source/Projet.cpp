@@ -86,13 +86,13 @@ bool Projet::equals(const Projet& projet) const
     return true;
 }
 
-void Projet::fromString(const std::string& fromString, const char& sep)
+void Projet::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Projet::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Projet::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Projet::toString(const char& sep) const
+const std::string Projet::toString(const char& /*sep*/) const
 {
     // TODO const std::string Projet::toString(const char& sep) const
     // #warning "'const std::string Projet::toString(const char& sep) const' not implemented"
@@ -328,7 +328,7 @@ void Projet::actualiserBudgets(const Transaction& transaction)
     monnaieReelleVente->setQuantite(quantiteMonnaieReelleVente);
 }
 
-void Projet::equilibrerBudgets(const Transaction& transaction)
+void Projet::equilibrerBudgets(const Transaction& /*transaction*/)
 {
     // Définition du budget total
     Budget budgetTotal;

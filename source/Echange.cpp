@@ -168,13 +168,13 @@ bool Echange::equals(const Echange& echange) const
     return true;
 }
 
-void Echange::fromString(const std::string& fromString, const char& sep)
+void Echange::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Echange::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Echange::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Echange::toString(const char& sep) const
+const std::string Echange::toString(const char& /*sep*/) const
 {
     // TODO const std::string Echange::toString(const char& sep) const
     // #warning "'const std::string Echange::toString(const char& sep) const' not implemented"

@@ -79,13 +79,13 @@ bool Budget::equals(const Budget& budget) const
     return true;
 }
 
-void Budget::fromString(const std::string& fromString, const char& sep)
+void Budget::fromString(const std::string& /*fromString*/, const char& /*sep*/)
 {
     // TODO void Budget::fromString(const std::string& fromString, const char& sep)
     // #warning "'void Budget::fromString(const std::string& fromString, const char& sep)' not implemented"
 }
 
-const std::string Budget::toString(const char& sep) const
+const std::string Budget::toString(const char& /*sep*/) const
 {
     // TODO const std::string Budget::toString(const char& sep) const
     // #warning "'const std::string Budget::toString(const char& sep) const' not implemented"
